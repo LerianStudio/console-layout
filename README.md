@@ -41,7 +41,7 @@ Reusable layout components for Midaz console and plugins, providing a complete H
 ## Installation
 
 ```bash
-npm install @midaz/console-layout
+npm install @lerian/console-layout
 ```
 
 ### Peer Dependencies
@@ -55,8 +55,8 @@ npm install react react-dom next next-auth @tanstack/react-query
 ### 1. Simple Usage (Perfect for Plugins)
 
 ```tsx
-import { SimpleConsoleLayout } from "@midaz/console-layout";
-import "@midaz/console-layout/styles";
+import { SimpleConsoleLayout } from "@lerian/console-layout";
+import "@lerian/console-layout/styles";
 
 function MyPlugin() {
   return (
@@ -75,7 +75,7 @@ function MyPlugin() {
 ### 2. Advanced Usage (Full Control)
 
 ```tsx
-import { ConsoleLayout, useConsoleLayout } from "@midaz/console-layout";
+import { ConsoleLayout, useConsoleLayout } from "@lerian/console-layout";
 import { Home, Settings } from "lucide-react";
 
 function MyApp() {
@@ -113,7 +113,7 @@ function MyApp() {
 ### 3. Using the Layout Hook
 
 ```tsx
-import { useConsoleLayout } from "@midaz/console-layout";
+import { useConsoleLayout } from "@lerian/console-layout";
 
 function MyComponent() {
   const { navigate, isActive, organization, sidebar } = useConsoleLayout();
@@ -137,7 +137,7 @@ import {
   OrganizationProvider,
   SidebarProvider,
   OrganizationSwitcher,
-} from "@midaz/console-layout";
+} from "@lerian/console-layout";
 import { Home, DollarSign, Coins } from "lucide-react";
 
 function App() {
@@ -438,7 +438,7 @@ const customLedgerItems: SidebarMenuItemConfig[] = [
 The library includes pre-built Tailwind CSS styles. Import the CSS:
 
 ```tsx
-import "@midaz/console-layout/styles";
+import "@lerian/console-layout/styles";
 ```
 
 Or use your own CSS variables:
