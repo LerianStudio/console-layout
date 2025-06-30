@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "@midaz/console-layout": "file:..",
+    "@lerian/console-layout": "file:../lerian-console-layout-0.1.0.tgz",
+    "@tanstack/react-query": "^5.0.0",
     "next": "^15.0.0",
+    "next-auth": "^4.24.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -17,6 +19,9 @@
     "@types/node": "^20.0.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.0",
     "typescript": "^5.3.0"
   }
 }
