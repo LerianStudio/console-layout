@@ -38,6 +38,15 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundColor: {
+        background: "hsl(var(--background))",
+      },
+      textColor: {
+        foreground: "hsl(var(--foreground))",
+      },
+      borderColor: {
+        border: "hsl(var(--border))",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
