@@ -216,7 +216,7 @@ export default function TestApp() {
       <>
         <LayoutToggle />
         <SimpleConsoleLayout
-          baseUrl="http://localhost:3000"
+          baseUrl="http://localhost:8081"
           version="1.0.0"
           userName="John Doe"
           additionalMainItems={additionalMainItems}
@@ -238,7 +238,7 @@ export default function TestApp() {
       <LayoutToggle />
       <ConsoleLayout
         config={{
-          baseUrl: "http://localhost:3000",
+          baseUrl: "http://localhost:8081",
           defaultSidebarCollapsed: false,
           useExistingQueryClient: false,
         }}

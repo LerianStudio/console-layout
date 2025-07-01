@@ -6,8 +6,8 @@ import { getFetcher } from "./fetcher";
 
 export const useGetPluginMenus = () => {
   return useQuery<PluginManifestDto[]>({
-    queryKey: ["plugin-menus"],
-    queryFn: getFetcher("/api/plugin/menus"),
+    queryKey: ["plugin-menu"],
+    queryFn: getFetcher("/api/plugin/menu"),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };

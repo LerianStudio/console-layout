@@ -42,7 +42,7 @@ const responseHandler = async (response: Response) => {
 
 export const getFetcher = (url: string) => {
   return async () => {
-    const response = await fetch(`${config.baseUrl}${url}`, {
+    const response = await fetch(`http://localhost:8081${url}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export const getPaginatedFetcher = (
 ) => {
   return async () => {
     const response = await fetch(
-      `${config.baseUrl}${url}${createQueryString(params)}`,
+      `http://localhost:8081${url}${createQueryString(params)}`,
       {
         method: "GET",
         headers: {
@@ -72,7 +72,7 @@ export const getPaginatedFetcher = (
 
 export const postFetcher = (url: string) => {
   return async (body: any) => {
-    const response = await fetch(`${config.baseUrl}${url}`, {
+    const response = await fetch(`http://localhost:8081${url}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export const postFetcher = (url: string) => {
 
 export const patchFetcher = (url: string) => {
   return async (body: any) => {
-    const response = await fetch(`${config.baseUrl}${url}`, {
+    const response = await fetch(`http://localhost:8081${url}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export const patchFetcher = (url: string) => {
 
 export const deleteFetcher = (url: string) => {
   return async ({ id }: { id: string }) => {
-    const response = await fetch(`${config.baseUrl}${url}/${id}`, {
+    const response = await fetch(`http://localhost:8081${url}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
