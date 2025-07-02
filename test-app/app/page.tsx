@@ -13,15 +13,40 @@ import {
 
 // Define main navigation items
 const mainItems = [
-  { id: "home", title: "Home", icon: <Home />, href: "/" },
-  { id: "ledgers", title: "Ledgers", icon: <LibraryBig />, href: "/ledgers" },
+  {
+    id: "home",
+    title: "Home",
+    icon: <Home />,
+    href: "/",
+  },
+  {
+    id: "ledgers",
+    title: "Ledgers",
+    icon: <LibraryBig />,
+    href: "/ledgers",
+  },
 ];
 
 // Define ledger-specific items
 const ledgerItems = [
-  { id: "assets", title: "Assets", icon: <DollarSign />, href: "/assets" },
-  { id: "accounts", title: "Accounts", icon: <Coins />, href: "/accounts" },
-  { id: "segments", title: "Segments", icon: <Group />, href: "/segments" },
+  {
+    id: "assets",
+    title: "Assets",
+    icon: <DollarSign />,
+    href: "/assets",
+  },
+  {
+    id: "accounts",
+    title: "Accounts",
+    icon: <Coins />,
+    href: "/accounts",
+  },
+  {
+    id: "segments",
+    title: "Segments",
+    icon: <Group />,
+    href: "/segments",
+  },
   {
     id: "portfolios",
     title: "Portfolios",
@@ -37,19 +62,33 @@ const ledgerItems = [
 ];
 
 export default function TestApp() {
-  const handleLogout = () => console.log("Logout clicked");
-  const handleDocumentationClick = () =>
+  // Mock handlers
+  const handleLogout = () => {
+    console.log("Logout clicked");
+    alert("Logout functionality would go here");
+  };
+
+  const handleDocumentationClick = () => {
+    console.log("Documentation clicked");
     window.open("https://docs.midaz.io", "_blank");
-  const handleOrganizationsClick = () =>
+  };
+
+  const handleOrganizationsClick = () => {
     console.log("Organizations settings clicked");
-  const handleMembersClick = () => console.log("Members settings clicked");
+    alert("Organizations settings would open here");
+  };
+
+  const handleMembersClick = () => {
+    console.log("Members settings clicked");
+    alert("Members settings would open here");
+  };
 
   return (
     <ConsoleLayout
       config={{
         baseUrl: "http://localhost:3000",
         defaultSidebarCollapsed: false,
-        useExistingQueryClient: false, // Deixa a lib gerenciar
+        useExistingQueryClient: false, // Let the lib manage QueryClient
       }}
       headerProps={{
         version: "1.0.0",
@@ -87,64 +126,97 @@ export default function TestApp() {
         showExpandButton: true,
       }}
     >
-      {/* Conteúdo da página */}
+      {/* Page Content */}
       <div className="p-6">
-        <h1 className="text-3xl font-bold">@midaz/console-layout Test App</h1>
-        <div className="grid gap-6">
-          <div className="bg-card border rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">Sidebar Features</h2>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>✅ Responsive collapse/expand behavior</li>
-              <li>✅ Organization switcher in header</li>
-              <li>✅ Main navigation items</li>
-              <li>
-                ✅ Ledger-specific items (disabled when no ledger selected)
-              </li>
-              <li>✅ Plugin support with custom icons</li>
-              <li>✅ Tooltip support for collapsed mode</li>
-              <li>✅ Animated transitions</li>
-            </ul>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-foreground mb-6">
+            @lerian/console-layout Test App
+          </h1>
 
-          <div className="bg-card border rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">Header Features</h2>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>✅ Ledger selector with search and organization filtering</li>
-              <li>✅ User dropdown with profile and logout</li>
-              <li>✅ Settings dropdown with customizable actions</li>
-              <li>✅ Responsive design</li>
-              <li>✅ Version display</li>
-            </ul>
-          </div>
-
-          <div className="bg-card border rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">API Integration</h2>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>✅ Configurable fetcher with base URL</li>
-              <li>✅ Organizations API client</li>
-              <li>✅ Ledgers API client</li>
-              <li>✅ Plugin menu API client</li>
-              <li>✅ React Query integration for caching</li>
-              <li>✅ Auto-organization and ledger selection</li>
-            </ul>
-          </div>
-
-          <div className="bg-card border rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">Try It Out</h2>
-            <div className="space-y-4">
-              <p className="text-muted-foreground">Try these interactions:</p>
-              <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                <li>
-                  • Click the collapse/expand button to see sidebar animation
-                </li>
-                <li>• Hover over items in collapsed mode to see tooltips</li>
-                <li>• Click on navigation items to see active states</li>
-                <li>• Click the user dropdown to see profile options</li>
-                <li>• Click the settings dropdown to see admin actions</li>
-                <li>
-                  • Try the organization switcher (when multiple orgs available)
-                </li>
+          <div className="grid gap-6">
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">
+                Organization Switcher Features
+              </h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>✅ Multiple organizations with avatars</li>
+                <li>✅ Fallback to Lerian logo when no avatar</li>
+                <li>✅ Status indicators (Active/Inactive)</li>
+                <li>✅ Responsive popover with organization details</li>
+                <li>✅ Quick switching between organizations</li>
+                <li>✅ Settings and edit links</li>
               </ul>
+            </div>
+
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">Mock API Endpoints</h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>
+                  ✅ <code>/api/organizations</code> - 4 test organizations
+                </li>
+                <li>
+                  ✅ <code>/api/organizations/[id]</code> - Individual org data
+                </li>
+                <li>
+                  ✅ <code>/api/ledgers</code> - 8 ledgers across organizations
+                </li>
+                <li>
+                  ✅ <code>/api/plugin/menus</code> - 6 plugin menu items
+                </li>
+                <li>✅ Realistic API delays and pagination</li>
+                <li>✅ Organization filtering for ledgers</li>
+              </ul>
+            </div>
+
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">Test Organizations</h2>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <h3 className="font-medium">Lerian Studio</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Has avatar, 2 ledgers
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-medium">Midaz Technologies</h3>
+                  <p className="text-sm text-muted-foreground">
+                    No avatar, 3 ledgers
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-medium">Digital Banking Corp</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Onboarding mode, 1 ledger
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-medium">FinTech Solutions</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Has avatar, 2 ledgers
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">Try It Out</h2>
+              <div className="space-y-4">
+                <p className="text-muted-foreground">Try these interactions:</p>
+                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                  <li>
+                    • Click the organization logo/name to see the switcher
+                  </li>
+                  <li>• Switch between different organizations</li>
+                  <li>
+                    • Notice how ledgers change when switching organizations
+                  </li>
+                  <li>• Check the plugin section for enabled/disabled items</li>
+                  <li>
+                    • Collapse/expand the sidebar to see responsive behavior
+                  </li>
+                  <li>• Use the user and settings dropdowns in the header</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
