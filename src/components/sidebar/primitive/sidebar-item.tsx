@@ -1,51 +1,53 @@
 "use client";
 
 import React from "react";
-import { SidebarItemButton } from "./sidebar-item-button";
-import { SidebarItemIconButton } from "./sidebar-item-icon-button";
-import { useSidebar } from "../../../providers/sidebar-provider";
+import Link from "next/link";
+import { Button } from "../../ui/button";
+import { cn } from "../../../lib/utils";
 
 export interface SidebarItemProps {
-  title: string;
-  icon: React.ReactNode;
   href: string;
   disabled?: boolean;
-  disabledReason?: string;
-  active?: boolean;
+  isActive?: boolean;
   onClick?: () => void;
+  children: React.ReactNode;
+  className?: string;
 }
 
 export const SidebarItem = ({
-  disabled,
   href,
-  disabledReason,
-  active,
-  ...others
+  disabled,
+  isActive,
+  onClick,
+  children,
+  className,
 }: SidebarItemProps) => {
-  const { isCollapsed } = useSidebar();
+  const buttonClasses = cn(
+    "h-10 justify-start rounded-lg gap-x-2 w-full px-3",
+    "font-normal",
+    className
+  );
 
-  const defaultDisabledReason =
-    disabledReason || "No ledger selected. To access, create a ledger.";
-
-  if (isCollapsed) {
+  if (disabled) {
     return (
-      <SidebarItemIconButton
-        href={href}
-        active={active}
-        disabled={disabled}
-        disabledReason={defaultDisabledReason}
-        {...others}
-      />
+      <Button
+        variant="ghost"
+        disabled
+        className={cn(buttonClasses, "opacity-50 cursor-not-allowed")}
+      >
+        {children}
+      </Button>
     );
   }
 
   return (
-    <SidebarItemButton
-      href={href}
-      active={active}
-      disabled={disabled}
-      disabledReason={defaultDisabledReason}
-      {...others}
-    />
+    <Button
+      asChild
+      variant={isActive ? "activeLink" : "hoverLink"}
+      onClick={onClick}
+      className={buttonClasses}
+    >
+      <Link href={href}>{children}</Link>
+    </Button>
   );
 };

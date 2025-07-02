@@ -29,9 +29,10 @@ const organizations = [
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const organization = organizations.find((org) => org.id === params.id);
+  const { id } = await params;
+  const organization = organizations.find((org) => org.id === id);
 
   if (!organization) {
     return NextResponse.json(

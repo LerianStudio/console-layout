@@ -3,73 +3,148 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+}
+
+@layer base {
   :root {
+    /* Shadows específicas do console */
+    --shadow-sidebar: 5px 0px 15px -3px rgba(0, 0, 0, 0.05);
+    --shadow-data-table: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+      0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    --shadow-sheet-bottom: 0px -1px 2px 0px rgba(0, 0, 0, 0.1),
+      0px -10px 20px 0px rgba(0, 0, 0, 0.05);
+    --shadow-drawer: 0px 4px 8px 0px rgba(0, 0, 0, 0.2),
+      0px -1px 16px 0px rgba(0, 0, 0, 0.1), 0px 0px 32px 0px rgba(0, 0, 0, 0.05);
+    --shadow-entity-box: 0px 10px 20px rgba(0, 0, 0, 0.05),
+      0px 1px 2px rgba(0, 0, 0, 0.1);
+
+    /* Console color palette */
+    --color-sunglow-50: #fefbe8;
+    --color-sunglow-100: #fff8c2;
+    --color-sunglow-200: #ffed89;
+    --color-sunglow-300: #ffdc45;
+    --color-sunglow-400: #fdcb28;
+    --color-sunglow-500: #edac05;
+    --color-sunglow-600: #cc8402;
+    --color-sunglow-700: #a35d05;
+    --color-sunglow-800: #86490d;
+    --color-sunglow-900: #723c11;
+    --color-sunglow-950: #431e05;
+
+    --color-de-york-50: #f2fbf5;
+    --color-de-york-100: #e0f8e8;
+    --color-de-york-200: #c2f0d2;
+    --color-de-york-300: #74db9a;
+    --color-de-york-400: #5bcd86;
+    --color-de-york-500: #35b264;
+    --color-de-york-600: #26934f;
+    --color-de-york-700: #217441;
+    --color-de-york-800: #1f5c36;
+    --color-de-york-900: #1b4c2f;
+    --color-de-york-950: #0a2917;
+
+    --color-vivid-tangerine-50: #fef5f2;
+    --color-vivid-tangerine-100: #fee9e2;
+    --color-vivid-tangerine-200: #fed7ca;
+    --color-vivid-tangerine-300: #fdbaa4;
+    --color-vivid-tangerine-400: #faa589;
+    --color-vivid-tangerine-500: #f06e43;
+    --color-vivid-tangerine-600: #dd5325;
+    --color-vivid-tangerine-700: #ba421b;
+    --color-vivid-tangerine-800: #9a3a1a;
+    --color-vivid-tangerine-900: #80351c;
+    --color-vivid-tangerine-950: #45190a;
+
+    --color-cod-gray-50: #f6f5f5;
+    --color-cod-gray-100: #e9e4e4;
+    --color-cod-gray-200: #d5ccce;
+    --color-cod-gray-300: #b7a9ab;
+    --color-cod-gray-400: #927e81;
+    --color-cod-gray-500: #776366;
+    --color-cod-gray-600: #655557;
+    --color-cod-gray-700: #55494a;
+    --color-cod-gray-800: #4a4040;
+    --color-cod-gray-900: #403939;
+    --color-cod-gray-950: #070606;
+
+    --color-shadcn-100: #f4f4f5;
+    --color-shadcn-200: #e4e4e7;
+    --color-shadcn-300: #d4d4d8;
+    --color-shadcn-400: #a1a1aa;
+    --color-shadcn-500: #71717a;
+    --color-shadcn-600: #27272a;
+    --color-shadcn-700: #18181b;
+    --color-shadcn-800: #09090b;
+
+    /* Default background color of <body /> */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222.2 47.4% 11.2%;
 
+    /* Background color for <Card /> */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222.2 47.4% 11.2%;
 
+    /*Background color for popovers such as <DropdownMenu />, <HoverCard />, <Popover />*/
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222.2 47.4% 11.2%;
 
+    /* Primary ans secondary colors for <Button /> */
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    /* Used for accents such as hover effects on <DropdownMenuItem>, <SelectItem>...etc */
+    --accent: 56 99% 50%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
+    /* Used for destructive actions such as <Button variant="destructive"> */
+    --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
+    /* Default border color */
     --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
 
+    /* Border color for inputs such as <Input />, <Select />, <Textarea /> */
+    --input: 214.3 31.8% 91.4%;
+
+    /* Used for focus rings */
+    --ring: 215 20.2% 65.1%;
+
+    /* Used for border radius */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 
 @layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));

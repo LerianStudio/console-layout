@@ -75,7 +75,7 @@ export const ConsoleLayout = ({
         <HeaderProvider config={header}>
           <div className={`flex h-screen bg-background ${className}`}>
             {/* Auto-configured Sidebar */}
-            {showSidebar && <Sidebar headerContent={defaultOrgSwitcher} />}
+            {showSidebar && <Sidebar />}
 
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col min-w-0">

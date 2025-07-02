@@ -6,6 +6,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     // Include the console-layout lib
     "./node_modules/@lerian/console-layout/**/*.{js,ts,jsx,tsx}",
+    "../src/**/*.{js,ts,jsx,tsx,mdx}", // Include lib components
   ],
   theme: {
     container: {
@@ -58,6 +59,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        inter: ["var(--font-inter)", "Inter", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

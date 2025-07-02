@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lerian/console-layout": "file:../lerian-console-layout-0.1.0.tgz",
+    "@tanstack/react-query": "^5.81.5",
     "next": "^15.0.0",
     "next-auth": "^4.24.11",
     "react": "^19.1.0",

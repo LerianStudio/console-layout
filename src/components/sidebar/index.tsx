@@ -1,132 +1,111 @@
 "use client";
 
 import React from "react";
-import {
-  ArrowLeftRight,
-  Briefcase,
-  Coins,
-  DollarSign,
-  Group,
-  Home,
-  LibraryBig,
-} from "lucide-react";
-import * as LucideIcons from "lucide-react";
-import { Separator } from "../ui/separator";
-import { useOrganization } from "../../providers/organization-provider";
-import { useSidebar } from "../../providers/sidebar-provider";
+import { usePathname } from "next/navigation";
 import { useGetPluginMenus } from "../../client/plugin-menu";
-import { PluginManifestDto } from "../../types";
+// Ledgers client temporarily disabled
+import { SidebarRoot } from "./primitive/sidebar-root";
 import {
-  SidebarItem,
+  SidebarHeader,
   SidebarContent,
   SidebarGroup,
   SidebarGroupTitle,
-  SidebarHeader,
-  SidebarExpandButton,
-  SidebarRoot,
-} from "./primitive";
+} from "./primitive/sidebar-components";
+import { SidebarItem } from "./primitive/sidebar-item";
+import { SidebarExpandButton } from "./primitive/sidebar-expand-button";
+import { useSidebar } from "../../providers/sidebar-provider";
 
-export interface SidebarProps {
-  /** Header content - usually OrganizationSwitcher */
-  headerContent?: React.ReactNode;
-}
-
-export const Sidebar = ({ headerContent }: SidebarProps) => {
+const Sidebar = () => {
   const { isCollapsed } = useSidebar();
-  const [isMobileWidth, setIsMobileWidth] = React.useState(false);
-  const { currentLedger } = useOrganization();
-  const { data } = useGetPluginMenus();
+  const pathname = usePathname();
+  const { data: plugins = [] } = useGetPluginMenus();
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsMobileWidth(window.innerWidth < 768);
-    };
+  // Determine if ledger is disabled - simplified logic for now
+  const isLedgerDisabled = !pathname.includes("/ledgers/");
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+  // Main navigation items
+  const mainItems = [
+    { label: "Home", href: "/" },
+    { label: "Ledgers", href: "/ledgers" },
+  ];
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Ledger navigation items
+  const ledgerItems = [
+    { label: "Assets", href: "/assets" },
+    { label: "Accounts", href: "/accounts" },
+    { label: "Segments", href: "/segments" },
+    { label: "Portfolios", href: "/portfolios" },
+    { label: "Transactions", href: "/transactions" },
+  ];
 
   return (
     <SidebarRoot>
-      {headerContent && <SidebarHeader>{headerContent}</SidebarHeader>}
+      {/* Header */}
+      <SidebarHeader collapsed={isCollapsed}>
+        <div className="flex items-center justify-between w-full">
+          {!isCollapsed && (
+            <div className="flex items-center">
+              <span className="text-lg font-semibold">Midaz</span>
+            </div>
+          )}
+          <SidebarExpandButton />
+        </div>
+      </SidebarHeader>
 
+      {/* Content */}
       <SidebarContent>
+        {/* Main Navigation */}
         <SidebarGroup>
-          <SidebarItem title="Home" icon={<Home />} href="/" />
-          <SidebarItem title="Ledgers" icon={<LibraryBig />} href="/ledgers" />
+          <SidebarGroupTitle collapsed={isCollapsed}>Main</SidebarGroupTitle>
+          {mainItems.map((item) => (
+            <SidebarItem
+              key={item.href}
+              href={item.href}
+              isActive={pathname === item.href}
+            >
+              <span>{item.label}</span>
+            </SidebarItem>
+          ))}
         </SidebarGroup>
 
-        {isCollapsed && <Separator />}
-
+        {/* Ledger Navigation */}
         <SidebarGroup>
           <SidebarGroupTitle collapsed={isCollapsed}>Ledger</SidebarGroupTitle>
-
-          <SidebarItem
-            title="Assets"
-            icon={<DollarSign />}
-            href="/assets"
-            disabled={Object.keys(currentLedger).length === 0}
-          />
-
-          <SidebarItem
-            title="Accounts"
-            icon={<Coins />}
-            href="/accounts"
-            disabled={Object.keys(currentLedger).length === 0}
-          />
-
-          <SidebarItem
-            title="Segments"
-            icon={<Group />}
-            href="/segments"
-            disabled={Object.keys(currentLedger).length === 0}
-          />
-
-          <SidebarItem
-            title="Portfolios"
-            icon={<Briefcase />}
-            href="/portfolios"
-            disabled={Object.keys(currentLedger).length === 0}
-          />
-
-          <SidebarItem
-            title="Transactions"
-            icon={<ArrowLeftRight />}
-            href="/transactions"
-            disabled={Object.keys(currentLedger).length === 0}
-          />
+          {ledgerItems.map((item) => (
+            <SidebarItem
+              key={item.href}
+              href={item.href}
+              disabled={isLedgerDisabled}
+              isActive={pathname.startsWith(item.href)}
+            >
+              <span>{item.label}</span>
+            </SidebarItem>
+          ))}
         </SidebarGroup>
 
-        {data && data.length > 0 && (
+        {/* Plugins */}
+        {plugins.length > 0 && (
           <SidebarGroup>
             <SidebarGroupTitle collapsed={isCollapsed}>
               Plugins
             </SidebarGroupTitle>
-            {data.map((plugin: PluginManifestDto) => {
-              if (!plugin.enabled) {
-                return null;
-              }
-
-              const Icon =
-                (LucideIcons as unknown as Record<string, React.ElementType>)[
-                  plugin.icon
-                ] || LucideIcons.Landmark;
-              return (
+            {plugins
+              .filter((plugin) => plugin.enabled)
+              .map((plugin) => (
                 <SidebarItem
-                  key={plugin.name}
-                  title={plugin.title}
-                  icon={<Icon />}
+                  key={plugin.id}
                   href={plugin.route}
-                />
-              );
-            })}
+                  isActive={pathname.startsWith(plugin.route)}
+                >
+                  <span>{plugin.name}</span>
+                </SidebarItem>
+              ))}
           </SidebarGroup>
         )}
       </SidebarContent>
-
-      {!isMobileWidth && <SidebarExpandButton />}
     </SidebarRoot>
   );
 };
+
+export { Sidebar };
+export default Sidebar;

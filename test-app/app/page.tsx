@@ -8,7 +8,7 @@ export default function TestApp() {
       config={{
         // baseUrl is auto-detected from NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
         defaultSidebarCollapsed: false,
-        useExistingQueryClient: false, // Let the lib manage QueryClient
+        useExistingQueryClient: true, // Use the QueryClient from providers
       }}
     >
       {/* Page Content */}

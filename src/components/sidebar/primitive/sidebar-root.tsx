@@ -1,38 +1,21 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 import { useSidebar } from "../../../providers/sidebar-provider";
 
-const sidebarVariants = {
-  opened: {
-    width: "auto",
-    transition: {
-      duration: 0.1,
-    },
-  },
-  closed: {
-    width: "72px",
-  },
-};
-
-export interface SidebarRootProps {
-  children: React.ReactNode;
-}
-
-export const SidebarRoot = ({ children }: SidebarRootProps) => {
+export const SidebarRoot = ({ children }: React.PropsWithChildren) => {
   const { isCollapsed } = useSidebar();
 
   return (
-    <AnimatePresence>
-      <motion.div
-        data-collapsed={isCollapsed}
-        className="group/sidebar relative flex flex-col shadow-sidebar bg-background border-r"
-        variants={sidebarVariants}
-        initial="closed"
-        animate={isCollapsed ? "closed" : "opened"}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <div
+      data-collapsed={isCollapsed}
+      className="group/sidebar shadow-sidebar dark:bg-cod-gray-950 relative flex flex-col"
+      style={{
+        width: isCollapsed ? "72px" : "auto",
+        transition: "width 0.1s ease-out",
+      }}
+    >
+      {children}
+    </div>
   );
 };
