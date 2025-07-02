@@ -17,38 +17,40 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useHeaderContext } from "@/providers/header-provider";
+} from "../ui/dropdown-menu";
+import { useHeaderContext } from "../../providers/header-provider";
+import { useI18n } from "../../lib/i18n";
 
 export const SettingsDropdown = () => {
-  const { handlers, text, permissions } = useHeaderContext();
+  const { handlers, permissions } = useHeaderContext();
+  const { formatMessage } = useI18n();
 
   const defaultItems = [
     {
       key: "organizations",
       icon: Building,
-      label: text.organizations,
+      label: formatMessage("settingsDropdown.organizations"),
       onClick: handlers.onOrganizationsClick,
       visible: true,
     },
     {
       key: "users",
       icon: Users,
-      label: text.users,
+      label: formatMessage("settingsDropdown.users"),
       onClick: handlers.onUsersClick,
       visible: permissions.canViewUsers,
     },
     {
       key: "applications",
       icon: Layers,
-      label: text.applications,
+      label: formatMessage("settingsDropdown.applications"),
       onClick: handlers.onApplicationsClick,
       visible: permissions.canViewApplications,
     },
     {
       key: "system",
       icon: Globe,
-      label: text.system,
+      label: formatMessage("settingsDropdown.system"),
       onClick: handlers.onSystemClick,
       visible: true,
     },
@@ -62,7 +64,9 @@ export const SettingsDropdown = () => {
         <Settings className="text-shadcn-400" size={24} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-[241px]">
-        <DropdownMenuLabel>{text.settings}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          {formatMessage("settingsDropdown.settings")}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         {visibleItems.map((item) => (
@@ -81,7 +85,7 @@ export const SettingsDropdown = () => {
               <DropdownMenuItemIcon>
                 <HelpCircle />
               </DropdownMenuItemIcon>
-              {text.about}
+              {formatMessage("settingsDropdown.about")}
             </DropdownMenuItem>
           </>
         )}

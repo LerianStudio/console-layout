@@ -7,9 +7,11 @@ import { Sidebar } from "../sidebar";
 import { OrganizationProvider } from "../../providers/organization-provider";
 import { SidebarProvider } from "../../providers/sidebar-provider";
 import { HeaderProvider } from "../../providers/header-provider";
+import { I18nProvider } from "../../lib/i18n";
 import { OrganizationSwitcher } from "../organization-switcher";
 import { configureFetcher } from "../../client/fetcher";
 import { ConsoleHeaderConfig } from "../../types/header";
+import type { I18nConfig } from "../../lib/i18n";
 
 export interface ConsoleLayoutConfig {
   /** Optional API base URL override. If not provided, will use NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL env var */
@@ -27,6 +29,8 @@ export interface ConsoleLayoutProps {
   config: ConsoleLayoutConfig;
   /** Header configuration */
   header?: ConsoleHeaderConfig;
+  /** I18n configuration */
+  i18n?: I18nConfig;
   /** Custom organization switcher */
   organizationSwitcher?: React.ReactNode;
   /** Main content */
@@ -52,6 +56,7 @@ const defaultQueryClient = new QueryClient({
 export const ConsoleLayout = ({
   config,
   header,
+  i18n,
   organizationSwitcher,
   children,
   className = "",
@@ -70,25 +75,27 @@ export const ConsoleLayout = ({
   const defaultOrgSwitcher = organizationSwitcher || <OrganizationSwitcher />;
 
   const content = (
-    <OrganizationProvider>
-      <SidebarProvider defaultCollapsed={config.defaultSidebarCollapsed}>
-        <HeaderProvider config={header}>
-          <div className={`flex h-screen bg-background ${className}`}>
-            {/* Auto-configured Sidebar */}
-            {showSidebar && <Sidebar />}
+    <I18nProvider config={i18n}>
+      <OrganizationProvider>
+        <SidebarProvider defaultCollapsed={config.defaultSidebarCollapsed}>
+          <HeaderProvider config={header}>
+            <div className={`flex h-screen bg-background ${className}`}>
+              {/* Auto-configured Sidebar */}
+              {showSidebar && <Sidebar />}
 
-            {/* Main Content Area */}
-            <div className="flex-1 flex flex-col min-w-0">
-              {/* Header */}
-              {showHeader && <Header showLedgerSelector={true} />}
+              {/* Main Content Area */}
+              <div className="flex-1 flex flex-col min-w-0">
+                {/* Header */}
+                {showHeader && <Header showLedgerSelector={true} />}
 
-              {/* Page Content */}
-              <main className="flex-1 overflow-auto">{children}</main>
+                {/* Page Content */}
+                <main className="flex-1 overflow-auto">{children}</main>
+              </div>
             </div>
-          </div>
-        </HeaderProvider>
-      </SidebarProvider>
-    </OrganizationProvider>
+          </HeaderProvider>
+        </SidebarProvider>
+      </OrganizationProvider>
+    </I18nProvider>
   );
 
   // Wrap with QueryClient if not using existing one

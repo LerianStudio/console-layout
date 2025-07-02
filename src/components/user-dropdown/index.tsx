@@ -9,12 +9,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "../ui/dropdown-menu";
 import { Book, CircleUser, LogOut } from "lucide-react";
-import { useHeaderContext } from "@/providers/header-provider";
+import { useHeaderContext } from "../../providers/header-provider";
+import { useI18n } from "../../lib/i18n";
 
 export const UserDropdown = () => {
-  const { userName, handlers, text } = useHeaderContext();
+  const { userName, handlers } = useHeaderContext();
+  const { formatMessage } = useI18n();
 
   return (
     <DropdownMenu>
@@ -28,7 +30,7 @@ export const UserDropdown = () => {
           <DropdownMenuItemIcon>
             <Book />
           </DropdownMenuItemIcon>
-          {text.documentation}
+          {formatMessage("header.userDropdown.support")}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 
@@ -36,7 +38,7 @@ export const UserDropdown = () => {
           <DropdownMenuItemIcon>
             <LogOut />
           </DropdownMenuItemIcon>
-          {text.logout}
+          {formatMessage("header.userDropdown.logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

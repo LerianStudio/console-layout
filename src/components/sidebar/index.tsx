@@ -14,9 +14,11 @@ import {
 import { SidebarItem } from "./primitive/sidebar-item";
 import { SidebarExpandButton } from "./primitive/sidebar-expand-button";
 import { useSidebar } from "../../providers/sidebar-provider";
+import { useI18n } from "../../lib/i18n";
 
 const Sidebar = () => {
   const { isCollapsed } = useSidebar();
+  const { formatMessage } = useI18n();
   const pathname = usePathname();
   const { data: plugins = [] } = useGetPluginMenus();
 
@@ -25,17 +27,20 @@ const Sidebar = () => {
 
   // Main navigation items
   const mainItems = [
-    { label: "Home", href: "/" },
-    { label: "Ledgers", href: "/ledgers" },
+    { label: formatMessage("sideBar.home"), href: "/" },
+    { label: formatMessage("sideBar.ledgers"), href: "/ledgers" },
   ];
 
   // Ledger navigation items
   const ledgerItems = [
-    { label: "Assets", href: "/assets" },
-    { label: "Accounts", href: "/accounts" },
-    { label: "Segments", href: "/segments" },
-    { label: "Portfolios", href: "/portfolios" },
-    { label: "Transactions", href: "/transactions" },
+    { label: formatMessage("common.assets"), href: "/assets" },
+    { label: formatMessage("sideBar.ledger.accounts"), href: "/accounts" },
+    { label: formatMessage("common.segments"), href: "/segments" },
+    {
+      label: formatMessage("sideBar.accountHolders.portfolios"),
+      href: "/portfolios",
+    },
+    { label: formatMessage("common.transactions"), href: "/transactions" },
   ];
 
   return (
@@ -70,7 +75,9 @@ const Sidebar = () => {
 
         {/* Ledger Navigation */}
         <SidebarGroup>
-          <SidebarGroupTitle collapsed={isCollapsed}>Ledger</SidebarGroupTitle>
+          <SidebarGroupTitle collapsed={isCollapsed}>
+            {formatMessage("sideBar.ledger.title")}
+          </SidebarGroupTitle>
           {ledgerItems.map((item) => (
             <SidebarItem
               key={item.href}
@@ -87,7 +94,7 @@ const Sidebar = () => {
         {plugins.length > 0 && (
           <SidebarGroup>
             <SidebarGroupTitle collapsed={isCollapsed}>
-              Plugins
+              {formatMessage("common.plugins")}
             </SidebarGroupTitle>
             {plugins
               .filter((plugin) => plugin.enabled)
