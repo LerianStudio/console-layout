@@ -62,26 +62,11 @@ const ledgerItems = [
 ];
 
 export default function TestApp() {
-  // Mock handlers
-  const handleLogout = () => {
-    console.log("Logout clicked");
-    alert("Logout functionality would go here");
-  };
+  // These handlers are no longer needed - everything is auto-detected!
+  // The lib now handles all navigation and logout via NextAuth
 
-  const handleDocumentationClick = () => {
-    console.log("Documentation clicked");
-    window.open("https://docs.midaz.io", "_blank");
-  };
-
-  const handleOrganizationsClick = () => {
-    console.log("Organizations settings clicked");
-    alert("Organizations settings would open here");
-  };
-
-  const handleMembersClick = () => {
-    console.log("Members settings clicked");
-    alert("Members settings would open here");
-  };
+  // TODO: After lib rebuild, add header prop:
+  // header={{ version: "1.0.0", user: { name: "John Doe" } }}
 
   return (
     <ConsoleLayout
@@ -89,29 +74,6 @@ export default function TestApp() {
         // baseUrl is now auto-detected from NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
         defaultSidebarCollapsed: false,
         useExistingQueryClient: false, // Let the lib manage QueryClient
-      }}
-      headerProps={{
-        version: "1.0.0",
-        locale: "en",
-        userDropdownProps: {
-          userName: "John Doe",
-          onLogout: handleLogout,
-          onDocsClick: handleDocumentationClick,
-          text: {
-            user: "User",
-            documentation: "Documentation",
-            logout: "Sign out",
-          },
-        },
-        settingsDropdownProps: {
-          onOrganizationsClick: handleOrganizationsClick,
-          onUsersClick: handleMembersClick,
-          text: {
-            settings: "Settings",
-            organizations: "Organizations",
-            users: "Members",
-          },
-        },
       }}
       sidebarProps={{
         mainItems,
@@ -136,17 +98,17 @@ export default function TestApp() {
           <div className="grid gap-6">
             <div className="bg-card border rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">
-                🚀 Simplified Configuration
+                🚀 Zero Configuration
               </h2>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
                   ✅ Auto-detects API URL from{" "}
                   <code>process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL</code>
                 </li>
-                <li>✅ No need to manually pass baseUrl anymore</li>
-                <li>✅ Fallback to localhost:3000 for development</li>
-                <li>✅ Override available via config.baseUrl if needed</li>
-                <li>✅ Consistent across all applications using the lib</li>
+                <li>✅ Auto-detects user from NextAuth session</li>
+                <li>✅ Auto-detects version and locale</li>
+                <li>✅ Default handlers for logout and navigation</li>
+                <li>✅ No need to pass headerProps anymore!</li>
                 <li>✅ Proper TypeScript support for environment variables</li>
               </ul>
               <div className="mt-4 p-3 bg-muted rounded-md">
@@ -157,8 +119,8 @@ export default function TestApp() {
                   NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL=http://localhost:3000
                 </code>
                 <p className="text-xs text-muted-foreground mt-2">
-                  💡 The lib automatically reads from
-                  process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+                  💡 The lib automatically reads from process.env and NextAuth
+                  session
                 </p>
               </div>
             </div>

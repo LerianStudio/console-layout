@@ -18,113 +18,43 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useHeaderContext } from "@/providers/header-provider";
 
-export interface SettingsDropdownItem {
-  key: string;
-  icon: React.ComponentType;
-  label: string;
-  onClick: () => void;
-  visible?: boolean;
-}
+export const SettingsDropdown = () => {
+  const { handlers, text, permissions } = useHeaderContext();
 
-export interface SettingsDropdownProps {
-  /**
-   * Custom settings items
-   */
-  items?: SettingsDropdownItem[];
-  /**
-   * Callback for organizations click
-   */
-  onOrganizationsClick?: () => void;
-  /**
-   * Callback for users click
-   */
-  onUsersClick?: () => void;
-  /**
-   * Callback for applications click
-   */
-  onApplicationsClick?: () => void;
-  /**
-   * Callback for system click
-   */
-  onSystemClick?: () => void;
-  /**
-   * Callback for about click
-   */
-  onAboutClick?: () => void;
-  /**
-   * Text overrides for internationalization
-   */
-  text?: {
-    settings?: string;
-    organizations?: string;
-    users?: string;
-    applications?: string;
-    system?: string;
-    about?: string;
-  };
-  /**
-   * Permissions for menu items
-   */
-  permissions?: {
-    canViewUsers?: boolean;
-    canViewApplications?: boolean;
-  };
-}
-
-export const SettingsDropdown = ({
-  items,
-  onOrganizationsClick,
-  onUsersClick,
-  onApplicationsClick,
-  onSystemClick,
-  onAboutClick,
-  text = {
-    settings: "Settings",
-    organizations: "Organizations",
-    users: "Users",
-    applications: "Applications",
-    system: "System",
-    about: "About Midaz",
-  },
-  permissions = {
-    canViewUsers: true,
-    canViewApplications: true,
-  },
-}: SettingsDropdownProps) => {
-  const defaultItems: SettingsDropdownItem[] = [
+  const defaultItems = [
     {
       key: "organizations",
       icon: Building,
-      label: text.organizations!,
-      onClick: onOrganizationsClick || (() => {}),
+      label: text.organizations,
+      onClick: handlers.onOrganizationsClick,
       visible: true,
     },
     {
       key: "users",
       icon: Users,
-      label: text.users!,
-      onClick: onUsersClick || (() => {}),
+      label: text.users,
+      onClick: handlers.onUsersClick,
       visible: permissions.canViewUsers,
     },
     {
       key: "applications",
       icon: Layers,
-      label: text.applications!,
-      onClick: onApplicationsClick || (() => {}),
+      label: text.applications,
+      onClick: handlers.onApplicationsClick,
       visible: permissions.canViewApplications,
     },
     {
       key: "system",
       icon: Globe,
-      label: text.system!,
-      onClick: onSystemClick || (() => {}),
+      label: text.system,
+      onClick: handlers.onSystemClick,
       visible: true,
     },
   ];
 
-  const menuItems = items || defaultItems;
-  const visibleItems = menuItems.filter((item) => item.visible !== false);
+  const visibleItems = defaultItems.filter((item) => item.visible);
 
   return (
     <DropdownMenu>
@@ -144,10 +74,10 @@ export const SettingsDropdown = ({
           </DropdownMenuItem>
         ))}
 
-        {onAboutClick && (
+        {handlers.onAboutClick && (
           <>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={onAboutClick}>
+            <DropdownMenuItem onClick={handlers.onAboutClick}>
               <DropdownMenuItemIcon>
                 <HelpCircle />
               </DropdownMenuItemIcon>

@@ -3,10 +3,12 @@ export { configureFetcher } from "./client/fetcher";
 
 // Types
 export * from "./types";
+export * from "./types/header";
 
 // Providers
 export * from "./providers/organization-provider";
 export * from "./providers/sidebar-provider";
+export * from "./providers/header-provider";
 
 // Components
 export * from "./components/header";
@@ -30,6 +32,7 @@ export * from "./client/plugin-menu";
 
 // Utilities
 export * from "./lib/utils";
+export * from "./lib/env";
 
 // Styles
 import "./styles/globals.css";
@@ -47,6 +50,8 @@ export * from "./components/organization-switcher/organization-switcher-content"
 
 // Hooks
 export * from "./hooks/use-console-layout";
+export * from "./hooks/use-auth";
+export * from "./hooks/use-header-data";
 
 // Console Layout
 export * from "./components/console-layout";

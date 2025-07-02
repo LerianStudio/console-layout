@@ -2,43 +2,12 @@
 
 import React from "react";
 import { Separator } from "@/components/ui/separator";
-import {
-  LedgerSelector,
-  LedgerSelectorProps,
-} from "@/components/ledger-selector";
-import { UserDropdown, UserDropdownProps } from "@/components/user-dropdown";
-import {
-  SettingsDropdown,
-  SettingsDropdownProps,
-} from "@/components/settings-dropdown";
+import { LedgerSelector } from "@/components/ledger-selector";
+import { UserDropdown } from "@/components/user-dropdown";
+import { SettingsDropdown } from "@/components/settings-dropdown";
+import { useHeaderContext } from "@/providers/header-provider";
 
 export interface HeaderProps {
-  /**
-   * Midaz version to display
-   */
-  version?: string;
-  /**
-   * Current locale to display
-   */
-  locale?: string;
-  /**
-   * Props for LedgerSelector component
-   */
-  ledgerSelectorProps?: LedgerSelectorProps;
-  /**
-   * Props for UserDropdown component
-   */
-  userDropdownProps?: UserDropdownProps;
-  /**
-   * Props for SettingsDropdown component
-   */
-  settingsDropdownProps?: SettingsDropdownProps;
-  /**
-   * Text overrides for internationalization
-   */
-  text?: {
-    midazConsole?: string;
-  };
   /**
    * Custom className for header container
    */
@@ -50,17 +19,11 @@ export interface HeaderProps {
 }
 
 export const Header = ({
-  version,
-  locale = "EN",
-  ledgerSelectorProps,
-  userDropdownProps,
-  settingsDropdownProps,
-  text = {
-    midazConsole: "Midaz Console",
-  },
   className,
   showLedgerSelector = true,
 }: HeaderProps) => {
+  const { version, locale, text } = useHeaderContext();
+
   return (
     <div
       className={`flex h-[60px] w-full items-center border-b bg-white py-5 pr-16 ${
@@ -68,7 +31,7 @@ export const Header = ({
       }`}
     >
       <nav className="flex w-full items-center justify-between gap-4 pl-16">
-        {showLedgerSelector && <LedgerSelector {...ledgerSelectorProps} />}
+        {showLedgerSelector && <LedgerSelector />}
 
         <div className="flex items-center gap-6">
           <p className="text-xs font-medium text-zinc-400">
@@ -86,8 +49,8 @@ export const Header = ({
             {locale.toUpperCase()}
           </p>
 
-          <SettingsDropdown {...settingsDropdownProps} />
-          <UserDropdown {...userDropdownProps} />
+          <SettingsDropdown />
+          <UserDropdown />
         </div>
       </nav>
     </div>

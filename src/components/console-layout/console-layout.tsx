@@ -2,12 +2,14 @@
 
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Header, HeaderProps } from "../header";
+import { Header } from "../header";
 import { Sidebar, SidebarProps } from "../sidebar";
 import { OrganizationProvider } from "../../providers/organization-provider";
 import { SidebarProvider } from "../../providers/sidebar-provider";
+import { HeaderProvider } from "../../providers/header-provider";
 import { OrganizationSwitcher } from "../organization-switcher";
 import { configureFetcher } from "../../client/fetcher";
+import { ConsoleHeaderConfig } from "../../types/header";
 
 export interface ConsoleLayoutConfig {
   /** Optional API base URL override. If not provided, will use NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL env var */
@@ -23,8 +25,8 @@ export interface ConsoleLayoutConfig {
 export interface ConsoleLayoutProps {
   /** Layout configuration */
   config: ConsoleLayoutConfig;
-  /** Header props */
-  headerProps?: Omit<HeaderProps, "children">;
+  /** Header configuration */
+  header?: ConsoleHeaderConfig;
   /** Sidebar props */
   sidebarProps?: Omit<SidebarProps, "headerContent">;
   /** Custom organization switcher */
@@ -51,7 +53,7 @@ const defaultQueryClient = new QueryClient({
 
 export const ConsoleLayout = ({
   config,
-  headerProps = {},
+  header,
   sidebarProps = {},
   organizationSwitcher,
   children,
@@ -73,28 +75,28 @@ export const ConsoleLayout = ({
   const content = (
     <OrganizationProvider>
       <SidebarProvider defaultCollapsed={config.defaultSidebarCollapsed}>
-        <div className={`flex h-screen bg-background ${className}`}>
-          {/* Sidebar */}
-          {showSidebar && (
-            <Sidebar
-              headerContent={defaultOrgSwitcher}
-              showPlugins={true}
-              showExpandButton={true}
-              {...sidebarProps}
-            />
-          )}
-
-          {/* Main Content Area */}
-          <div className="flex-1 flex flex-col min-w-0">
-            {/* Header */}
-            {showHeader && (
-              <Header showLedgerSelector={true} {...headerProps} />
+        <HeaderProvider config={header}>
+          <div className={`flex h-screen bg-background ${className}`}>
+            {/* Sidebar */}
+            {showSidebar && (
+              <Sidebar
+                headerContent={defaultOrgSwitcher}
+                showPlugins={true}
+                showExpandButton={true}
+                {...sidebarProps}
+              />
             )}
 
-            {/* Page Content */}
-            <main className="flex-1 overflow-auto">{children}</main>
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col min-w-0">
+              {/* Header - Now uses context! */}
+              {showHeader && <Header showLedgerSelector={true} />}
+
+              {/* Page Content */}
+              <main className="flex-1 overflow-auto">{children}</main>
+            </div>
           </div>
-        </div>
+        </HeaderProvider>
       </SidebarProvider>
     </OrganizationProvider>
   );

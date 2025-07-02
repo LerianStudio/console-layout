@@ -14,8 +14,8 @@ import {
 } from "lucide-react";
 
 export interface SimpleConsoleLayoutProps {
-  /** API base URL */
-  baseUrl: string;
+  /** API base URL override (optional, uses env var by default) */
+  baseUrl?: string;
   /** App version to display in header */
   version?: string;
   /** User name for dropdown */
@@ -49,6 +49,7 @@ export interface SimpleConsoleLayoutProps {
     ledgerSection?: string;
     pluginsSection?: string;
     // Header texts
+    midazConsole?: string;
     user?: string;
     documentation?: string;
     logout?: string;
@@ -128,29 +129,20 @@ export const SimpleConsoleLayout = ({
       defaultSidebarCollapsed: false,
       useExistingQueryClient: false,
     },
-    headerProps: {
+    header: {
       version,
-      userDropdownProps: userName
-        ? {
-            userName,
-            onLogout,
-            text: {
-              user: text.user || "User",
-              documentation: text.documentation || "Documentation",
-              logout: text.logout || "Logout",
-            },
-          }
-        : undefined,
-      settingsDropdownProps: {
-        ...onSettings,
-        text: {
-          settings: text.settings || "Settings",
-          organizations: text.organizations || "Organizations",
-          users: text.users || "Users",
-          applications: text.applications || "Applications",
-          system: text.system || "System",
-          about: text.about || "About",
-        },
+      user: userName ? { name: userName } : undefined,
+      text: {
+        midazConsole: text.midazConsole,
+        user: text.user,
+        documentation: text.documentation,
+        logout: text.logout,
+        settings: text.settings,
+        organizations: text.organizations,
+        users: text.users,
+        applications: text.applications,
+        system: text.system,
+        about: text.about,
       },
     },
     sidebarProps: {
