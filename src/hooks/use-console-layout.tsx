@@ -3,7 +3,6 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useOrganization } from "../providers/organization-provider";
 import { useSidebar } from "../providers/sidebar-provider";
-import { SidebarMenuItemConfig } from "../components/sidebar";
 
 export interface UseConsoleLayoutOptions {
   /** Custom active item logic */
@@ -34,10 +33,6 @@ export interface UseConsoleLayoutReturn {
     toggle: () => void;
     setCollapsed: (collapsed: boolean) => void;
   };
-  /** Helper to create navigation items with active state */
-  createNavItem: (
-    config: Omit<SidebarMenuItemConfig, "active">
-  ) => SidebarMenuItemConfig;
 }
 
 export const useConsoleLayout = (
@@ -72,12 +67,6 @@ export const useConsoleLayout = (
 
   const isActive = (href: string) => checkIsActive(href, pathname);
 
-  const createNavItem = (
-    config: Omit<SidebarMenuItemConfig, "active">
-  ): SidebarMenuItemConfig => ({
-    ...config,
-  });
-
   return {
     pathname,
     navigate,
@@ -93,6 +82,5 @@ export const useConsoleLayout = (
       toggle: sidebar.toggleSidebar,
       setCollapsed: sidebar.setCollapsed,
     },
-    createNavItem,
   };
 };
