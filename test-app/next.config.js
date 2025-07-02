@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@layout/layout"],
+  transpilePackages: ["@lerian/console-layout"],
 };
 
 module.exports = nextConfig;
