@@ -1,0 +1,97 @@
+"use client";
+
+import React from "react";
+import { cn } from "../../../lib/utils";
+
+export type PopoverPanelProps = React.HTMLAttributes<HTMLDivElement>;
+
+const PopoverPanelTitle = (props: PopoverPanelProps) => {
+  return (
+    <div
+      className="flex flex-col gap-2 text-base font-semibold text-zinc-700"
+      {...props}
+    />
+  );
+};
+
+const PopoverPanelContent = (props: PopoverPanelProps) => {
+  return <div className="flex flex-1 items-center justify-center" {...props} />;
+};
+
+const PopoverPanelFooter = (props: PopoverPanelProps) => {
+  return (
+    <div
+      className="mt-5 text-xs font-normal text-zinc-700 underline"
+      {...props}
+    />
+  );
+};
+
+const PopoverPanel = (props: PopoverPanelProps) => {
+  return (
+    <div
+      className="border-border flex h-full min-w-[160px] flex-1 flex-col gap-4 rounded-md border p-4"
+      {...props}
+    />
+  );
+};
+
+const PopoverPanelActions = (props: PopoverPanelProps) => {
+  return <div className="flex w-auto flex-col gap-4" {...props} />;
+};
+
+export type PopoverPanelLinkProps = React.PropsWithChildren & {
+  href: string;
+  icon?: React.ReactNode;
+  onClick: React.MouseEventHandler;
+  dense?: boolean;
+};
+
+const PopoverPanelLink = ({
+  href,
+  icon,
+  dense,
+  onClick,
+  children,
+  ...others
+}: PopoverPanelLinkProps) => {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className={cn(
+        "hover:bg-muted flex w-[320px] flex-1 items-center justify-between rounded-md bg-background p-4 text-foreground outline-hidden cursor-pointer",
+        dense && "h-10 flex-auto"
+      )}
+      {...others}
+    >
+      <div
+        className={cn(
+          "flex items-center gap-2 text-sm font-medium text-muted-foreground",
+          dense && "flex-row items-center"
+        )}
+      >
+        {children}
+      </div>
+
+      {icon &&
+        React.Children.map(React.Children.toArray(icon), (child) =>
+          React.isValidElement(child)
+            ? React.cloneElement(child as any, {
+                className: "text-muted-foreground",
+                size: 24,
+              })
+            : child
+        )}
+    </a>
+  );
+};
+
+export {
+  PopoverPanel,
+  PopoverPanelTitle,
+  PopoverPanelContent,
+  PopoverPanelFooter,
+  PopoverPanelActions,
+  PopoverPanelLink,
+};

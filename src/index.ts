@@ -37,7 +37,13 @@ import "./styles/globals.css";
 // Sidebar Components
 export * from "./components/sidebar";
 export * from "./components/sidebar/primitive";
+
+// Organization Switcher Components (main component and sub-components)
 export * from "./components/organization-switcher";
+export * from "./components/organization-switcher/status";
+export * from "./components/organization-switcher/popover-panel";
+export * from "./components/organization-switcher/organization-switcher-trigger";
+export * from "./components/organization-switcher/organization-switcher-content";
 
 // Hooks
 export * from "./hooks/use-console-layout";
