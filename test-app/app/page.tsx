@@ -1,91 +1,14 @@
 "use client";
 
 import { ConsoleLayout } from "@lerian/console-layout";
-import {
-  Home,
-  LibraryBig,
-  DollarSign,
-  Coins,
-  Group,
-  Briefcase,
-  ArrowLeftRight,
-} from "lucide-react";
-
-// Define main navigation items
-const mainItems = [
-  {
-    id: "home",
-    title: "Home",
-    icon: <Home />,
-    href: "/",
-  },
-  {
-    id: "ledgers",
-    title: "Ledgers",
-    icon: <LibraryBig />,
-    href: "/ledgers",
-  },
-];
-
-// Define ledger-specific items
-const ledgerItems = [
-  {
-    id: "assets",
-    title: "Assets",
-    icon: <DollarSign />,
-    href: "/assets",
-  },
-  {
-    id: "accounts",
-    title: "Accounts",
-    icon: <Coins />,
-    href: "/accounts",
-  },
-  {
-    id: "segments",
-    title: "Segments",
-    icon: <Group />,
-    href: "/segments",
-  },
-  {
-    id: "portfolios",
-    title: "Portfolios",
-    icon: <Briefcase />,
-    href: "/portfolios",
-  },
-  {
-    id: "transactions",
-    title: "Transactions",
-    icon: <ArrowLeftRight />,
-    href: "/transactions",
-  },
-];
 
 export default function TestApp() {
-  // These handlers are no longer needed - everything is auto-detected!
-  // The lib now handles all navigation and logout via NextAuth
-
-  // TODO: After lib rebuild, add header prop:
-  // header={{ version: "1.0.0", user: { name: "John Doe" } }}
-
   return (
     <ConsoleLayout
       config={{
-        // baseUrl is now auto-detected from NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+        // baseUrl is auto-detected from NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
         defaultSidebarCollapsed: false,
         useExistingQueryClient: false, // Let the lib manage QueryClient
-      }}
-      sidebarProps={{
-        mainItems,
-        ledgerItems,
-        showPlugins: true,
-        text: {
-          ledgerSectionTitle: "Ledger",
-          pluginsSectionTitle: "Plugins",
-          noLedgerDisabledReason:
-            "No ledger selected. Create a ledger to access these features.",
-        },
-        showExpandButton: true,
       }}
     >
       {/* Page Content */}
@@ -98,7 +21,76 @@ export default function TestApp() {
           <div className="grid gap-6">
             <div className="bg-card border rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">
-                🚀 Zero Configuration
+                🎯 Console-Exact Sidebar
+              </h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>
+                  ✅ Identical to @/console main sidebar - EXACTLY the same code
+                </li>
+                <li>
+                  ✅ Hardcoded navigation items: Home, Ledgers, Assets,
+                  Accounts, Segments, Portfolios, Transactions
+                </li>
+                <li>
+                  ✅ Auto-detects current ledger and disables ledger items when
+                  Object.keys(currentLedger).length === 0
+                </li>
+                <li>
+                  ✅ Plugin integration uses simple plugin.route (not
+                  host+route)
+                </li>
+                <li>
+                  ✅ Hardcoded English text - no environment variables needed!
+                </li>
+                <li>✅ Same component primitives as console</li>
+                <li>✅ Same expand/collapse behavior as console</li>
+              </ul>
+              <div className="mt-4 p-3 bg-muted rounded-md">
+                <p className="text-sm font-medium mb-2">Key Changes Made:</p>
+                <div className="space-y-1 text-sm">
+                  <p>• Removed useSidebarData hook (too complex)</p>
+                  <p>• Removed sidebar-config.ts and url-builder.ts</p>
+                  <p>• Removed sidebar env vars from env.ts</p>
+                  <p>• Copied exact console sidebar implementation</p>
+                  <p>• Hardcoded all text values in English</p>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  💡 Now the sidebar is EXACTLY like the console - zero
+                  configuration!
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">
+                🔧 Implementation Details
+              </h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>
+                  ✅ Main Items: Home (/), Ledgers (/ledgers) - always enabled
+                </li>
+                <li>
+                  ✅ Ledger Items: Assets, Accounts, Segments, Portfolios,
+                  Transactions - disabled without ledger
+                </li>
+                <li>
+                  ✅ Plugins: From useGetPluginMenus() API, using plugin.route
+                  URLs
+                </li>
+                <li>
+                  ✅ Disabled Logic: Object.keys(currentLedger).length === 0
+                </li>
+                <li>✅ Responsive: Expand button hidden on mobile ( 768px)</li>
+                <li>
+                  ✅ Separator: Shows when collapsed between main and ledger
+                  items
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">
+                🎯 Zero Configuration
               </h2>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
@@ -107,27 +99,16 @@ export default function TestApp() {
                 </li>
                 <li>✅ Auto-detects user from NextAuth session</li>
                 <li>✅ Auto-detects version and locale</li>
+                <li>✅ Sidebar hardcoded exactly like console</li>
                 <li>✅ Default handlers for logout and navigation</li>
-                <li>✅ No need to pass headerProps anymore!</li>
-                <li>✅ Proper TypeScript support for environment variables</li>
+                <li>✅ No need to pass headerProps or sidebarProps!</li>
+                <li>✅ No environment variables needed for sidebar!</li>
               </ul>
-              <div className="mt-4 p-3 bg-muted rounded-md">
-                <p className="text-sm font-medium mb-2">
-                  Environment Variable (.env.local):
-                </p>
-                <code className="text-sm">
-                  NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL=http://localhost:3000
-                </code>
-                <p className="text-xs text-muted-foreground mt-2">
-                  💡 The lib automatically reads from process.env and NextAuth
-                  session
-                </p>
-              </div>
             </div>
 
             <div className="bg-card border rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">
-                Organization Switcher Features
+                Organization Switcher
               </h2>
               <ul className="space-y-2 text-muted-foreground">
                 <li>✅ Multiple organizations with avatars</li>
@@ -160,36 +141,6 @@ export default function TestApp() {
             </div>
 
             <div className="bg-card border rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Test Organizations</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <h3 className="font-medium">Lerian Studio</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Has avatar, 2 ledgers
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium">Midaz Technologies</h3>
-                  <p className="text-sm text-muted-foreground">
-                    No avatar, 3 ledgers
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium">Digital Banking Corp</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Onboarding mode, 1 ledger
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium">FinTech Solutions</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Has avatar, 2 ledgers
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-card border rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">Try It Out</h2>
               <div className="space-y-4">
                 <p className="text-muted-foreground">Try these interactions:</p>
@@ -206,6 +157,11 @@ export default function TestApp() {
                     • Collapse/expand the sidebar to see responsive behavior
                   </li>
                   <li>• Use the user and settings dropdowns in the header</li>
+                  <li>
+                    • Notice ledger-specific items are disabled without a
+                    selected ledger
+                  </li>
+                  <li>• Behavior should be IDENTICAL to the main console!</li>
                 </ul>
               </div>
             </div>

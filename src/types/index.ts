@@ -14,11 +14,18 @@ export interface LedgerDto {
 }
 
 export interface PluginManifestDto {
+  id: string;
   name: string;
   title: string;
-  icon: string;
+  description: string;
+  version: string;
   route: string;
+  icon: string;
   enabled: boolean;
+  entry: string;
+  healthcheck: string;
+  host: string;
+  author: string;
 }
 
 export interface PaginationDto<T> {

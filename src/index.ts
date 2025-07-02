@@ -40,6 +40,7 @@ import "./styles/globals.css";
 // Sidebar Components
 export * from "./components/sidebar";
 export * from "./components/sidebar/primitive";
+export * from "./components/sidebar/auto-sidebar";
 
 // Organization Switcher Components (main component and sub-components)
 export * from "./components/organization-switcher";

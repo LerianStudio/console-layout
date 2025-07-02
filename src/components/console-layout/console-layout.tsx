@@ -3,7 +3,7 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Header } from "../header";
-import { Sidebar, SidebarProps } from "../sidebar";
+import { AutoSidebar } from "../sidebar/auto-sidebar";
 import { OrganizationProvider } from "../../providers/organization-provider";
 import { SidebarProvider } from "../../providers/sidebar-provider";
 import { HeaderProvider } from "../../providers/header-provider";
@@ -27,8 +27,6 @@ export interface ConsoleLayoutProps {
   config: ConsoleLayoutConfig;
   /** Header configuration */
   header?: ConsoleHeaderConfig;
-  /** Sidebar props */
-  sidebarProps?: Omit<SidebarProps, "headerContent">;
   /** Custom organization switcher */
   organizationSwitcher?: React.ReactNode;
   /** Main content */
@@ -54,7 +52,6 @@ const defaultQueryClient = new QueryClient({
 export const ConsoleLayout = ({
   config,
   header,
-  sidebarProps = {},
   organizationSwitcher,
   children,
   className = "",
@@ -77,19 +74,12 @@ export const ConsoleLayout = ({
       <SidebarProvider defaultCollapsed={config.defaultSidebarCollapsed}>
         <HeaderProvider config={header}>
           <div className={`flex h-screen bg-background ${className}`}>
-            {/* Sidebar */}
-            {showSidebar && (
-              <Sidebar
-                headerContent={defaultOrgSwitcher}
-                showPlugins={true}
-                showExpandButton={true}
-                {...sidebarProps}
-              />
-            )}
+            {/* Auto-configured Sidebar */}
+            {showSidebar && <AutoSidebar headerContent={defaultOrgSwitcher} />}
 
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col min-w-0">
-              {/* Header - Now uses context! */}
+              {/* Header */}
               {showHeader && <Header showLedgerSelector={true} />}
 
               {/* Page Content */}
