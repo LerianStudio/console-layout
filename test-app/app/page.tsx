@@ -86,7 +86,7 @@ export default function TestApp() {
   return (
     <ConsoleLayout
       config={{
-        baseUrl: "http://localhost:3000",
+        // baseUrl is now auto-detected from NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
         defaultSidebarCollapsed: false,
         useExistingQueryClient: false, // Let the lib manage QueryClient
       }}
@@ -134,6 +134,35 @@ export default function TestApp() {
           </h1>
 
           <div className="grid gap-6">
+            <div className="bg-card border rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">
+                🚀 Simplified Configuration
+              </h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>
+                  ✅ Auto-detects API URL from{" "}
+                  <code>process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL</code>
+                </li>
+                <li>✅ No need to manually pass baseUrl anymore</li>
+                <li>✅ Fallback to localhost:3000 for development</li>
+                <li>✅ Override available via config.baseUrl if needed</li>
+                <li>✅ Consistent across all applications using the lib</li>
+                <li>✅ Proper TypeScript support for environment variables</li>
+              </ul>
+              <div className="mt-4 p-3 bg-muted rounded-md">
+                <p className="text-sm font-medium mb-2">
+                  Environment Variable (.env.local):
+                </p>
+                <code className="text-sm">
+                  NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL=http://localhost:3000
+                </code>
+                <p className="text-xs text-muted-foreground mt-2">
+                  💡 The lib automatically reads from
+                  process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+                </p>
+              </div>
+            </div>
+
             <div className="bg-card border rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">
                 Organization Switcher Features

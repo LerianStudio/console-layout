@@ -75,12 +75,10 @@ export const Header = ({
             {text.midazConsole}{" "}
             {version && (
               <span className="text-xs font-normal text-zinc-400">
-                v.{version}teste
+                v.{version}
               </span>
             )}
           </p>
-
-          <p>Teste de alteração</p>
 
           <Separator orientation="vertical" className="h-10" />
 

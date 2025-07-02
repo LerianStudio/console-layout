@@ -10,8 +10,8 @@ import { OrganizationSwitcher } from "../organization-switcher";
 import { configureFetcher } from "../../client/fetcher";
 
 export interface ConsoleLayoutConfig {
-  /** API base URL */
-  baseUrl: string;
+  /** Optional API base URL override. If not provided, will use NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL env var */
+  baseUrl?: string;
   /** Default sidebar collapsed state */
   defaultSidebarCollapsed?: boolean;
   /** Whether to create a new QueryClient or use existing */
@@ -59,7 +59,7 @@ export const ConsoleLayout = ({
   showSidebar = true,
   showHeader = true,
 }: ConsoleLayoutProps) => {
-  // Configure the fetcher with the base URL
+  // Configure the fetcher with baseUrl (auto-detected if not provided)
   React.useEffect(() => {
     configureFetcher({ baseUrl: config.baseUrl });
   }, [config.baseUrl]);

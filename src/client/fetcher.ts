@@ -7,13 +7,53 @@ interface FetcherConfig {
   onUnauthorized?: () => void;
 }
 
+/**
+ * Gets the base URL for API calls
+ * Priority: manual override > environment variable > default localhost
+ */
+const getBaseUrl = (manualBaseUrl?: string): string => {
+  if (manualBaseUrl) {
+    return manualBaseUrl;
+  }
+
+  // Access Next.js environment variable
+  // NEXT_PUBLIC_ variables are available in both server and client
+  const envBaseUrl = process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL;
+
+  if (envBaseUrl) {
+    return envBaseUrl;
+  }
+
+  // Default fallback for development
+  const defaultUrl = "http://localhost:3000";
+
+  if (typeof window !== "undefined") {
+    console.warn(
+      `NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL not found. Using default: ${defaultUrl}`
+    );
+  }
+
+  return defaultUrl;
+};
+
 let config: FetcherConfig = {
-  baseUrl: "",
+  baseUrl: getBaseUrl(),
   onUnauthorized: () => signOut({ callbackUrl: "/login" }),
 };
 
 export const configureFetcher = (newConfig: Partial<FetcherConfig>) => {
-  config = { ...config, ...newConfig };
+  // If baseUrl is not provided, use the automatic detection
+  const finalConfig = {
+    ...config,
+    ...newConfig,
+    baseUrl: newConfig.baseUrl || getBaseUrl(),
+  };
+
+  config = finalConfig;
+
+  if (typeof window !== "undefined") {
+    console.log(`Fetcher configured with baseUrl: ${config.baseUrl}`);
+  }
 };
 
 const createQueryString = (params?: Record<string, any>) => {
