@@ -96,7 +96,7 @@ export const SettingsDropdown = ({
           <DropdownMenuItem
             onClick={
               onOrganizationsClick ||
-              (() => handleRedirect("/settings/organizations"))
+              (() => handleRedirect("/settings/?tab=organizations"))
             }
           >
             <DropdownMenuItemIcon>
@@ -112,7 +112,7 @@ export const SettingsDropdown = ({
           >
             <DropdownMenuItem
               onClick={
-                onUsersClick || (() => handleRedirect("/settings/users"))
+                onUsersClick || (() => handleRedirect("/settings/?tab=users"))
               }
             >
               <DropdownMenuItemIcon>
@@ -130,7 +130,7 @@ export const SettingsDropdown = ({
             <DropdownMenuItem
               onClick={
                 onApplicationsClick ||
-                (() => handleRedirect("/settings/applications"))
+                (() => handleRedirect("/settings/?tab=applications"))
               }
             >
               <DropdownMenuItemIcon>
@@ -142,7 +142,7 @@ export const SettingsDropdown = ({
 
           <DropdownMenuItem
             onClick={
-              onSystemClick || (() => handleRedirect("/settings/system"))
+              onSystemClick || (() => handleRedirect("/settings/?tab=system"))
             }
           >
             <DropdownMenuItemIcon>
