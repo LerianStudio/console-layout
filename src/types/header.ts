@@ -42,6 +42,7 @@ export interface HeaderContextType {
   version: string;
   locale: string;
   userName: string;
+  isAuthEnabled: boolean;
   handlers: {
     onLogout: () => void;
     onOrganizationsClick: () => void;

@@ -5,7 +5,7 @@ import { useHeaderData } from "../hooks/use-header-data";
 import { getHeaderUrls, getHeaderText, getHeaderPermissions } from "../lib/env";
 import { ConsoleHeaderConfig, HeaderContextType } from "../types/header";
 
-const HeaderContext = createContext<HeaderContextType | null>(null);
+export const HeaderContext = createContext<HeaderContextType | null>(null);
 
 export const useHeaderContext = () => {
   const context = useContext(HeaderContext);
@@ -27,6 +27,7 @@ export const HeaderProvider = ({ children, config }: HeaderProviderProps) => {
     version: headerData.version,
     locale: headerData.locale,
     userName: headerData.userName,
+    isAuthEnabled: headerData.isAuthEnabled,
     handlers: headerData.handlers,
     urls: getHeaderUrls(),
     text: {

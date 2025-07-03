@@ -57,23 +57,8 @@ export const Header = ({
             {locale.toUpperCase()}
           </p>
 
-          <SettingsDropdown
-            onOrganizationsClick={headerContext.handlers.onOrganizationsClick}
-            onUsersClick={headerContext.handlers.onUsersClick}
-            onApplicationsClick={headerContext.handlers.onApplicationsClick}
-            onSystemClick={headerContext.handlers.onSystemClick}
-            onAboutClick={headerContext.handlers.onAboutClick}
-            permissions={headerContext.permissions}
-            aboutDialog={{
-              version: headerContext.version,
-            }}
-          />
-          <UserDropdown
-            userName={headerContext.userName}
-            docsUrl={headerContext.urls.documentation}
-            onLogout={headerContext.handlers.onLogout}
-            onDocsClick={headerContext.handlers.onDocsClick}
-          />
+          <SettingsDropdown />
+          <UserDropdown />
         </div>
       </nav>
     </div>
