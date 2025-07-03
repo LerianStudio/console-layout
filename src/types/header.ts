@@ -48,7 +48,7 @@ export interface HeaderContextType {
     onUsersClick: () => void;
     onApplicationsClick: () => void;
     onSystemClick: () => void;
-    onAboutClick: () => void;
+    onAboutClick?: () => void;
     onDocsClick: () => void;
   };
   urls: {

@@ -3,7 +3,11 @@
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "./use-auth";
-import { getHeaderUrls, getHeaderDefaults } from "../lib/env";
+import {
+  getHeaderUrls,
+  getHeaderDefaults,
+  getConsoleBaseUrl,
+} from "../lib/env";
 import { ConsoleHeaderConfig } from "../types/header";
 
 export const useHeaderData = (config?: ConsoleHeaderConfig) => {
@@ -34,23 +38,34 @@ export const useHeaderData = (config?: ConsoleHeaderConfig) => {
     return "EN";
   }, [config?.locale]);
 
-  // Default handlers
+  // Default handlers for microfrontend scenario
   const handlers = useMemo(() => {
     const urls = getHeaderUrls();
+    const baseUrl = getConsoleBaseUrl();
 
     return {
       onLogout: () => auth.logout(),
-      onOrganizationsClick: () => router.push(urls.organizations),
-      onUsersClick: () => router.push(urls.users),
-      onApplicationsClick: () => router.push(urls.applications),
-      onSystemClick: () => router.push(urls.system),
-      onAboutClick: () => router.push(urls.about),
+      // Redirect to main console application (microfrontend)
+      onOrganizationsClick: () => {
+        window.location.href = `${baseUrl}${urls.organizations}`;
+      },
+      onUsersClick: () => {
+        window.location.href = `${baseUrl}${urls.users}`;
+      },
+      onApplicationsClick: () => {
+        window.location.href = `${baseUrl}${urls.applications}`;
+      },
+      onSystemClick: () => {
+        window.location.href = `${baseUrl}${urls.system}`;
+      },
+      // About uses internal dialog (no redirect)
+      onAboutClick: undefined,
       onDocsClick: () => {
         const docsUrl = config?.user?.docsUrl || urls.documentation;
         window.open(docsUrl, "_blank", "noopener noreferrer");
       },
     };
-  }, [auth.logout, router, config?.user?.docsUrl]);
+  }, [auth.logout, config?.user?.docsUrl]);
 
   return {
     version,

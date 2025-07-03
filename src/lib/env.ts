@@ -2,6 +2,21 @@
  * Environment variables and default configuration for Console Header
  */
 
+/**
+ * Gets the base URL for the main console application in microfrontend scenarios
+ * This ensures plugins redirect to the main console for settings pages
+ */
+export const getConsoleBaseUrl = (): string => {
+  const envBaseUrl = process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL;
+
+  if (envBaseUrl) {
+    return envBaseUrl.endsWith("/") ? envBaseUrl.slice(0, -1) : envBaseUrl;
+  }
+
+  // Fallback para desenvolvimento
+  return "http://localhost:3000";
+};
+
 export const getHeaderUrls = () => ({
   organizations:
     process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_URLS_ORGANIZATIONS ||

@@ -6,6 +6,7 @@ import { LedgerSelector } from "../ledger-selector";
 import { UserDropdown } from "../user-dropdown";
 import { SettingsDropdown } from "../settings-dropdown";
 import { useI18n } from "../../lib/i18n";
+import { useHeaderContext } from "../../providers/header-provider";
 
 export interface HeaderProps {
   /**
@@ -17,50 +18,21 @@ export interface HeaderProps {
    */
   showLedgerSelector?: boolean;
   /**
-   * Version override (if not provided, will auto-detect)
+   * Version override (if not provided, will auto-detect from context)
    */
   version?: string;
-  /**
-   * User configuration
-   */
-  user?: {
-    name?: string;
-    docsUrl?: string;
-    onLogout?: () => void;
-    onDocsClick?: () => void;
-  };
-  /**
-   * Settings handlers
-   */
-  settings?: {
-    onOrganizationsClick?: () => void;
-    onUsersClick?: () => void;
-    onApplicationsClick?: () => void;
-    onSystemClick?: () => void;
-    onAboutClick?: () => void;
-  };
-  /**
-   * Permissions for settings menu
-   */
-  permissions?: {
-    canViewUsers?: boolean;
-    canViewApplications?: boolean;
-  };
 }
 
 export const Header = ({
   className,
   showLedgerSelector = true,
   version,
-  user,
-  settings,
-  permissions,
 }: HeaderProps) => {
+  const headerContext = useHeaderContext();
   const { locale } = useI18n();
 
-  // Auto-detect version from environment or use provided
-  const displayVersion =
-    version || process.env.NEXT_PUBLIC_MIDAZ_VERSION || "1.0.0";
+  // Use version from props or context
+  const displayVersion = version || headerContext.version;
 
   return (
     <div
@@ -73,7 +45,7 @@ export const Header = ({
 
         <div className="flex items-center gap-6">
           <p className="text-xs font-medium text-zinc-400">
-            Midaz Console{" "}
+            {headerContext.text.midazConsole}{" "}
             <span className="text-xs font-normal text-zinc-400">
               v.{displayVersion}
             </span>
@@ -86,18 +58,21 @@ export const Header = ({
           </p>
 
           <SettingsDropdown
-            onOrganizationsClick={settings?.onOrganizationsClick}
-            onUsersClick={settings?.onUsersClick}
-            onApplicationsClick={settings?.onApplicationsClick}
-            onSystemClick={settings?.onSystemClick}
-            onAboutClick={settings?.onAboutClick}
-            permissions={permissions}
+            onOrganizationsClick={headerContext.handlers.onOrganizationsClick}
+            onUsersClick={headerContext.handlers.onUsersClick}
+            onApplicationsClick={headerContext.handlers.onApplicationsClick}
+            onSystemClick={headerContext.handlers.onSystemClick}
+            onAboutClick={headerContext.handlers.onAboutClick}
+            permissions={headerContext.permissions}
+            aboutDialog={{
+              version: headerContext.version,
+            }}
           />
           <UserDropdown
-            userName={user?.name}
-            docsUrl={user?.docsUrl}
-            onLogout={user?.onLogout}
-            onDocsClick={user?.onDocsClick}
+            userName={headerContext.userName}
+            docsUrl={headerContext.urls.documentation}
+            onLogout={headerContext.handlers.onLogout}
+            onDocsClick={headerContext.handlers.onDocsClick}
           />
         </div>
       </nav>
