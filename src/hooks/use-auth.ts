@@ -1,13 +1,19 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import { getHeaderUrls } from "../lib/env";
+import { getHeaderUrls, getConsoleBaseUrl } from "../lib/env";
 
 export const useAuth = () => {
   const { data: session, status } = useSession();
 
   const handleLogout = (callbackUrl?: string) => {
-    const finalCallbackUrl = callbackUrl || getHeaderUrls().signin;
+    const urls = getHeaderUrls();
+    const baseUrl = getConsoleBaseUrl();
+
+    // Use baseUrl + signin if no custom callbackUrl provided
+    // This ensures logout always redirects to main console in microfrontend scenarios
+    const finalCallbackUrl = callbackUrl || `${baseUrl}${urls.signin}`;
+
     signOut({ callbackUrl: finalCallbackUrl });
   };
 

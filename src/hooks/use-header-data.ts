@@ -44,7 +44,11 @@ export const useHeaderData = (config?: ConsoleHeaderConfig) => {
     const baseUrl = getConsoleBaseUrl();
 
     return {
-      onLogout: () => auth.logout(),
+      // Logout with baseUrl + NextAuth (combines cookie clearing + microfrontend redirect)
+      onLogout: () => {
+        const signinUrl = `${baseUrl}${urls.signin}`;
+        auth.logout(signinUrl);
+      },
       // Redirect to main console application (microfrontend)
       onOrganizationsClick: () => {
         window.location.href = `${baseUrl}${urls.organizations}`;
