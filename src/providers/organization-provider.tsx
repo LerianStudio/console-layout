@@ -10,6 +10,20 @@ import React, {
 import { OrganizationDto, LedgerDto } from "@/types";
 import { useListOrganizations } from "@/client/organizations";
 import { useListLedgers } from "@/client/ledgers";
+import {
+  saveOrganizationToStorage,
+  loadOrganizationFromStorage,
+  clearOrganizationFromStorage,
+} from "../lib/storage/organization-storage";
+import {
+  saveLedgerToStorage,
+  loadLedgerFromStorage,
+  clearLedgerFromStorage,
+} from "../lib/storage/ledger-storage";
+import {
+  getValidOrganization,
+  getValidLedger,
+} from "../lib/storage/validation";
 
 interface OrganizationContextProps {
   currentOrganization: OrganizationDto;
@@ -50,23 +64,76 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
     limit: 100,
   });
 
-  // Auto-select first organization if none selected
+  // Função para atualizar organização (usada externamente)
+  const setOrganization = (organization: OrganizationDto) => {
+    saveOrganizationToStorage(organization);
+    setCurrent(organization);
+    // Limpar ledger quando mudar organização
+    clearLedgerFromStorage();
+    setCurrentLedger({} as LedgerDto);
+  };
+
+  // Função para atualizar ledger (usada externamente)
+  const setLedger = (ledger: LedgerDto) => {
+    saveLedgerToStorage(ledger);
+    setCurrentLedger(ledger);
+  };
+
+  // Gerenciar organização: localStorage -> API -> validação -> fallback
   useEffect(() => {
     if (organizations?.items && organizations.items.length > 0 && !current.id) {
-      setCurrent(organizations.items[0]);
+      const storedOrganization = loadOrganizationFromStorage();
+      const validOrganization = getValidOrganization(
+        storedOrganization,
+        organizations.items
+      );
+
+      if (validOrganization) {
+        // Se a organização armazenada não é válida, salvar a nova no localStorage
+        if (
+          !storedOrganization ||
+          storedOrganization.id !== validOrganization.id
+        ) {
+          saveOrganizationToStorage(validOrganization);
+        }
+        setCurrent(validOrganization);
+      }
     }
   }, [organizations, current.id]);
 
-  // Auto-select first ledger if none selected
+  // Gerenciar ledger: localStorage -> API -> validação -> fallback
   useEffect(() => {
-    if (ledgers?.items && ledgers.items.length > 0 && !currentLedger.id) {
-      setCurrentLedger(ledgers.items[0]);
-    }
-  }, [ledgers, currentLedger.id]);
+    if (
+      ledgers?.items &&
+      ledgers.items.length > 0 &&
+      !currentLedger.id &&
+      current.id
+    ) {
+      const storedLedger = loadLedgerFromStorage();
+      const validLedger = getValidLedger(
+        storedLedger,
+        ledgers.items,
+        current.id
+      );
 
-  // Clear ledger when organization changes
+      if (validLedger) {
+        // Se o ledger armazenado não é válido, salvar o novo no localStorage
+        if (!storedLedger || storedLedger.id !== validLedger.id) {
+          saveLedgerToStorage(validLedger);
+        }
+        setCurrentLedger(validLedger);
+      }
+    }
+  }, [ledgers, currentLedger.id, current.id]);
+
+  // Limpar ledger quando organização muda (validação de consistência)
   useEffect(() => {
-    if (current.id && currentLedger.organizationId !== current.id) {
+    if (
+      current.id &&
+      currentLedger.organizationId &&
+      currentLedger.organizationId !== current.id
+    ) {
+      clearLedgerFromStorage();
       setCurrentLedger({} as LedgerDto);
     }
   }, [current.id, currentLedger.organizationId]);
@@ -75,9 +142,9 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
     <OrganizationContext.Provider
       value={{
         currentOrganization: current,
-        setOrganization: setCurrent,
+        setOrganization,
         currentLedger: currentLedger,
-        setLedger: setCurrentLedger,
+        setLedger,
         isLoading: loadingOrgs || loadingLedgers,
       }}
     >
