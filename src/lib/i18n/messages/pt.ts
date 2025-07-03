@@ -17,6 +17,27 @@ export const ptMessages: I18nMessages = {
   "common.expand": "Ampliar",
   "common.plugins": "Plugins",
 
+  // Common UI messages
+  "common.search": "Buscar...",
+  "common.noOptions": "Nenhuma opção encontrada.",
+  "common.loadMore": "Carregar mais...",
+  "common.close": "Fechar",
+
+  // Ledger Selector
+  "ledgers.title": "Ledgers",
+  "ledger.selector.currentLedger.label": "Ledger Atual",
+  "ledger.selector.placeholder": "Selecionar um ledger",
+  "ledger.selector.selectAnother.label": "Selecionar outro...",
+  "ledger.selector.noledgers":
+    "Nenhum ledger disponível. Por favor, crie um primeiro.",
+
+  // About Dialog
+  "dialog.about.midaz.version": "Versão {version}",
+  "dialog.about.midaz.terms": "Termos de Uso",
+  "dialog.about.midaz.license": "Licença",
+  "dialog.about.midaz.copyright":
+    "Copyright © Lerian {year} - Todos os direitos reservados.",
+
   // Sidebar specific
   "sidebar.disabled.reason":
     "Nenhum ledger selecionado. Para acessar, crie um ledger.",

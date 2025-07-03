@@ -17,6 +17,26 @@ export const enMessages: I18nMessages = {
   "common.expand": "Expand",
   "common.plugins": "Plugins",
 
+  // Common UI messages
+  "common.search": "Search...",
+  "common.noOptions": "No options found.",
+  "common.loadMore": "Load more...",
+  "common.close": "Close",
+
+  // Ledger Selector
+  "ledgers.title": "Ledgers",
+  "ledger.selector.currentLedger.label": "Current Ledger",
+  "ledger.selector.placeholder": "Select a ledger",
+  "ledger.selector.selectAnother.label": "Select another...",
+  "ledger.selector.noledgers": "No ledgers available. Please create one first.",
+
+  // About Dialog
+  "dialog.about.midaz.version": "Version {version}",
+  "dialog.about.midaz.terms": "Terms of Use",
+  "dialog.about.midaz.license": "License",
+  "dialog.about.midaz.copyright":
+    "Copyright © Lerian {year} - All rights reserved.",
+
   // Sidebar specific
   "sidebar.disabled.reason": "No ledger selected. To access, create a ledger.",
 

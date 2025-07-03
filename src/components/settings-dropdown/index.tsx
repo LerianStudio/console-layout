@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Building,
   Globe,
@@ -18,78 +18,130 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useHeaderContext } from "../../providers/header-provider";
 import { useI18n } from "../../lib/i18n";
+import { AboutMidazDialog } from "./about-midaz-dialog";
+import { Enforce } from "../ui/enforce";
 
-export const SettingsDropdown = () => {
-  const { handlers, permissions } = useHeaderContext();
+export interface SettingsDropdownProps {
+  /** Handler for organizations click */
+  onOrganizationsClick?: () => void;
+  /** Handler for users click */
+  onUsersClick?: () => void;
+  /** Handler for applications click */
+  onApplicationsClick?: () => void;
+  /** Handler for system click */
+  onSystemClick?: () => void;
+  /** Handler for about click (if not provided, uses built-in dialog) */
+  onAboutClick?: () => void;
+  /** Permissions for showing menu items */
+  permissions?: {
+    canViewUsers?: boolean;
+    canViewApplications?: boolean;
+  };
+  /** About dialog configuration */
+  aboutDialog?: {
+    version?: string;
+    logoSrc?: string;
+    termsLink?: string;
+    licenseLink?: string;
+    showLinks?: boolean;
+  };
+}
+
+export const SettingsDropdown = ({
+  onOrganizationsClick,
+  onUsersClick,
+  onApplicationsClick,
+  onSystemClick,
+  onAboutClick,
+  permissions = {
+    canViewUsers: true,
+    canViewApplications: true,
+  },
+  aboutDialog,
+}: SettingsDropdownProps) => {
   const { formatMessage } = useI18n();
+  const [aboutOpen, setAboutOpen] = useState(false);
 
-  const defaultItems = [
-    {
-      key: "organizations",
-      icon: Building,
-      label: formatMessage("settingsDropdown.organizations"),
-      onClick: handlers.onOrganizationsClick,
-      visible: true,
-    },
-    {
-      key: "users",
-      icon: Users,
-      label: formatMessage("settingsDropdown.users"),
-      onClick: handlers.onUsersClick,
-      visible: permissions.canViewUsers,
-    },
-    {
-      key: "applications",
-      icon: Layers,
-      label: formatMessage("settingsDropdown.applications"),
-      onClick: handlers.onApplicationsClick,
-      visible: permissions.canViewApplications,
-    },
-    {
-      key: "system",
-      icon: Globe,
-      label: formatMessage("settingsDropdown.system"),
-      onClick: handlers.onSystemClick,
-      visible: true,
-    },
-  ];
-
-  const visibleItems = defaultItems.filter((item) => item.visible);
+  const handleAboutClick = () => {
+    if (onAboutClick) {
+      onAboutClick();
+    } else {
+      setAboutOpen(true);
+    }
+  };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Settings className="text-shadcn-400" size={24} />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[241px]">
-        <DropdownMenuLabel>
-          {formatMessage("settingsDropdown.settings")}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+    <React.Fragment>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Settings className="text-shadcn-400" size={24} />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="min-w-[241px]">
+          <DropdownMenuLabel>
+            {formatMessage("settingsDropdown.settings")}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
 
-        {visibleItems.map((item) => (
-          <DropdownMenuItem key={item.key} onClick={item.onClick}>
+          <DropdownMenuItem onClick={onOrganizationsClick}>
             <DropdownMenuItemIcon>
-              <item.icon />
+              <Building />
             </DropdownMenuItemIcon>
-            {item.label}
+            {formatMessage("settingsDropdown.organizations")}
           </DropdownMenuItem>
-        ))}
 
-        {handlers.onAboutClick && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handlers.onAboutClick}>
+          <Enforce
+            hasPermission={permissions.canViewUsers}
+            resource="users"
+            action="get"
+          >
+            <DropdownMenuItem onClick={onUsersClick}>
               <DropdownMenuItemIcon>
-                <HelpCircle />
+                <Users />
               </DropdownMenuItemIcon>
-              {formatMessage("settingsDropdown.about")}
+              {formatMessage("settingsDropdown.users")}
             </DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          </Enforce>
+
+          <Enforce
+            hasPermission={permissions.canViewApplications}
+            resource="applications"
+            action="get"
+          >
+            <DropdownMenuItem onClick={onApplicationsClick}>
+              <DropdownMenuItemIcon>
+                <Layers />
+              </DropdownMenuItemIcon>
+              {formatMessage("settingsDropdown.applications")}
+            </DropdownMenuItem>
+          </Enforce>
+
+          <DropdownMenuItem onClick={onSystemClick}>
+            <DropdownMenuItemIcon>
+              <Globe />
+            </DropdownMenuItemIcon>
+            {formatMessage("settingsDropdown.system")}
+          </DropdownMenuItem>
+
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={handleAboutClick}>
+            <DropdownMenuItemIcon>
+              <HelpCircle />
+            </DropdownMenuItemIcon>
+            {formatMessage("settingsDropdown.about")}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <AboutMidazDialog
+        open={aboutOpen}
+        setOpen={setAboutOpen}
+        version={aboutDialog?.version}
+        logoSrc={aboutDialog?.logoSrc}
+        termsLink={aboutDialog?.termsLink}
+        licenseLink={aboutDialog?.licenseLink}
+        showLinks={aboutDialog?.showLinks}
+      />
+    </React.Fragment>
   );
 };

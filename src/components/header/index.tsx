@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { Separator } from "@/components/ui/separator";
-import { LedgerSelector } from "@/components/ledger-selector";
-import { UserDropdown } from "@/components/user-dropdown";
-import { SettingsDropdown } from "@/components/settings-dropdown";
-import { useHeaderContext } from "@/providers/header-provider";
+import { Separator } from "../ui/separator";
+import { LedgerSelector } from "../ledger-selector";
+import { UserDropdown } from "../user-dropdown";
+import { SettingsDropdown } from "../settings-dropdown";
+import { useI18n } from "../../lib/i18n";
 
 export interface HeaderProps {
   /**
@@ -16,13 +16,51 @@ export interface HeaderProps {
    * Whether to show the ledger selector
    */
   showLedgerSelector?: boolean;
+  /**
+   * Version override (if not provided, will auto-detect)
+   */
+  version?: string;
+  /**
+   * User configuration
+   */
+  user?: {
+    name?: string;
+    docsUrl?: string;
+    onLogout?: () => void;
+    onDocsClick?: () => void;
+  };
+  /**
+   * Settings handlers
+   */
+  settings?: {
+    onOrganizationsClick?: () => void;
+    onUsersClick?: () => void;
+    onApplicationsClick?: () => void;
+    onSystemClick?: () => void;
+    onAboutClick?: () => void;
+  };
+  /**
+   * Permissions for settings menu
+   */
+  permissions?: {
+    canViewUsers?: boolean;
+    canViewApplications?: boolean;
+  };
 }
 
 export const Header = ({
   className,
   showLedgerSelector = true,
+  version,
+  user,
+  settings,
+  permissions,
 }: HeaderProps) => {
-  const { version, locale, text } = useHeaderContext();
+  const { locale } = useI18n();
+
+  // Auto-detect version from environment or use provided
+  const displayVersion =
+    version || process.env.NEXT_PUBLIC_MIDAZ_VERSION || "1.0.0";
 
   return (
     <div
@@ -35,12 +73,10 @@ export const Header = ({
 
         <div className="flex items-center gap-6">
           <p className="text-xs font-medium text-zinc-400">
-            {text.midazConsole}{" "}
-            {version && (
-              <span className="text-xs font-normal text-zinc-400">
-                v.{version}
-              </span>
-            )}
+            Midaz Console{" "}
+            <span className="text-xs font-normal text-zinc-400">
+              v.{displayVersion}
+            </span>
           </p>
 
           <Separator orientation="vertical" className="h-10" />
@@ -49,8 +85,20 @@ export const Header = ({
             {locale.toUpperCase()}
           </p>
 
-          <SettingsDropdown />
-          <UserDropdown />
+          <SettingsDropdown
+            onOrganizationsClick={settings?.onOrganizationsClick}
+            onUsersClick={settings?.onUsersClick}
+            onApplicationsClick={settings?.onApplicationsClick}
+            onSystemClick={settings?.onSystemClick}
+            onAboutClick={settings?.onAboutClick}
+            permissions={permissions}
+          />
+          <UserDropdown
+            userName={user?.name}
+            docsUrl={user?.docsUrl}
+            onLogout={user?.onLogout}
+            onDocsClick={user?.onDocsClick}
+          />
         </div>
       </nav>
     </div>

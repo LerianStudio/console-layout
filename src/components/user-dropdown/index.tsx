@@ -11,12 +11,43 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Book, CircleUser, LogOut } from "lucide-react";
-import { useHeaderContext } from "../../providers/header-provider";
 import { useI18n } from "../../lib/i18n";
 
-export const UserDropdown = () => {
-  const { userName, handlers } = useHeaderContext();
+export interface UserDropdownProps {
+  /** User name to display */
+  userName?: string;
+  /** Documentation URL */
+  docsUrl?: string;
+  /** Logout handler */
+  onLogout?: () => void;
+  /** Support/docs click handler */
+  onDocsClick?: () => void;
+}
+
+export const UserDropdown = ({
+  userName = "User",
+  docsUrl = "https://docs.lerian.studio/",
+  onLogout,
+  onDocsClick,
+}: UserDropdownProps) => {
   const { formatMessage } = useI18n();
+
+  const handleDocsClick = () => {
+    if (onDocsClick) {
+      onDocsClick();
+    } else {
+      window.open(docsUrl, "_blank", "noopener noreferrer");
+    }
+  };
+
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout();
+    } else {
+      // Default logout behavior - could be customized
+      console.warn("No logout handler provided to UserDropdown");
+    }
+  };
 
   return (
     <DropdownMenu>
@@ -26,7 +57,7 @@ export const UserDropdown = () => {
       <DropdownMenuContent className="min-w-[241px]">
         <DropdownMenuLabel>{userName}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handlers.onDocsClick}>
+        <DropdownMenuItem onClick={handleDocsClick}>
           <DropdownMenuItemIcon>
             <Book />
           </DropdownMenuItemIcon>
@@ -34,7 +65,7 @@ export const UserDropdown = () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem onClick={handlers.onLogout}>
+        <DropdownMenuItem onClick={handleLogout}>
           <DropdownMenuItemIcon>
             <LogOut />
           </DropdownMenuItemIcon>

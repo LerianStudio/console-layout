@@ -17,6 +17,25 @@ export interface I18nMessages {
   "common.expand": string;
   "common.plugins": string;
 
+  // Common UI messages
+  "common.search": string;
+  "common.noOptions": string;
+  "common.loadMore": string;
+  "common.close": string;
+
+  // Ledger Selector
+  "ledgers.title": string;
+  "ledger.selector.currentLedger.label": string;
+  "ledger.selector.placeholder": string;
+  "ledger.selector.selectAnother.label": string;
+  "ledger.selector.noledgers": string;
+
+  // About Dialog
+  "dialog.about.midaz.version": string;
+  "dialog.about.midaz.terms": string;
+  "dialog.about.midaz.license": string;
+  "dialog.about.midaz.copyright": string;
+
   // Sidebar specific
   "sidebar.disabled.reason": string;
 
