@@ -30,15 +30,12 @@ export const SidebarItemIconButton = ({
   disabledReason,
   onClick,
 }: SidebarItemIconButtonProps) => {
-  const clonedIcon = React.isValidElement(icon)
-    ? React.cloneElement(icon as React.ReactElement<any>, {
-        className: cn(
-          "h-6 w-6 text-muted-foreground",
-          "group-hover/link:text-accent-foreground",
-          active && "text-foreground group-hover/link:text-foreground"
-        ),
-      })
-    : icon;
+  const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
+    className: cn(
+      "group-hover/link:text-accent-foreground h-6 w-6 text-shadcn-400",
+      active && "text-black group-hover/link:text-black"
+    ),
+  });
 
   const commonClasses = cn(
     buttonVariants({
@@ -51,39 +48,43 @@ export const SidebarItemIconButton = ({
 
   const content = clonedIcon;
 
-  if (disabled) {
-    return (
-      <TooltipProvider>
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <div className={commonClasses} onClick={(e) => e.preventDefault()}>
-              {content}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent side="right">
-            <div>
-              <p className="font-medium">{title}</p>
-              {disabledReason && (
-                <p className="text-xs text-muted-foreground">
-                  {disabledReason}
-                </p>
-              )}
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    );
-  }
-
   return (
     <TooltipProvider>
       <Tooltip delayDuration={0}>
         <TooltipTrigger asChild>
-          <Link href={href} className={commonClasses} onClick={onClick}>
-            {content}
-          </Link>
+          {disabled ? (
+            <div
+              className={cn(
+                buttonVariants({
+                  variant: active ? "activeLink" : "hoverLink",
+                  size: "icon",
+                }),
+                "group/link flex h-9 w-9 items-center justify-center",
+                disabled && "cursor-not-allowed opacity-30"
+              )}
+              onClick={(e) => e.preventDefault()}
+            >
+              {clonedIcon}
+            </div>
+          ) : (
+            <Link
+              href={href}
+              className={cn(
+                buttonVariants({
+                  variant: active ? "activeLink" : "hoverLink",
+                  size: "icon",
+                }),
+                "group/link flex h-9 w-9 items-center justify-center",
+                disabled && "cursor-not-allowed opacity-30"
+              )}
+            >
+              {clonedIcon}
+            </Link>
+          )}
         </TooltipTrigger>
-        <TooltipContent side="right">{title}</TooltipContent>
+        <TooltipContent side="right">
+          {disabled ? disabledReason : title}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

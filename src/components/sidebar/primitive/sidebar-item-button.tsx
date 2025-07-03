@@ -35,7 +35,7 @@ export const SidebarItemButton = ({
         className: cn(
           "mr-3 h-6 w-6 text-muted-foreground",
           "group-hover/link:text-accent-foreground",
-          active && "text-foreground group-hover/link:text-foreground"
+          active && "text-black group-hover/link:text-black"
         ),
       })
     : icon;
@@ -61,7 +61,17 @@ export const SidebarItemButton = ({
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            <div className={commonClasses} onClick={(e) => e.preventDefault()}>
+            <div
+              className={cn(
+                buttonVariants({
+                  variant: active ? "activeLink" : "hoverLink",
+                  size: "sm",
+                }),
+                "group/link flex h-9 items-center justify-start",
+                disabled && "cursor-not-allowed opacity-30"
+              )}
+              onClick={(e) => e.preventDefault()}
+            >
               {content}
             </div>
           </TooltipTrigger>
@@ -72,7 +82,18 @@ export const SidebarItemButton = ({
   }
 
   return (
-    <Link href={href} className={commonClasses} onClick={onClick}>
+    <Link
+      href={href}
+      className={cn(
+        buttonVariants({
+          variant: active ? "activeLink" : "hoverLink",
+          size: "sm",
+        }),
+        "group/link flex h-9 items-center justify-start",
+        disabled && "cursor-not-allowed opacity-30"
+      )}
+      onClick={onClick}
+    >
       {content}
     </Link>
   );

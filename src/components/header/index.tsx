@@ -35,11 +35,7 @@ export const Header = ({
   const displayVersion = version || headerContext.version;
 
   return (
-    <div
-      className={`flex h-[60px] w-full items-center border-b bg-white py-5 pr-16 ${
-        className || ""
-      }`}
-    >
+    <div className="flex h-[60px] w-full items-center border-b bg-white py-5 pr-16">
       <nav className="flex w-full items-center justify-between gap-4 pl-16">
         {showLedgerSelector && <LedgerSelector />}
 
@@ -91,11 +87,7 @@ export const StaticHeader = ({
   className,
 }: StaticHeaderProps) => {
   return (
-    <div
-      className={`flex w-full items-center justify-center border-b bg-white py-6 ${
-        className || ""
-      }`}
-    >
+    <div className="flex w-full items-center justify-center border-b bg-white py-6">
       <nav className="flex w-full max-w-[1090px] items-center gap-4">
         {logo && (
           <img

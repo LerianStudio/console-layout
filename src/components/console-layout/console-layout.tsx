@@ -12,6 +12,7 @@ import { OrganizationSwitcher } from "../organization-switcher";
 import { configureFetcher } from "../../client/fetcher";
 import { ConsoleHeaderConfig } from "../../types/header";
 import type { I18nConfig } from "../../lib/i18n";
+import { PageContent, PageRoot, PageView } from "../page";
 
 export interface ConsoleLayoutConfig {
   /** Optional API base URL override. If not provided, will use NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL env var */
@@ -79,19 +80,13 @@ export const ConsoleLayout = ({
       <OrganizationProvider>
         <SidebarProvider defaultCollapsed={config.defaultSidebarCollapsed}>
           <HeaderProvider config={header}>
-            <div className={`flex h-screen bg-background ${className}`}>
-              {/* Auto-configured Sidebar */}
-              {showSidebar && <Sidebar />}
-
-              {/* Main Content Area */}
-              <div className="flex-1 flex flex-col min-w-0">
-                {/* Header */}
-                {showHeader && <Header showLedgerSelector={true} />}
-
-                {/* Page Content */}
-                <main className="flex-1 overflow-auto">{children}</main>
-              </div>
-            </div>
+            <PageRoot>
+              <Sidebar />
+              <PageView>
+                <Header />
+                <PageContent>{children}</PageContent>
+              </PageView>
+            </PageRoot>
           </HeaderProvider>
         </SidebarProvider>
       </OrganizationProvider>

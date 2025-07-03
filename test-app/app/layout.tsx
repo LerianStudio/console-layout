@@ -1,4 +1,5 @@
 import "./globals.css";
+import "@lerian/console-layout/styles";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Providers from "../providers/session-provider";
@@ -21,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={interVariable.variable}>
-      <body className="font-inter">
+    <html lang="en" className={`${interVariable.variable} h-full`}>
+      <body className={`h-full font-inter bg-background text-foreground`}>
         <Providers>{children}</Providers>
       </body>
     </html>
