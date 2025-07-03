@@ -8,6 +8,8 @@ export const useGetPluginMenus = () => {
   return useQuery<PluginManifestDto[]>({
     queryKey: ["plugin-menus"],
     queryFn: getFetcher("/api/plugin/menus"),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 60 * 60 * 1000, // 1 hour
+    gcTime: 60 * 60 * 1000, // 1 hour
+    refetchOnWindowFocus: false, // Desabilita refetch no foco
   });
 };

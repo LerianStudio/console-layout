@@ -34,6 +34,11 @@ export const useListLedgers = ({
       { page, limit }
     ),
     enabled: !!organizationId,
+    staleTime: 60 * 60 * 1000, // 1 hour
+    gcTime: 60 * 60 * 1000, // 1 hour
+    refetchInterval: 2 * 60 * 1000, // Polling a cada 2 minutos
+    refetchIntervalInBackground: false, // Só faz polling com aba ativa
+    refetchOnWindowFocus: false, // Desabilita refetch no foco (já tem polling)
     ...options,
   });
 };
@@ -54,6 +59,11 @@ export const useGetLedger = ({
       `/api/organizations/${organizationId}/ledgers/${ledgerId}`
     ),
     enabled: !!organizationId && !!ledgerId,
+    staleTime: 60 * 60 * 1000, // 1 hour
+    gcTime: 60 * 60 * 1000, // 1 hour
+    refetchInterval: 2 * 60 * 1000, // Polling a cada 2 minutos
+    refetchIntervalInBackground: false, // Só faz polling com aba ativa
+    refetchOnWindowFocus: false, // Desabilita refetch no foco (já tem polling)
     ...options,
   });
 };
