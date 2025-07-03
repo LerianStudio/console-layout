@@ -14,8 +14,12 @@ export interface EnforceProps {
 }
 
 /**
- * Simple permission enforcement component
- * Conditionally renders children based on permission check
+ * Permission enforcement component
+ * Conditionally renders children based on auth enablement and permission check
+ *
+ * Logic:
+ * - If NEXT_PUBLIC_MIDAZ_AUTH_ENABLED !== 'true': always returns null (hide component)
+ * - If NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true': checks hasPermission
  */
 export const Enforce = ({
   children,
@@ -23,7 +27,14 @@ export const Enforce = ({
   resource,
   action,
 }: EnforceProps) => {
-  // If no permission, don't render
+  const isAuthEnabled = process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === "true";
+
+  // Se auth não está habilitado, sempre oculta
+  if (!isAuthEnabled) {
+    return null;
+  }
+
+  // Se auth está habilitado, verifica hasPermission
   if (!hasPermission) {
     return null;
   }
