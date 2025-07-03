@@ -63,12 +63,14 @@ const Sidebar = () => {
         {/* Main Navigation */}
         <SidebarGroup>
           <SidebarItem
+            key="/"
             title={formatMessage("sideBar.home")}
             icon={<Home />}
             href="/"
           />
 
           <SidebarItem
+            key="/ledgers"
             title={formatMessage("sideBar.ledgers")}
             icon={<LibraryBig />}
             href="/ledgers"
@@ -85,6 +87,7 @@ const Sidebar = () => {
           </SidebarGroupTitle>
 
           <SidebarItem
+            key="/assets"
             title={formatMessage("common.assets")}
             icon={<DollarSign />}
             href="/assets"
@@ -92,6 +95,7 @@ const Sidebar = () => {
           />
 
           <SidebarItem
+            key="/accounts"
             title={formatMessage("sideBar.ledger.accounts")}
             icon={<Coins />}
             href="/accounts"
@@ -99,6 +103,7 @@ const Sidebar = () => {
           />
 
           <SidebarItem
+            key="/segments"
             title={formatMessage("common.segments")}
             icon={<Group />}
             href="/segments"
@@ -106,6 +111,7 @@ const Sidebar = () => {
           />
 
           <SidebarItem
+            key="/portfolios"
             title={formatMessage("sideBar.accountHolders.portfolios")}
             icon={<Briefcase />}
             href="/portfolios"
@@ -113,6 +119,7 @@ const Sidebar = () => {
           />
 
           <SidebarItem
+            key="/transactions"
             title={formatMessage("common.transactions")}
             icon={<ArrowLeftRight />}
             href="/transactions"
@@ -122,27 +129,32 @@ const Sidebar = () => {
 
         {/* Plugins */}
         {plugins.length > 0 && (
-          <SidebarGroup>
-            <SidebarGroupTitle collapsed={isCollapsed}>
-              {formatMessage("common.plugins")}
-            </SidebarGroupTitle>
-            {plugins
-              .filter((plugin) => plugin.enabled)
-              .map((plugin) => {
-                const Icon =
-                  (LucideIcons as unknown as Record<string, React.ElementType>)[
-                    plugin.icon
-                  ] || LucideIcons.Landmark;
-                return (
-                  <SidebarItem
-                    key={plugin.id}
-                    title={plugin.name}
-                    icon={<Icon />}
-                    href={plugin.route}
-                  />
-                );
-              })}
-          </SidebarGroup>
+          <React.Fragment key="plugins-group">
+            <SidebarGroup>
+              <SidebarGroupTitle collapsed={isCollapsed}>
+                {formatMessage("common.plugins")}
+              </SidebarGroupTitle>
+              {plugins
+                .filter((plugin) => plugin.enabled)
+                .map((plugin) => {
+                  const Icon =
+                    (
+                      LucideIcons as unknown as Record<
+                        string,
+                        React.ElementType
+                      >
+                    )[plugin.icon] || LucideIcons.Landmark;
+                  return (
+                    <SidebarItem
+                      key={plugin.id}
+                      title={plugin.name}
+                      icon={<Icon />}
+                      href={plugin.route}
+                    />
+                  );
+                })}
+            </SidebarGroup>
+          </React.Fragment>
         )}
       </SidebarContent>
 

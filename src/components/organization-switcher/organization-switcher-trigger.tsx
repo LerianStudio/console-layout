@@ -40,16 +40,16 @@ const Logo = ({
         className={cn(
           "rounded-lg",
           button &&
-            "group-hover:border-muted-foreground box-border border-[3px] p-px",
-          active && "border-primary group-hover:border-primary"
+            "group-hover:border-shadcn-300 box-border border-[3px] p-px",
+          active && "border-shadcn-400 group-hover:border-shadcn-400"
         )}
       />
 
       {!collapsed && (
         <h1
           className={cn(
-            "text-muted-foreground text-sm font-medium capitalize",
-            active && "text-primary"
+            "text-shadcn-600 text-sm font-medium capitalize",
+            active && "text-shadcn-400"
           )}
         >
           {name}
@@ -58,7 +58,7 @@ const Logo = ({
 
       {!collapsed && !singleOrg && (
         <ChevronDown
-          className={cn(active && "text-primary rotate-180")}
+          className={cn(active && "text-shadcn-400 rotate-180")}
           size={16}
         />
       )}
