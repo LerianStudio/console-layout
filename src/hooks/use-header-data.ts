@@ -9,21 +9,19 @@ import {
   getConsoleBaseUrl,
 } from "../lib/env";
 import { ConsoleHeaderConfig } from "../types/header";
+import { useGetMidazInfo } from "../client/midaz-info";
 
 export const useHeaderData = (config?: ConsoleHeaderConfig) => {
   const auth = useAuth();
   const router = useRouter();
+  const { data: midazInfo, isLoading: isVersionLoading } = useGetMidazInfo();
 
   // Auto-detect version
   const version = useMemo(() => {
     if (config?.version) return config.version;
-    const defaults = getHeaderDefaults();
-    if (defaults.version !== "auto") return defaults.version;
-
-    // Try to detect version from package.json or other sources
-    // For now, return a default version
-    return "1.0.0";
-  }, [config?.version]);
+    if (isVersionLoading) return "..."; // Loading state
+    return midazInfo?.version || " "; // Fallback to empty space
+  }, [config?.version, midazInfo, isVersionLoading]);
 
   // Auto-detect locale
   const locale = useMemo(() => {
