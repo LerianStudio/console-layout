@@ -21,6 +21,7 @@ import {
 import { useI18n } from "../../lib/i18n";
 import { AboutMidazDialog } from "./about-midaz-dialog";
 import { Enforce } from "../ui/enforce";
+import { useConsoleLayout } from "@/hooks/use-console-layout";
 
 export interface SettingsDropdownProps {
   /** Handler for organizations click */
@@ -61,7 +62,16 @@ export const SettingsDropdown = ({
   aboutDialog,
 }: SettingsDropdownProps) => {
   const { formatMessage } = useI18n();
+  const { baseUrl } = useConsoleLayout();
   const [aboutOpen, setAboutOpen] = useState(false);
+
+  const handleRedirect = (path: string) => {
+    if (!baseUrl) {
+      console.error("MIDAZ_CONSOLE_BASE_URL is not configured.");
+      return;
+    }
+    window.location.href = `${baseUrl}${path}`;
+  };
 
   const handleAboutClick = () => {
     if (onAboutClick) {
@@ -83,7 +93,12 @@ export const SettingsDropdown = ({
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem onClick={onOrganizationsClick}>
+          <DropdownMenuItem
+            onClick={
+              onOrganizationsClick ||
+              (() => handleRedirect("/settings/organizations"))
+            }
+          >
             <DropdownMenuItemIcon>
               <Building />
             </DropdownMenuItemIcon>
@@ -95,7 +110,11 @@ export const SettingsDropdown = ({
             resource="users"
             action="get"
           >
-            <DropdownMenuItem onClick={onUsersClick}>
+            <DropdownMenuItem
+              onClick={
+                onUsersClick || (() => handleRedirect("/settings/users"))
+              }
+            >
               <DropdownMenuItemIcon>
                 <Users />
               </DropdownMenuItemIcon>
@@ -108,7 +127,12 @@ export const SettingsDropdown = ({
             resource="applications"
             action="get"
           >
-            <DropdownMenuItem onClick={onApplicationsClick}>
+            <DropdownMenuItem
+              onClick={
+                onApplicationsClick ||
+                (() => handleRedirect("/settings/applications"))
+              }
+            >
               <DropdownMenuItemIcon>
                 <Layers />
               </DropdownMenuItemIcon>
@@ -116,7 +140,11 @@ export const SettingsDropdown = ({
             </DropdownMenuItem>
           </Enforce>
 
-          <DropdownMenuItem onClick={onSystemClick}>
+          <DropdownMenuItem
+            onClick={
+              onSystemClick || (() => handleRedirect("/settings/system"))
+            }
+          >
             <DropdownMenuItemIcon>
               <Globe />
             </DropdownMenuItemIcon>

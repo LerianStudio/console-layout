@@ -14,6 +14,8 @@ export interface UseConsoleLayoutOptions {
 }
 
 export interface UseConsoleLayoutReturn {
+  /** Base URL for the main console */
+  baseUrl: string;
   /** Current pathname */
   pathname: string;
   /** Navigation function */
@@ -44,6 +46,8 @@ export const useConsoleLayout = (
   const router = useRouter();
   const organization = useOrganization();
   const sidebar = useSidebar();
+  const baseUrl =
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL || "http://localhost:8081";
 
   // Default active item logic
   const defaultIsActive = (href: string, pathname: string) => {
@@ -68,6 +72,7 @@ export const useConsoleLayout = (
   const isActive = (href: string) => checkIsActive(href, pathname);
 
   return {
+    baseUrl,
     pathname,
     navigate,
     isActive,
