@@ -1,53 +1,56 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { Button } from "../../ui/button";
-import { cn } from "../../../lib/utils";
+import { usePathname } from "next/navigation";
+import { SidebarItemButton } from "./sidebar-item-button";
+import { SidebarItemIconButton } from "./sidebar-item-icon-button";
+import { useSidebar } from "../../../providers/sidebar-provider";
+import { useI18n } from "../../../lib/i18n";
 
 export interface SidebarItemProps {
+  title: string;
+  icon: React.ReactNode;
   href: string;
   disabled?: boolean;
-  isActive?: boolean;
-  onClick?: () => void;
-  children: React.ReactNode;
-  className?: string;
+  disabledReason?: string;
 }
 
 export const SidebarItem = ({
-  href,
   disabled,
-  isActive,
-  onClick,
-  children,
-  className,
+  href,
+  disabledReason,
+  ...others
 }: SidebarItemProps) => {
-  const buttonClasses = cn(
-    "h-10 justify-start rounded-lg gap-x-2 w-full px-3",
-    "font-normal",
-    className
-  );
+  const pathname = usePathname();
+  const { isCollapsed } = useSidebar();
+  const { formatMessage } = useI18n();
 
-  if (disabled) {
+  const defaultDisabledReason =
+    disabledReason ||
+    formatMessage("sidebar.disabled.reason") ||
+    "No ledger selected. To access, create a ledger.";
+
+  const isActive = (href: string) => pathname === href;
+
+  if (isCollapsed) {
     return (
-      <Button
-        variant="ghost"
-        disabled
-        className={cn(buttonClasses, "opacity-50 cursor-not-allowed")}
-      >
-        {children}
-      </Button>
+      <SidebarItemIconButton
+        href={href}
+        active={isActive(href)}
+        disabled={disabled}
+        disabledReason={defaultDisabledReason}
+        {...others}
+      />
     );
   }
 
   return (
-    <Button
-      asChild
-      variant={isActive ? "activeLink" : "hoverLink"}
-      onClick={onClick}
-      className={buttonClasses}
-    >
-      <Link href={href}>{children}</Link>
-    </Button>
+    <SidebarItemButton
+      href={href}
+      active={isActive(href)}
+      disabled={disabled}
+      disabledReason={defaultDisabledReason}
+      {...others}
+    />
   );
 };
