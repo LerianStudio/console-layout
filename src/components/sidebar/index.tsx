@@ -27,6 +27,7 @@ import { useSidebar } from "../../providers/sidebar-provider";
 import { useOrganization } from "../../providers/organization-provider";
 import { useI18n } from "../../lib/i18n";
 import { OrganizationSwitcher } from "../organization-switcher";
+import { useConsoleLayout } from "@/hooks/use-console-layout";
 
 const Sidebar = () => {
   const { isCollapsed } = useSidebar();
@@ -35,6 +36,7 @@ const Sidebar = () => {
   const { data: plugins = [] } = useGetPluginMenus();
   const { currentLedger } = useOrganization();
   const [isMobileWidth, setIsMobileWidth] = React.useState(false);
+  const { baseUrl } = useConsoleLayout();
 
   // Mobile detection like console
   React.useEffect(() => {
@@ -66,14 +68,14 @@ const Sidebar = () => {
             key="/"
             title={formatMessage("sideBar.home")}
             icon={<Home />}
-            href="/"
+            href={`${baseUrl}/`}
           />
 
           <SidebarItem
             key="/ledgers"
             title={formatMessage("sideBar.ledgers")}
             icon={<LibraryBig />}
-            href="/ledgers"
+            href={`${baseUrl}/ledgers`}
           />
         </SidebarGroup>
 
@@ -90,7 +92,7 @@ const Sidebar = () => {
             key="/assets"
             title={formatMessage("common.assets")}
             icon={<DollarSign />}
-            href="/assets"
+            href={`${baseUrl}/assets`}
             disabled={isLedgerDisabled}
           />
 
@@ -98,7 +100,7 @@ const Sidebar = () => {
             key="/accounts"
             title={formatMessage("sideBar.ledger.accounts")}
             icon={<Coins />}
-            href="/accounts"
+            href={`${baseUrl}/accounts`}
             disabled={isLedgerDisabled}
           />
 
@@ -106,7 +108,7 @@ const Sidebar = () => {
             key="/segments"
             title={formatMessage("common.segments")}
             icon={<Group />}
-            href="/segments"
+            href={`${baseUrl}/segments`}
             disabled={isLedgerDisabled}
           />
 
@@ -114,7 +116,7 @@ const Sidebar = () => {
             key="/portfolios"
             title={formatMessage("sideBar.accountHolders.portfolios")}
             icon={<Briefcase />}
-            href="/portfolios"
+            href={`${baseUrl}/portfolios`}
             disabled={isLedgerDisabled}
           />
 
@@ -122,7 +124,7 @@ const Sidebar = () => {
             key="/transactions"
             title={formatMessage("common.transactions")}
             icon={<ArrowLeftRight />}
-            href="/transactions"
+            href={`${baseUrl}/transactions`}
             disabled={isLedgerDisabled}
           />
         </SidebarGroup>
