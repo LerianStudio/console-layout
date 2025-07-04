@@ -1,50 +1,19 @@
 "use client";
 
-import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Header } from "../header";
-import { Sidebar } from "../sidebar";
+import React from "react";
+import { I18nProvider } from "../../lib/i18n";
+import { HeaderProvider } from "../../providers/header-provider";
 import { OrganizationProvider } from "../../providers/organization-provider";
 import { SidebarProvider } from "../../providers/sidebar-provider";
-import { HeaderProvider } from "../../providers/header-provider";
-import { I18nProvider } from "../../lib/i18n";
-import { OrganizationSwitcher } from "../organization-switcher";
-import { configureFetcher } from "../../client/fetcher";
-import { ConsoleHeaderConfig } from "../../types/header";
-import type { I18nConfig } from "../../lib/i18n";
+import { Header } from "../header";
 import { PageContent, PageRoot, PageView } from "../page";
-
-export interface ConsoleLayoutConfig {
-  /** Optional API base URL override. If not provided, will use NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL env var */
-  baseUrl?: string;
-  /** Default sidebar collapsed state */
-  defaultSidebarCollapsed?: boolean;
-  /** Whether to create a new QueryClient or use existing */
-  useExistingQueryClient?: boolean;
-  /** Custom QueryClient instance */
-  queryClient?: QueryClient;
-}
+import { Sidebar } from "../sidebar";
 
 export interface ConsoleLayoutProps {
-  /** Layout configuration */
-  config: ConsoleLayoutConfig;
-  /** Header configuration */
-  header?: ConsoleHeaderConfig;
-  /** I18n configuration */
-  i18n?: I18nConfig;
-  /** Custom organization switcher */
-  organizationSwitcher?: React.ReactNode;
-  /** Main content */
   children: React.ReactNode;
-  /** Custom container className */
-  className?: string;
-  /** Whether to show the sidebar */
-  showSidebar?: boolean;
-  /** Whether to show the header */
-  showHeader?: boolean;
 }
 
-// Default QueryClient instance
 const defaultQueryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -54,51 +23,24 @@ const defaultQueryClient = new QueryClient({
   },
 });
 
-export const ConsoleLayout = ({
-  config,
-  header,
-  i18n,
-  organizationSwitcher,
-  children,
-  className = "",
-  showSidebar = true,
-  showHeader = true,
-}: ConsoleLayoutProps) => {
-  // Configure the fetcher with baseUrl (auto-detected if not provided)
-  React.useEffect(() => {
-    configureFetcher({ baseUrl: config.baseUrl });
-  }, [config.baseUrl]);
-
-  const queryClient = config.useExistingQueryClient
-    ? config.queryClient || defaultQueryClient
-    : defaultQueryClient;
-
-  const defaultOrgSwitcher = organizationSwitcher || <OrganizationSwitcher />;
-
-  const content = (
-    <I18nProvider config={i18n}>
-      <OrganizationProvider>
-        <SidebarProvider defaultCollapsed={config.defaultSidebarCollapsed}>
-          <HeaderProvider config={header}>
-            <PageRoot>
-              <Sidebar />
-              <PageView>
-                <Header />
-                <PageContent>{children}</PageContent>
-              </PageView>
-            </PageRoot>
-          </HeaderProvider>
-        </SidebarProvider>
-      </OrganizationProvider>
-    </I18nProvider>
+export const ConsoleLayout = ({ children }: ConsoleLayoutProps) => {
+  return (
+    <QueryClientProvider client={defaultQueryClient}>
+      <I18nProvider>
+        <OrganizationProvider>
+          <SidebarProvider>
+            <HeaderProvider>
+              <PageRoot>
+                <Sidebar />
+                <PageView>
+                  <Header />
+                  <PageContent>{children}</PageContent>
+                </PageView>
+              </PageRoot>
+            </HeaderProvider>
+          </SidebarProvider>
+        </OrganizationProvider>
+      </I18nProvider>
+    </QueryClientProvider>
   );
-
-  // Wrap with QueryClient if not using existing one
-  if (!config.useExistingQueryClient) {
-    return (
-      <QueryClientProvider client={queryClient}>{content}</QueryClientProvider>
-    );
-  }
-
-  return content;
 };

@@ -9,6 +9,7 @@ import { Skeleton } from "../ui/skeleton";
 import { useOrganization } from "../../providers/organization-provider";
 import { OrganizationSwitcherContent } from "./organization-switcher-content";
 import { SwitcherTrigger } from "./organization-switcher-trigger";
+import lerianLogo from "../../public/svg/lerian-logo.svg";
 
 export interface OrganizationSwitcherProps {
   /** Alt text for organization logo */
@@ -21,8 +22,6 @@ export interface OrganizationSwitcherProps {
   editText?: string;
   /** Text for organization settings */
   organizationText?: string;
-  /** Fallback logo path */
-  fallbackLogo?: string;
 }
 
 export const OrganizationSwitcher = ({
@@ -31,13 +30,12 @@ export const OrganizationSwitcher = ({
   settingsHref = "/settings?tab=organizations",
   editText = "Edit",
   organizationText = "Organization",
-  fallbackLogo = "/svg/lerian-logo.svg",
 }: OrganizationSwitcherProps) => {
   const { isCollapsed } = useSidebar();
   const { data, isPending } = useListOrganizations({});
   const { currentOrganization, setOrganization } = useOrganization();
   const [open, setOpen] = useState(false);
-  const [avatar, setAvatar] = useState<string>(fallbackLogo);
+  const [avatar, setAvatar] = useState<string>(lerianLogo);
 
   const handleChange = (organization: OrganizationDto) => {
     setOrganization(organization);
@@ -48,8 +46,8 @@ export const OrganizationSwitcher = ({
     if (currentOrganization?.avatar) {
       return setAvatar(currentOrganization.avatar);
     }
-    setAvatar(fallbackLogo);
-  }, [currentOrganization, fallbackLogo]);
+    setAvatar(lerianLogo);
+  }, [currentOrganization]);
 
   if ((isPending && !data) || !currentOrganization) {
     return <Skeleton className="h-10 w-10" />;
@@ -78,7 +76,6 @@ export const OrganizationSwitcher = ({
         settingsHref={settingsHref}
         editText={editText}
         organizationText={organizationText}
-        fallbackLogo={fallbackLogo}
       />
     </Popover>
   );

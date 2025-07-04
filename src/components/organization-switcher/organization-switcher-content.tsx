@@ -14,6 +14,7 @@ import {
   PopoverPanelTitle,
 } from "./popover-panel";
 import { OrganizationDto } from "../../types";
+import lerianLogo from "../../public/svg/lerian-logo.svg";
 
 export type OrganizationSwitcherBaseProps = {
   currentOrganization: OrganizationDto;
@@ -30,7 +31,6 @@ export type OrganizationSwitcherContentProps = OrganizationSwitcherBaseProps & {
   settingsHref?: string;
   editText?: string;
   organizationText?: string;
-  fallbackLogo?: string;
 };
 
 export const OrganizationSwitcherContent = ({
@@ -45,7 +45,6 @@ export const OrganizationSwitcherContent = ({
   settingsHref = "#",
   editText = "Edit",
   organizationText = "Organization",
-  fallbackLogo = "/svg/lerian-logo.svg",
 }: OrganizationSwitcherContentProps) => {
   return (
     <PopoverContent className="flex w-auto gap-4" side="right">
@@ -81,7 +80,7 @@ export const OrganizationSwitcherContent = ({
               onClick={() => onChange?.(organization)}
             >
               <ClientImage
-                src={organization.avatar || fallbackLogo}
+                src={organization.avatar || lerianLogo}
                 alt={alt}
                 width={28}
                 className="rounded-full"

@@ -4,22 +4,7 @@ import { ConsoleLayout } from "@lerian/console-layout";
 
 export default function TestApp() {
   return (
-    <ConsoleLayout
-      config={{
-        // baseUrl is auto-detected from NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
-        defaultSidebarCollapsed: false,
-        useExistingQueryClient: true, // Use the QueryClient from providers
-      }}
-      i18n={{
-        defaultLocale: "en",
-        autoDetect: true, // Auto-detect browser locale
-        availableLocales: ["en", "pt"],
-        // Custom messages can be provided here
-        // messages: {
-        //   en: { 'sideBar.home': 'Dashboard' }
-        // }
-      }}
-    >
+    <ConsoleLayout>
       {/* Page Content */}
       <div className="p-6">
         <div className="max-w-4xl mx-auto">

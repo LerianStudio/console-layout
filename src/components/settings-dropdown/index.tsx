@@ -42,7 +42,6 @@ export interface SettingsDropdownProps {
   /** About dialog configuration */
   aboutDialog?: {
     version?: string;
-    logoSrc?: string;
     termsLink?: string;
     licenseLink?: string;
     showLinks?: boolean;
@@ -165,7 +164,6 @@ export const SettingsDropdown = ({
         open={aboutOpen}
         setOpen={setAboutOpen}
         version={aboutDialog?.version}
-        logoSrc={aboutDialog?.logoSrc}
         termsLink={aboutDialog?.termsLink}
         licenseLink={aboutDialog?.licenseLink}
         showLinks={aboutDialog?.showLinks}

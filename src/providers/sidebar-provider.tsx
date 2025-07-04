@@ -12,14 +12,10 @@ const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export interface SidebarProviderProps {
   children: React.ReactNode;
-  defaultCollapsed?: boolean;
 }
 
-export function SidebarProvider({
-  children,
-  defaultCollapsed = false,
-}: SidebarProviderProps) {
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
+export function SidebarProvider({ children }: SidebarProviderProps) {
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);

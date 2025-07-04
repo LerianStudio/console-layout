@@ -22,5 +22,9 @@ export default defineConfig({
     options.banner = {
       js: '"use client"',
     };
+    // Configurar loader para SVG como dataurl (inline base64)
+    options.loader = {
+      ".svg": "dataurl",
+    };
   },
 });

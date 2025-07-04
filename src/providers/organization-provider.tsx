@@ -64,22 +64,18 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
     limit: 100,
   });
 
-  // Função para atualizar organização (usada externamente)
   const setOrganization = (organization: OrganizationDto) => {
     saveOrganizationToStorage(organization);
     setCurrent(organization);
-    // Limpar ledger quando mudar organização
     clearLedgerFromStorage();
     setCurrentLedger({} as LedgerDto);
   };
 
-  // Função para atualizar ledger (usada externamente)
   const setLedger = (ledger: LedgerDto) => {
     saveLedgerToStorage(ledger);
     setCurrentLedger(ledger);
   };
 
-  // Gerenciar organização: localStorage -> API -> validação -> fallback
   useEffect(() => {
     if (organizations?.items && organizations.items.length > 0 && !current.id) {
       const storedOrganization = loadOrganizationFromStorage();
@@ -89,7 +85,6 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
       );
 
       if (validOrganization) {
-        // Se a organização armazenada não é válida, salvar a nova no localStorage
         if (
           !storedOrganization ||
           storedOrganization.id !== validOrganization.id
@@ -101,7 +96,6 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
     }
   }, [organizations, current.id]);
 
-  // Gerenciar ledger: localStorage -> API -> validação -> fallback
   useEffect(() => {
     if (
       ledgers?.items &&
@@ -117,7 +111,6 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
       );
 
       if (validLedger) {
-        // Se o ledger armazenado não é válido, salvar o novo no localStorage
         if (!storedLedger || storedLedger.id !== validLedger.id) {
           saveLedgerToStorage(validLedger);
         }
@@ -126,7 +119,6 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
     }
   }, [ledgers, currentLedger.id, current.id]);
 
-  // Limpar ledger quando organização muda (validação de consistência)
   useEffect(() => {
     if (
       current.id &&

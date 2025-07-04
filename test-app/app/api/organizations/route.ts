@@ -21,7 +21,7 @@ const organizations: OrganizationDto[] = [
   {
     id: "1",
     legalName: "Lerian Studio",
-    avatar: "/svg/lerian-logo.svg",
+    avatar: "/svg/approved-circle.svg",
     metadata: {
       onboarding: false,
     },
@@ -45,7 +45,7 @@ const organizations: OrganizationDto[] = [
   {
     id: "4",
     legalName: "FinTech Solutions",
-    avatar: "/svg/lerian-logo.svg",
+    avatar: "/svg/approved-circle.svg",
     metadata: {
       onboarding: false,
     },

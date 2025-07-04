@@ -11,27 +11,28 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { useI18n } from "../../lib/i18n";
+// Importar SVG diretamente como data URL (sempre fixo)
+import lerianLogo from "../../public/svg/lerian-logo.svg";
 
 export interface AboutMidazDialogProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   /** Custom version override */
   version?: string;
-  /** Custom logo source */
-  logoSrc?: string;
   /** Terms of use link */
   termsLink?: string;
   /** License link */
   licenseLink?: string;
   /** Show terms and license links */
   showLinks?: boolean;
+  // Note: logoSrc foi removido - agora é sempre lerianLogo fixo
 }
 
 export const AboutMidazDialog = ({
   open,
   setOpen,
   version,
-  logoSrc = "/svg/lerian-logo.svg",
+  // logoSrc removido - usa sempre lerianLogo
   termsLink = "",
   licenseLink = "",
   showLinks = false,
@@ -49,9 +50,7 @@ export const AboutMidazDialog = ({
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <DialogHeader className="flex flex-col items-center">
-          {logoSrc && (
-            <img src={logoSrc} alt="Lerian Flag" width={324} height={32} />
-          )}
+          <img src={lerianLogo} alt="Lerian Flag" width={324} height={32} />
           <div className="flex flex-col gap-2">
             <DialogTitle className="text-lg font-bold text-zinc-900 sm:text-center">
               Midaz Console
