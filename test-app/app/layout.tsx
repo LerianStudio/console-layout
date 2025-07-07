@@ -23,9 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html
-      suppressHydrationWarning={true}
+      suppressHydrationWarning
       lang="en"
-      className={`${interVariable.variable} h-full`}
+      className={`${interVariable.variable}`}
     >
       <body
         suppressHydrationWarning
