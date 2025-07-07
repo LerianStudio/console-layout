@@ -11,15 +11,14 @@ import {
 } from "../../ui/tooltip";
 import { cn } from "../../../lib/utils";
 
-export interface SidebarItemIconButtonProps {
+type SidebarItemIconButtonProps = {
   title: string;
   icon: React.ReactNode;
   href: string;
   active?: boolean;
   disabled?: boolean;
   disabledReason?: string;
-  onClick?: () => void;
-}
+};
 
 export const SidebarItemIconButton = ({
   title,
@@ -28,7 +27,6 @@ export const SidebarItemIconButton = ({
   active,
   disabled = false,
   disabledReason,
-  onClick,
 }: SidebarItemIconButtonProps) => {
   const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
     className: cn(
@@ -36,17 +34,6 @@ export const SidebarItemIconButton = ({
       active && "text-black group-hover/link:text-black"
     ),
   });
-
-  const commonClasses = cn(
-    buttonVariants({
-      variant: active ? "activeLink" : "hoverLink",
-      size: "icon",
-    }),
-    "group/link",
-    disabled && "cursor-not-allowed opacity-30"
-  );
-
-  const content = clonedIcon;
 
   return (
     <TooltipProvider>

@@ -28,12 +28,11 @@ export const SidebarItemButton = ({
   active,
   disabled = false,
   disabledReason,
-  onClick,
 }: SidebarItemButtonProps) => {
   const clonedIcon = React.isValidElement(icon)
     ? React.cloneElement(icon as React.ReactElement<any>, {
         className: cn(
-          "mr-3 h-6 w-6 text-muted-foreground",
+          "mr-3 h-6 w-6 text-shadcn-400",
           "group-hover/link:text-accent-foreground",
           active && "text-black group-hover/link:text-black"
         ),
@@ -45,15 +44,6 @@ export const SidebarItemButton = ({
       {clonedIcon}
       <span>{title}</span>
     </React.Fragment>
-  );
-
-  const commonClasses = cn(
-    buttonVariants({
-      variant: active ? "activeLink" : "hoverLink",
-      size: "sm",
-    }),
-    "group/link flex h-9 items-center justify-start w-full",
-    disabled && "cursor-not-allowed opacity-30"
   );
 
   if (disabled) {
@@ -92,7 +82,6 @@ export const SidebarItemButton = ({
         "group/link flex h-9 items-center justify-start",
         disabled && "cursor-not-allowed opacity-30"
       )}
-      onClick={onClick}
     >
       {content}
     </Link>

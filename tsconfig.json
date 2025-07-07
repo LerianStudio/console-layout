@@ -12,6 +12,9 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]

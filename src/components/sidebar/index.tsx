@@ -55,14 +55,10 @@ const Sidebar = () => {
 
   return (
     <SidebarRoot>
-      {/* Header with OrganizationSwitcher */}
       <SidebarHeader>
         <OrganizationSwitcher />
       </SidebarHeader>
-
-      {/* Content */}
       <SidebarContent>
-        {/* Main Navigation */}
         <SidebarGroup>
           <SidebarItem
             key="/"
@@ -79,10 +75,8 @@ const Sidebar = () => {
           />
         </SidebarGroup>
 
-        {/* Separator when collapsed like console */}
         {isCollapsed && <Separator />}
 
-        {/* Ledger Navigation */}
         <SidebarGroup>
           <SidebarGroupTitle collapsed={isCollapsed}>
             {formatMessage("sideBar.ledger.title")}
@@ -129,7 +123,6 @@ const Sidebar = () => {
           />
         </SidebarGroup>
 
-        {/* Plugins */}
         {plugins.length > 0 && (
           <React.Fragment key="plugins-group">
             <SidebarGroup>
@@ -160,7 +153,6 @@ const Sidebar = () => {
         )}
       </SidebarContent>
 
-      {/* Expand button - hidden on mobile like console */}
       {!isMobileWidth && <SidebarExpandButton />}
     </SidebarRoot>
   );
