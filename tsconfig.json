@@ -16,6 +16,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "react-jsx",
+    "types": ["jest", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }

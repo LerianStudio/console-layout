@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useMemo } from "react";
 import { useHeaderData } from "../hooks/use-header-data";
 import { getHeaderUrls, getHeaderText, getHeaderPermissions } from "../lib/env";
 import { ConsoleHeaderConfig, HeaderContextType } from "../types/header";

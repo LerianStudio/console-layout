@@ -1,6 +1,6 @@
 "use client";
 
-import React, {
+import {
   createContext,
   PropsWithChildren,
   useContext,
@@ -13,7 +13,6 @@ import { useListLedgers } from "@/client/ledgers";
 import {
   saveOrganizationToStorage,
   loadOrganizationFromStorage,
-  clearOrganizationFromStorage,
 } from "../lib/storage/organization-storage";
 import {
   saveLedgerToStorage,

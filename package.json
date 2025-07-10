@@ -29,7 +29,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint .",
-    "test": "vitest"
+    "test": "jest"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -43,13 +43,14 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cookies-next": "^6.0.0",
     "lucide-react": "^0.445.0",
     "motion": "^12.23.0",
     "next-auth": "^4.24.11",
+    "react-color": "^2.19.3",
     "react-intl": "^7.1.11",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "react-color": "^2.19.3"
+    "tailwindcss-animate": "^1.0.7"
   },
   "peerDependencies": {
     "next": ">=15.0.0",
@@ -58,14 +59,22 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
-    "tailwindcss": "^4.1.11",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.15.28",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "jest-fetch-mock": "^3.0.3",
+    "postcss": "^8.5.4",
     "react": "^19.1.0",
     "react-color": "^2.19.3",
     "react-dom": "^19.1.0",
-    "postcss": "^8.5.4",
-    "tsup": "^8.0.0",
     "shx": "^0.4.0",
+    "tailwindcss": "^4.1.11",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
