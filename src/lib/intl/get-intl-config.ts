@@ -1,5 +1,5 @@
-import { intlConfig } from "../../../intl.config";
+import { intlConfig } from '../../intl.config'
 
 export function getIntlConfig() {
-  return intlConfig;
+  return intlConfig
 }

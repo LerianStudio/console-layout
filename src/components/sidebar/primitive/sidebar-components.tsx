@@ -1,10 +1,10 @@
-import React from "react";
-import { cn } from "../../../lib/utils";
+import React from 'react'
+import { cn } from '../../../lib/utils'
 
 export type SidebarHeaderProps = React.HTMLAttributes<HTMLDivElement> & {
-  className?: string;
-  collapsed?: boolean;
-};
+  className?: string
+  collapsed?: boolean
+}
 
 const SidebarHeader = React.forwardRef<HTMLDivElement, SidebarHeaderProps>(
   ({ className, collapsed, ...props }: SidebarHeaderProps, ref) => (
@@ -12,61 +12,61 @@ const SidebarHeader = React.forwardRef<HTMLDivElement, SidebarHeaderProps>(
       ref={ref}
       data-collapsed={collapsed}
       className={cn(
-        "dark:bg-cod-gray-950 flex h-[60px] items-center border-b bg-white px-4",
-        collapsed && "justify-center p-0"
+        'dark:bg-cod-gray-950 flex h-[60px] items-center border-b bg-white px-4',
+        collapsed && 'justify-center p-0'
       )}
       {...props}
     />
   )
-);
-SidebarHeader.displayName = "SidebarHeader";
+)
+SidebarHeader.displayName = 'SidebarHeader'
 
 export type SidebarContentProps = React.HTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
+  className?: string
+}
 
 const SidebarContent = React.forwardRef<HTMLDivElement, SidebarContentProps>(
   ({ className, ...props }: SidebarContentProps, ref) => (
     <div
       ref={ref}
       className={cn(
-        "group flex flex-1 flex-col gap-4 bg-white px-4 pt-4",
-        "group-data-[collapsed=true]/sidebar:items-center group-data-[collapsed=true]/sidebar:px-2",
-        "group-data-[collapsed=false]/sidebar:min-w-[244px]",
+        'group flex flex-1 flex-col gap-4 bg-white px-4 pt-4',
+        'group-data-[collapsed=true]/sidebar:items-center group-data-[collapsed=true]/sidebar:px-2',
+        'group-data-[collapsed=false]/sidebar:min-w-[244px]',
         className
       )}
       {...props}
     />
   )
-);
-SidebarContent.displayName = "SidebarContent";
+)
+SidebarContent.displayName = 'SidebarContent'
 
 export type SidebarGroupProps = {
-  className?: string;
-} & React.HTMLAttributes<HTMLElement>;
+  className?: string
+} & React.HTMLAttributes<HTMLElement>
 
 const SidebarGroup = React.forwardRef<HTMLElement, SidebarGroupProps>(
   ({ className, ...props }: SidebarGroupProps, ref) => (
     <nav
       ref={ref}
       className={cn(
-        "grid gap-1",
-        "group-data[collapsed=true]/sidebar:justify-center",
+        'grid gap-1',
+        'group-data[collapsed=true]/sidebar:justify-center',
         className
       )}
       {...props}
     />
   )
-);
-SidebarGroup.displayName = "SidebarGroup";
+)
+SidebarGroup.displayName = 'SidebarGroup'
 
 export type SidebarGroupTitleProps = React.PropsWithChildren & {
-  collapsed?: boolean;
-};
+  collapsed?: boolean
+}
 
 const SidebarGroupTitle = ({ collapsed, children }: SidebarGroupTitleProps) => {
   if (collapsed) {
-    return null;
+    return null
   }
 
   return (
@@ -75,31 +75,31 @@ const SidebarGroupTitle = ({ collapsed, children }: SidebarGroupTitleProps) => {
         {children}
       </p>
     </div>
-  );
-};
+  )
+}
 
 export type SidebarFooterProps = {
-  className?: string;
-} & React.HTMLAttributes<HTMLElement>;
+  className?: string
+} & React.HTMLAttributes<HTMLElement>
 
 const SidebarFooter = React.forwardRef<HTMLElement, SidebarFooterProps>(
   ({ className, ...props }: SidebarFooterProps, ref) => (
     <nav
       ref={ref}
       className={cn(
-        "border-shadcn-200 flex w-full justify-center border-t bg-white p-4",
+        'border-shadcn-200 flex w-full justify-center border-t bg-white p-4',
         className
       )}
       {...props}
     />
   )
-);
-SidebarFooter.displayName = "SidebarFooter";
+)
+SidebarFooter.displayName = 'SidebarFooter'
 
 export {
   SidebarHeader,
   SidebarContent,
   SidebarGroup,
   SidebarGroupTitle,
-  SidebarFooter,
-};
+  SidebarFooter
+}

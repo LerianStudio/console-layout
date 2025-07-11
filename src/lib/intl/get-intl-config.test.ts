@@ -1,4 +1,4 @@
-import { intlConfig } from '@/../intl.config'
+import { intlConfig } from '@/intl.config'
 import { getIntlConfig } from './get-intl-config'
 
 describe('getIntlConfig', () => {

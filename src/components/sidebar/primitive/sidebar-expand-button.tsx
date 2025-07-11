@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import React from "react";
-import { PanelLeftClose, PanelRightClose } from "lucide-react";
-import { Button } from "../../ui/button";
-import { useSidebar } from "../../../providers/sidebar-provider";
-import { SidebarFooter } from "./sidebar-components";
+import React from 'react'
+import { PanelLeftClose, PanelRightClose } from 'lucide-react'
+import { Button } from '../../ui/button'
+import { useSidebar } from '../../../providers/sidebar-provider'
+import { SidebarFooter } from './sidebar-components'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "../../ui/tooltip";
-import { useIntl } from "react-intl";
+  TooltipTrigger
+} from '../../ui/tooltip'
+import { useIntl } from 'react-intl'
 
 export const SidebarExpandButton = () => {
-  const { isCollapsed, toggleSidebar } = useSidebar();
-  const intl = useIntl();
+  const { isCollapsed, toggleSidebar } = useSidebar()
+  const intl = useIntl()
 
   return (
     <React.Fragment>
@@ -45,8 +45,8 @@ export const SidebarExpandButton = () => {
               </TooltipTrigger>
               <TooltipContent side="right">
                 {intl.formatMessage({
-                  id: "common.expand",
-                  defaultMessage: "Expand",
+                  id: 'common.expand',
+                  defaultMessage: 'Expand'
                 })}
               </TooltipContent>
             </Tooltip>
@@ -54,5 +54,5 @@ export const SidebarExpandButton = () => {
         </SidebarFooter>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
