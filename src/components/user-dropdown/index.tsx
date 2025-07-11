@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,29 +11,25 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Book, CircleUser, LogOut } from "lucide-react";
-import { useI18n } from "../../lib/i18n";
 import { HeaderContext } from "../../providers/header-provider";
 import { HeaderContextType } from "../../types/header";
+import { useIntl } from "react-intl";
 
 export interface UserDropdownProps {
   /**
    * User name to display
-   * @deprecated Use HeaderProvider context instead
    */
   userName?: string;
   /**
    * Documentation URL
-   * @deprecated Use HeaderProvider context instead
    */
   docsUrl?: string;
   /**
    * Logout handler
-   * @deprecated Use HeaderProvider context instead
    */
   onLogout?: () => void;
   /**
    * Support/docs click handler
-   * @deprecated Use HeaderProvider context instead
    */
   onDocsClick?: () => void;
 }
@@ -44,7 +40,7 @@ export const UserDropdown = ({
   onLogout: propOnLogout,
   onDocsClick: propOnDocsClick,
 }: UserDropdownProps) => {
-  const { formatMessage } = useI18n();
+  const intl = useIntl();
   const headerContext = useContext(HeaderContext) as HeaderContextType | null;
 
   // Use context as primary, props as deprecated fallback
@@ -91,7 +87,10 @@ export const UserDropdown = ({
           <DropdownMenuItemIcon>
             <Book />
           </DropdownMenuItemIcon>
-          {formatMessage("header.userDropdown.support")}
+          {intl.formatMessage({
+            id: "header.userDropdown.support",
+            defaultMessage: "Support",
+          })}
         </DropdownMenuItem>
 
         {isAuthEnabled && (
@@ -101,7 +100,10 @@ export const UserDropdown = ({
               <DropdownMenuItemIcon>
                 <LogOut />
               </DropdownMenuItemIcon>
-              {formatMessage("header.userDropdown.logout")}
+              {intl.formatMessage({
+                id: "header.userDropdown.logout",
+                defaultMessage: "Logout",
+              })}
             </DropdownMenuItem>
           </>
         )}

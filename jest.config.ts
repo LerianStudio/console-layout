@@ -3,13 +3,13 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type { Config } from "jest";
-import nextJest from "next/jest.js";
+import type { Config } from 'jest'
+import nextJest from 'next/jest.js'
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-  dir: "./",
-});
+  dir: './'
+})
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -31,7 +31,7 @@ const config: Config = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -97,7 +97,7 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    "@/../intl.config": "<rootDir>/intl.config.ts",
+    '@/../intl.config': '<rootDir>/intl.config.ts'
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -154,7 +154,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jsdom",
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -169,7 +169,7 @@ const config: Config = {
   // ]
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ["\\\\node_modules\\\\", "./tests"],
+  testPathIgnorePatterns: ['\\\\node_modules\\\\', './tests']
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -200,6 +200,6 @@ const config: Config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-};
+}
 
-export default createJestConfig(config);
+export default createJestConfig(config)

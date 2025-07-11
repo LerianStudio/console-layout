@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "./use-auth";
 import {
   getHeaderUrls,
@@ -13,7 +12,6 @@ import { useGetMidazInfo } from "../client/midaz-info";
 
 export const useHeaderData = (config?: ConsoleHeaderConfig) => {
   const auth = useAuth();
-  const router = useRouter();
   const { data: midazInfo, isLoading: isVersionLoading } = useGetMidazInfo();
 
   // Auto-detect version

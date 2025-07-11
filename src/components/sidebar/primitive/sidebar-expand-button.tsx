@@ -4,7 +4,6 @@ import React from "react";
 import { PanelLeftClose, PanelRightClose } from "lucide-react";
 import { Button } from "../../ui/button";
 import { useSidebar } from "../../../providers/sidebar-provider";
-import { useI18n } from "../../../lib/i18n";
 import { SidebarFooter } from "./sidebar-components";
 import {
   Tooltip,
@@ -12,10 +11,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../../ui/tooltip";
+import { useIntl } from "react-intl";
 
 export const SidebarExpandButton = () => {
   const { isCollapsed, toggleSidebar } = useSidebar();
-  const { formatMessage } = useI18n();
+  const intl = useIntl();
 
   return (
     <React.Fragment>
@@ -44,7 +44,10 @@ export const SidebarExpandButton = () => {
                 <PanelRightClose className="group-hover/expand-button:text-white dark:text-white" />
               </TooltipTrigger>
               <TooltipContent side="right">
-                {formatMessage("common.expand")}
+                {intl.formatMessage({
+                  id: "common.expand",
+                  defaultMessage: "Expand",
+                })}
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

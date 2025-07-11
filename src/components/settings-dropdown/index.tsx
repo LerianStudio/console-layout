@@ -18,10 +18,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useI18n } from "../../lib/i18n";
 import { AboutMidazDialog } from "./about-midaz-dialog";
 import { Enforce } from "../ui/enforce";
 import { useConsoleLayout } from "@/hooks/use-console-layout";
+import { useIntl } from "react-intl";
 
 export interface SettingsDropdownProps {
   /** Handler for organizations click */
@@ -60,7 +60,7 @@ export const SettingsDropdown = ({
   },
   aboutDialog,
 }: SettingsDropdownProps) => {
-  const { formatMessage } = useI18n();
+  const intl = useIntl();
   const { baseUrl } = useConsoleLayout();
   const [aboutOpen, setAboutOpen] = useState(false);
 
@@ -88,7 +88,10 @@ export const SettingsDropdown = ({
         </DropdownMenuTrigger>
         <DropdownMenuContent className="min-w-[241px]">
           <DropdownMenuLabel>
-            {formatMessage("settingsDropdown.settings")}
+            {intl.formatMessage({
+              id: "settingsDropdown.settings",
+              defaultMessage: "Settings",
+            })}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
 
@@ -101,7 +104,10 @@ export const SettingsDropdown = ({
             <DropdownMenuItemIcon>
               <Building />
             </DropdownMenuItemIcon>
-            {formatMessage("settingsDropdown.organizations")}
+            {intl.formatMessage({
+              id: "settingsDropdown.organizations",
+              defaultMessage: "Organizations",
+            })}
           </DropdownMenuItem>
 
           <Enforce
@@ -117,7 +123,10 @@ export const SettingsDropdown = ({
               <DropdownMenuItemIcon>
                 <Users />
               </DropdownMenuItemIcon>
-              {formatMessage("settingsDropdown.users")}
+              {intl.formatMessage({
+                id: "settingsDropdown.users",
+                defaultMessage: "Users",
+              })}
             </DropdownMenuItem>
           </Enforce>
 
@@ -135,7 +144,10 @@ export const SettingsDropdown = ({
               <DropdownMenuItemIcon>
                 <Layers />
               </DropdownMenuItemIcon>
-              {formatMessage("settingsDropdown.applications")}
+              {intl.formatMessage({
+                id: "settingsDropdown.applications",
+                defaultMessage: "Applications",
+              })}
             </DropdownMenuItem>
           </Enforce>
 
@@ -147,7 +159,10 @@ export const SettingsDropdown = ({
             <DropdownMenuItemIcon>
               <Globe />
             </DropdownMenuItemIcon>
-            {formatMessage("settingsDropdown.system")}
+            {intl.formatMessage({
+              id: "settingsDropdown.system",
+              defaultMessage: "System",
+            })}
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
@@ -155,7 +170,10 @@ export const SettingsDropdown = ({
             <DropdownMenuItemIcon>
               <HelpCircle />
             </DropdownMenuItemIcon>
-            {formatMessage("settingsDropdown.about")}
+            {intl.formatMessage({
+              id: "settingsDropdown.about",
+              defaultMessage: "About",
+            })}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

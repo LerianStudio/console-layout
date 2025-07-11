@@ -56,7 +56,7 @@ export * from "./hooks/use-header-data";
 // Console Layout
 export * from "./components/console-layout";
 
-// Main componentsz
+// Main components
 export { ConsoleLayout } from "./components/console-layout/console-layout";
 
 // Providers
