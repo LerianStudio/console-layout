@@ -8,9 +8,10 @@ import {
   DialogHeader,
   DialogTitle
 } from '../ui/dialog'
+import lerianFlag from '@/public/images/lerian-flag.jpg'
 import { Button } from '../ui/button'
-import lerianLogo from '@/public/svg/lerian-logo.svg'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 
 export interface AboutMidazDialogProps {
   open: boolean
@@ -46,7 +47,7 @@ export const AboutMidazDialog = ({
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <DialogHeader className="flex flex-col items-center">
-          <img src={lerianLogo} alt="Lerian Flag" width={324} height={32} />
+          <Image src={lerianFlag} alt="Lerian Flag" width={324} height={32} />
           <div className="flex flex-col gap-2">
             <DialogTitle className="text-lg font-bold text-zinc-900 sm:text-center">
               Midaz Console
