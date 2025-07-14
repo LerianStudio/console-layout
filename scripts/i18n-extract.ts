@@ -6,7 +6,7 @@
  */
 import { extract } from '@formatjs/cli-lib/lib_esnext'
 import { glob } from 'glob'
-import { intlConfig } from '../intl.config'
+import { intlConfig } from '../src/intl.config'
 import { mkdir, open, readFile, writeFile } from 'fs/promises'
 import path from 'path'
 import { existsSync } from 'fs'

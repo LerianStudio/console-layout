@@ -1,32 +1,17 @@
-"use client";
+import React from 'react'
+import { HeaderProvider } from '../../providers/header-provider'
+import { OrganizationProvider } from '../../providers/organization-provider'
+import { SidebarProvider } from '../../providers/sidebar-provider'
+import { Header } from '../header'
+import { PageContent, PageRoot, PageView } from '../page'
+import { Sidebar } from '../sidebar'
+import { LocalizationProvider } from '@/lib/intl/localization-provider'
+import { QueryProvider } from '@/providers/query-provider'
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React from "react";
-import { I18nProvider } from "../../lib/i18n";
-import { HeaderProvider } from "../../providers/header-provider";
-import { OrganizationProvider } from "../../providers/organization-provider";
-import { SidebarProvider } from "../../providers/sidebar-provider";
-import { Header } from "../header";
-import { PageContent, PageRoot, PageView } from "../page";
-import { Sidebar } from "../sidebar";
-
-export interface ConsoleLayoutProps {
-  children: React.ReactNode;
-}
-
-const defaultQueryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
-export const ConsoleLayout = ({ children }: ConsoleLayoutProps) => {
+export const ConsoleLayout = ({ children }: React.PropsWithChildren) => {
   return (
-    <QueryClientProvider client={defaultQueryClient}>
-      <I18nProvider>
+    <LocalizationProvider>
+      <QueryProvider>
         <OrganizationProvider>
           <SidebarProvider>
             <HeaderProvider>
@@ -40,7 +25,7 @@ export const ConsoleLayout = ({ children }: ConsoleLayoutProps) => {
             </HeaderProvider>
           </SidebarProvider>
         </OrganizationProvider>
-      </I18nProvider>
-    </QueryClientProvider>
-  );
-};
+      </QueryProvider>
+    </LocalizationProvider>
+  )
+}

@@ -1,56 +1,56 @@
-"use client";
+'use client'
 
-import React, { useEffect, useState } from "react";
-import { useListOrganizations } from "../../client/organizations";
-import { Popover } from "../ui/popover";
-import { OrganizationDto } from "../../types";
-import { useSidebar } from "../../providers/sidebar-provider";
-import { Skeleton } from "../ui/skeleton";
-import { useOrganization } from "../../providers/organization-provider";
-import { OrganizationSwitcherContent } from "./organization-switcher-content";
-import { SwitcherTrigger } from "./organization-switcher-trigger";
-import lerianLogo from "../../public/svg/lerian-logo.svg";
+import { useEffect, useState } from 'react'
+import { useListOrganizations } from '@/client/organizations'
+import { Popover } from '../ui/popover'
+import { OrganizationDto } from '../../types'
+import { useSidebar } from '../../providers/sidebar-provider'
+import { Skeleton } from '../ui/skeleton'
+import { useOrganization } from '@/providers/organization-provider'
+import { OrganizationSwitcherContent } from './organization-switcher-content'
+import { SwitcherTrigger } from './organization-switcher-trigger'
+import lerianLogo from '@/public/svg/lerian-logo.svg'
 
 export interface OrganizationSwitcherProps {
   /** Alt text for organization logo */
-  logoAlt?: string;
+  logoAlt?: string
   /** Edit organization link href */
-  editHref?: string;
+  editHref?: string
   /** Settings link href */
-  settingsHref?: string;
+  settingsHref?: string
   /** Text for edit link */
-  editText?: string;
+  editText?: string
   /** Text for organization settings */
-  organizationText?: string;
+  organizationText?: string
 }
 
 export const OrganizationSwitcher = ({
-  logoAlt = "Your organization logo",
-  editHref = "/settings/organizations",
-  settingsHref = "/settings?tab=organizations",
-  editText = "Edit",
-  organizationText = "Organization",
+  logoAlt = 'Your organization logo',
+  editHref = '/settings/organizations',
+  settingsHref = '/settings?tab=organizations',
+  editText = 'Edit',
+  organizationText = 'Organization'
 }: OrganizationSwitcherProps) => {
-  const { isCollapsed } = useSidebar();
-  const { data, isPending } = useListOrganizations({});
-  const { currentOrganization, setOrganization } = useOrganization();
-  const [open, setOpen] = useState(false);
-  const [avatar, setAvatar] = useState<string>(lerianLogo);
+  const { isCollapsed } = useSidebar()
+  const { data, isPending } = useListOrganizations({})
+  const { currentOrganization, setOrganization } = useOrganization()
+  const [open, setOpen] = useState(false)
+  const [avatar, setAvatar] = useState<string>(lerianLogo)
 
   const handleChange = (organization: OrganizationDto) => {
-    setOrganization(organization);
-    setOpen(false);
-  };
+    setOrganization(organization)
+    setOpen(false)
+  }
 
   useEffect(() => {
     if (currentOrganization?.avatar) {
-      return setAvatar(currentOrganization.avatar);
+      return setAvatar(currentOrganization.avatar)
     }
-    setAvatar(lerianLogo);
-  }, [currentOrganization]);
+    setAvatar(lerianLogo)
+  }, [currentOrganization])
 
   if ((isPending && !data) || !currentOrganization) {
-    return <Skeleton className="h-10 w-10" />;
+    return <Skeleton className="h-10 w-10" />
   }
 
   return (
@@ -78,5 +78,5 @@ export const OrganizationSwitcher = ({
         organizationText={organizationText}
       />
     </Popover>
-  );
-};
+  )
+}
