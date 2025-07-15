@@ -39,13 +39,6 @@ export interface SettingsDropdownProps {
     canViewUsers?: boolean
     canViewApplications?: boolean
   }
-  /** About dialog configuration */
-  aboutDialog?: {
-    version?: string
-    termsLink?: string
-    licenseLink?: string
-    showLinks?: boolean
-  }
 }
 
 export const SettingsDropdown = ({
@@ -57,8 +50,7 @@ export const SettingsDropdown = ({
   permissions = {
     canViewUsers: true,
     canViewApplications: true
-  },
-  aboutDialog
+  }
 }: SettingsDropdownProps) => {
   const intl = useIntl()
   const { baseUrl } = useConsoleLayout()
@@ -178,14 +170,7 @@ export const SettingsDropdown = ({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AboutMidazDialog
-        open={aboutOpen}
-        setOpen={setAboutOpen}
-        version={aboutDialog?.version}
-        termsLink={aboutDialog?.termsLink}
-        licenseLink={aboutDialog?.licenseLink}
-        showLinks={aboutDialog?.showLinks}
-      />
+      <AboutMidazDialog open={aboutOpen} setOpen={setAboutOpen} />
     </React.Fragment>
   )
 }

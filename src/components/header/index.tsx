@@ -6,6 +6,47 @@ import { UserDropdown } from '../user-dropdown'
 import { SettingsDropdown } from '../settings-dropdown'
 import { useHeaderContext } from '../../providers/header-provider'
 import { useIntl } from 'react-intl'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '../ui/tooltip'
+import { AlertTriangle, CheckCircle2 } from 'lucide-react'
+import { VersionStatus } from '@/types'
+
+const VersionIcon = ({ status }: { status: VersionStatus }) => {
+  const intl = useIntl()
+
+  return (
+    <TooltipProvider>
+      <Tooltip delayDuration={500}>
+        <TooltipTrigger>
+          {status === VersionStatus.UpToDate && (
+            <CheckCircle2 className="h-4 w-4 text-zinc-400" />
+          )}
+          {status === VersionStatus.Outdated && (
+            <AlertTriangle className="h-4 w-4 text-yellow-500" />
+          )}
+        </TooltipTrigger>
+        <TooltipContent>
+          {status === VersionStatus.UpToDate &&
+            intl.formatMessage({
+              id: 'dialog.about.midaz.upToDate.tooltip',
+              defaultMessage:
+                'Your version is up to date and operating successfully.'
+            })}
+          {status === VersionStatus.Outdated &&
+            intl.formatMessage({
+              id: 'dialog.about.midaz.outdate.tooltip',
+              defaultMessage:
+                'A new version is available. We recommend updating.'
+            })}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
 
 export interface HeaderProps {
   /**
@@ -35,11 +76,11 @@ export const Header = ({ showLedgerSelector = true, version }: HeaderProps) => {
         {showLedgerSelector && <LedgerSelector />}
 
         <div className="flex items-center gap-6">
-          <p className="text-xs font-medium text-zinc-400">
-            {headerContext.text.midazConsole}{' '}
+          <p className="flex flex-row items-center gap-2 text-xs font-medium text-zinc-400">
             <span className="text-xs font-normal text-zinc-400">
-              v.{displayVersion}
+              {headerContext.text.midazConsole} v.{displayVersion}
             </span>
+            <VersionIcon status={headerContext.versionStatus} />
           </p>
 
           <Separator orientation="vertical" className="h-10" />

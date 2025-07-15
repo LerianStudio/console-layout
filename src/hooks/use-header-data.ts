@@ -14,7 +14,7 @@ export const useHeaderData = (config?: ConsoleHeaderConfig) => {
   const version = useMemo(() => {
     if (config?.version) return config.version
     if (isVersionLoading) return '...' // Loading state
-    return midazInfo?.version || ' ' // Fallback to empty space
+    return midazInfo?.currentVersion || ' ' // Fallback to empty space
   }, [config?.version, midazInfo, isVersionLoading])
 
   // Auto-detect locale
@@ -65,6 +65,7 @@ export const useHeaderData = (config?: ConsoleHeaderConfig) => {
 
   return {
     version,
+    versionStatus: midazInfo?.versionStatus,
     locale,
     userName: config?.user?.name || auth.userName || 'User',
     handlers,

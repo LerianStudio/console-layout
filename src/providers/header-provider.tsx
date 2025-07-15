@@ -25,6 +25,7 @@ export const HeaderProvider = ({ children, config }: HeaderProviderProps) => {
 
   const contextValue: HeaderContextType = {
     version: headerData.version,
+    versionStatus: headerData.versionStatus!,
     locale: headerData.locale,
     userName: headerData.userName,
     isAuthEnabled: headerData.isAuthEnabled,

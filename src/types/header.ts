@@ -1,3 +1,5 @@
+import { VersionStatus } from '..'
+
 export interface ConsoleHeaderConfig {
   /** Override version detection */
   version?: string
@@ -40,6 +42,7 @@ export interface ConsoleHeaderConfig {
 
 export interface HeaderContextType {
   version: string
+  versionStatus: VersionStatus
   locale: string
   userName: string
   isAuthEnabled: boolean

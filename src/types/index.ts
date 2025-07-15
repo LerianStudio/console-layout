@@ -13,6 +13,17 @@ export interface LedgerDto {
   organizationId: string
 }
 
+export enum VersionStatus {
+  UpToDate = 'up-to-date',
+  Outdated = 'outdated'
+}
+
+export type MidazInfoDto = {
+  currentVersion: string
+  latestVersion: string
+  versionStatus: VersionStatus
+}
+
 export interface PluginManifestDto {
   id: string
   name: string

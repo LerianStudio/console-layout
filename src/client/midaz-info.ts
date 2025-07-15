@@ -2,10 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { getFetcher } from './fetcher'
-
-interface MidazInfoDto {
-  version: string
-}
+import { MidazInfoDto } from '@/types'
 
 export const useGetMidazInfo = () => {
   return useQuery<MidazInfoDto>({
