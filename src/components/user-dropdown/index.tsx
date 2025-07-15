@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import React, { useContext } from "react";
+import { useContext } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,76 +8,72 @@ import {
   DropdownMenuItemIcon,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Book, CircleUser, LogOut } from "lucide-react";
-import { useI18n } from "../../lib/i18n";
-import { HeaderContext } from "../../providers/header-provider";
-import { HeaderContextType } from "../../types/header";
+  DropdownMenuTrigger
+} from '../ui/dropdown-menu'
+import { Book, CircleUser, LogOut } from 'lucide-react'
+import { HeaderContext } from '../../providers/header-provider'
+import { HeaderContextType } from '../../types/header'
+import { useIntl } from 'react-intl'
 
 export interface UserDropdownProps {
   /**
    * User name to display
-   * @deprecated Use HeaderProvider context instead
    */
-  userName?: string;
+  userName?: string
   /**
    * Documentation URL
-   * @deprecated Use HeaderProvider context instead
    */
-  docsUrl?: string;
+  docsUrl?: string
   /**
    * Logout handler
-   * @deprecated Use HeaderProvider context instead
    */
-  onLogout?: () => void;
+  onLogout?: () => void
   /**
    * Support/docs click handler
-   * @deprecated Use HeaderProvider context instead
    */
-  onDocsClick?: () => void;
+  onDocsClick?: () => void
 }
 
 export const UserDropdown = ({
   userName: propUserName,
   docsUrl: propDocsUrl,
   onLogout: propOnLogout,
-  onDocsClick: propOnDocsClick,
+  onDocsClick: propOnDocsClick
 }: UserDropdownProps) => {
-  const { formatMessage } = useI18n();
-  const headerContext = useContext(HeaderContext) as HeaderContextType | null;
+  const intl = useIntl()
+  const headerContext = useContext(HeaderContext) as HeaderContextType | null
 
   // Use context as primary, props as deprecated fallback
-  const userName = headerContext?.userName || propUserName || "User";
-  const isAuthEnabled = headerContext?.isAuthEnabled !== false; // Default to true if no context
+  const userName = headerContext?.userName || propUserName || 'User'
+  const isAuthEnabled = headerContext?.isAuthEnabled !== false // Default to true if no context
 
   const handleDocsClick = () => {
-    const contextHandler = headerContext?.handlers?.onDocsClick;
-    const fallbackHandler = propOnDocsClick;
-    const fallbackUrl = propDocsUrl || "https://docs.lerian.studio/";
+    const contextHandler = headerContext?.handlers?.onDocsClick
+    const fallbackHandler = propOnDocsClick
+    const fallbackUrl = propDocsUrl || 'https://docs.lerian.studio/'
 
     if (contextHandler) {
-      contextHandler();
+      contextHandler()
     } else if (fallbackHandler) {
-      fallbackHandler();
+      fallbackHandler()
     } else {
-      window.open(fallbackUrl, "_blank", "noopener noreferrer");
+      window.open(fallbackUrl, '_blank', 'noopener noreferrer')
     }
-  };
+  }
 
   const handleLogout = () => {
-    const contextHandler = headerContext?.handlers?.onLogout;
-    const fallbackHandler = propOnLogout;
+    const contextHandler = headerContext?.handlers?.onLogout
+    const fallbackHandler = propOnLogout
 
     if (contextHandler) {
-      contextHandler();
+      contextHandler()
     } else if (fallbackHandler) {
-      fallbackHandler();
+      fallbackHandler()
     } else {
       // Default logout behavior - could be customized
-      console.warn("No logout handler provided to UserDropdown");
+      console.warn('No logout handler provided to UserDropdown')
     }
-  };
+  }
 
   return (
     <DropdownMenu>
@@ -91,7 +87,10 @@ export const UserDropdown = ({
           <DropdownMenuItemIcon>
             <Book />
           </DropdownMenuItemIcon>
-          {formatMessage("header.userDropdown.support")}
+          {intl.formatMessage({
+            id: 'header.userDropdown.support',
+            defaultMessage: 'Support'
+          })}
         </DropdownMenuItem>
 
         {isAuthEnabled && (
@@ -101,11 +100,14 @@ export const UserDropdown = ({
               <DropdownMenuItemIcon>
                 <LogOut />
               </DropdownMenuItemIcon>
-              {formatMessage("header.userDropdown.logout")}
+              {intl.formatMessage({
+                id: 'header.userDropdown.logout',
+                defaultMessage: 'Logout'
+              })}
             </DropdownMenuItem>
           </>
         )}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}

@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import React from "react";
-import { usePathname } from "next/navigation";
-import { SidebarItemButton } from "./sidebar-item-button";
-import { SidebarItemIconButton } from "./sidebar-item-icon-button";
-import { useSidebar } from "../../../providers/sidebar-provider";
-import { useI18n } from "../../../lib/i18n";
+import React from 'react'
+import { usePathname } from 'next/navigation'
+import { SidebarItemButton } from './sidebar-item-button'
+import { SidebarItemIconButton } from './sidebar-item-icon-button'
+import { useSidebar } from '../../../providers/sidebar-provider'
+import { useIntl } from 'react-intl'
 
 export interface SidebarItemProps {
-  title: string;
-  icon: React.ReactNode;
-  href: string;
-  disabled?: boolean;
-  disabledReason?: string;
+  title: string
+  icon: React.ReactNode
+  href: string
+  disabled?: boolean
+  disabledReason?: string
 }
 
 export const SidebarItem = ({
@@ -21,16 +21,18 @@ export const SidebarItem = ({
   disabledReason,
   ...others
 }: SidebarItemProps) => {
-  const pathname = usePathname();
-  const { isCollapsed } = useSidebar();
-  const { formatMessage } = useI18n();
+  const pathname = usePathname()
+  const { isCollapsed } = useSidebar()
+  const intl = useIntl()
 
   const defaultDisabledReason =
     disabledReason ||
-    formatMessage("sidebar.disabled.reason") ||
-    "No ledger selected. To access, create a ledger.";
+    intl.formatMessage({
+      id: 'sidebar.disabled.reason',
+      defaultMessage: 'No ledger selected. To access, create a ledger.'
+    })
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => pathname === href
 
   if (isCollapsed) {
     return (
@@ -41,7 +43,7 @@ export const SidebarItem = ({
         disabledReason={defaultDisabledReason}
         {...others}
       />
-    );
+    )
   }
 
   return (
@@ -52,5 +54,5 @@ export const SidebarItem = ({
       disabledReason={defaultDisabledReason}
       {...others}
     />
-  );
-};
+  )
+}

@@ -1,16 +1,16 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 
 export interface EnforceProps {
   /** Children to conditionally render */
-  children: React.ReactNode;
+  children: React.ReactNode
   /** Simple permission check - if false, children won't render */
-  hasPermission?: boolean;
+  hasPermission?: boolean
   /** Resource name for semantic purposes */
-  resource?: string;
+  resource?: string
   /** Action name for semantic purposes */
-  action?: string;
+  action?: string
 }
 
 /**
@@ -25,19 +25,19 @@ export const Enforce = ({
   children,
   hasPermission = true,
   resource,
-  action,
+  action
 }: EnforceProps) => {
-  const isAuthEnabled = process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === "true";
+  const isAuthEnabled = process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
 
   // Se auth não está habilitado, sempre oculta
   if (!isAuthEnabled) {
-    return null;
+    return null
   }
 
   // Se auth está habilitado, verifica hasPermission
   if (!hasPermission) {
-    return null;
+    return null
   }
 
-  return <>{children}</>;
-};
+  return <>{children}</>
+}

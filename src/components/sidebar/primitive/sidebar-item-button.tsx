@@ -1,24 +1,24 @@
-"use client";
+'use client'
 
-import React from "react";
-import Link from "next/link";
-import { buttonVariants } from "../../ui/button";
+import React from 'react'
+import Link from 'next/link'
+import { buttonVariants } from '../../ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "../../ui/tooltip";
-import { cn } from "../../../lib/utils";
+  TooltipTrigger
+} from '../../ui/tooltip'
+import { cn } from '../../../lib/utils'
 
 export interface SidebarItemButtonProps {
-  title: string;
-  icon: React.ReactNode;
-  href: string;
-  active?: boolean;
-  disabled?: boolean;
-  disabledReason?: string;
-  onClick?: () => void;
+  title: string
+  icon: React.ReactNode
+  href: string
+  active?: boolean
+  disabled?: boolean
+  disabledReason?: string
+  onClick?: () => void
 }
 
 export const SidebarItemButton = ({
@@ -27,24 +27,24 @@ export const SidebarItemButton = ({
   href,
   active,
   disabled = false,
-  disabledReason,
+  disabledReason
 }: SidebarItemButtonProps) => {
   const clonedIcon = React.isValidElement(icon)
     ? React.cloneElement(icon as React.ReactElement<any>, {
         className: cn(
-          "mr-3 h-6 w-6 text-shadcn-400",
-          "group-hover/link:text-accent-foreground",
-          active && "text-black group-hover/link:text-black"
-        ),
+          'mr-3 h-6 w-6 text-shadcn-400',
+          'group-hover/link:text-accent-foreground',
+          active && 'text-black group-hover/link:text-black'
+        )
       })
-    : icon;
+    : icon
 
   const content = (
     <React.Fragment>
       {clonedIcon}
       <span>{title}</span>
     </React.Fragment>
-  );
+  )
 
   if (disabled) {
     return (
@@ -54,11 +54,11 @@ export const SidebarItemButton = ({
             <div
               className={cn(
                 buttonVariants({
-                  variant: active ? "activeLink" : "hoverLink",
-                  size: "sm",
+                  variant: active ? 'activeLink' : 'hoverLink',
+                  size: 'sm'
                 }),
-                "group/link flex h-9 items-center justify-start",
-                disabled && "cursor-not-allowed opacity-30"
+                'group/link flex h-9 items-center justify-start',
+                disabled && 'cursor-not-allowed opacity-30'
               )}
               onClick={(e) => e.preventDefault()}
             >
@@ -68,7 +68,7 @@ export const SidebarItemButton = ({
           <TooltipContent side="right">{disabledReason}</TooltipContent>
         </Tooltip>
       </TooltipProvider>
-    );
+    )
   }
 
   return (
@@ -76,14 +76,14 @@ export const SidebarItemButton = ({
       href={href}
       className={cn(
         buttonVariants({
-          variant: active ? "activeLink" : "hoverLink",
-          size: "sm",
+          variant: active ? 'activeLink' : 'hoverLink',
+          size: 'sm'
         }),
-        "group/link flex h-9 items-center justify-start",
-        disabled && "cursor-not-allowed opacity-30"
+        'group/link flex h-9 items-center justify-start',
+        disabled && 'cursor-not-allowed opacity-30'
       )}
     >
       {content}
     </Link>
-  );
-};
+  )
+}
