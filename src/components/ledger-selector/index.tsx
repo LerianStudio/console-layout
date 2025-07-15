@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import React from "react";
-import { ChevronsUpDown, Database } from "lucide-react";
+import React from 'react'
+import { ChevronsUpDown, Database } from 'lucide-react'
 import {
   Select,
   SelectTrigger,
@@ -9,60 +9,63 @@ import {
   SelectContent,
   SelectGroup,
   SelectLabel,
-  SelectItem,
-} from "../ui/select";
+  SelectItem
+} from '../ui/select'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
+  TooltipTrigger
+} from '../ui/tooltip'
 import {
   Command,
   CommandInput,
   CommandList,
   CommandEmpty,
   CommandGroup,
-  CommandItem,
-} from "../ui/command";
-import { useOrganization } from "../../providers/organization-provider";
-import { useListLedgers } from "../../client/ledgers";
-import { Button } from "../ui/button";
-import { LedgerDto } from "../../types";
-import { useI18n } from "../../lib/i18n";
+  CommandItem
+} from '../ui/command'
+import { useOrganization } from '../../providers/organization-provider'
+import { useListLedgers } from '../../client/ledgers'
+import { Button } from '../ui/button'
+import { LedgerDto } from '../../types'
+import { useIntl } from 'react-intl'
 
 const LedgerCommand = ({
   ledgers,
-  onSelect,
+  onSelect
 }: {
-  ledgers: LedgerDto[];
-  onSelect: (id: string) => void;
+  ledgers: LedgerDto[]
+  onSelect: (id: string) => void
 }) => {
-  const { formatMessage } = useI18n();
-  const [query, setQuery] = React.useState("");
-  const [visibleCount, setVisibleCount] = React.useState(10);
+  const intl = useIntl()
+  const [query, setQuery] = React.useState('')
+  const [visibleCount, setVisibleCount] = React.useState(10)
 
   const filteredLedgers = React.useMemo(() => {
-    if (!query) return ledgers;
+    if (!query) return ledgers
     return ledgers.filter((ledger) =>
       ledger.name.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [ledgers, query]);
+    )
+  }, [ledgers, query])
 
   const displayedLedgers = query
     ? filteredLedgers
-    : filteredLedgers.slice(0, visibleCount);
+    : filteredLedgers.slice(0, visibleCount)
 
-  const hasMore = !query && displayedLedgers.length < filteredLedgers.length;
+  const hasMore = !query && displayedLedgers.length < filteredLedgers.length
 
   const loadMore = () => {
-    setVisibleCount((prev) => prev + 10);
-  };
+    setVisibleCount((prev) => prev + 10)
+  }
 
   return (
     <Command className="w-full">
       <CommandInput
-        placeholder={formatMessage("common.search") || "Search..."}
+        placeholder={intl.formatMessage({
+          id: 'common.search',
+          defaultMessage: 'Search...'
+        })}
         value={query}
         onValueChange={setQuery}
         className="border-b px-2 py-1 pr-10"
@@ -71,7 +74,10 @@ const LedgerCommand = ({
       <CommandList className="max-h-max overflow-y-auto">
         {filteredLedgers.length === 0 ? (
           <CommandEmpty>
-            {formatMessage("common.noOptions") || "No options found."}
+            {intl.formatMessage({
+              id: 'common.noOptions',
+              defaultMessage: 'No options found.'
+            })}
           </CommandEmpty>
         ) : (
           <CommandGroup>
@@ -88,7 +94,10 @@ const LedgerCommand = ({
             {!query && hasMore && (
               <div className="border-t border-gray-100 p-1">
                 <Button onClick={loadMore} variant="outline" className="w-full">
-                  {formatMessage("common.loadMore") || "Load more..."}
+                  {intl.formatMessage({
+                    id: 'common.loadMore',
+                    defaultMessage: 'Load more...'
+                  })}
                 </Button>
               </div>
             )}
@@ -96,71 +105,79 @@ const LedgerCommand = ({
         )}
       </CommandList>
     </Command>
-  );
-};
+  )
+}
 
 export interface LedgerSelectorProps {
   /**
    * Override current ledger label text
    */
-  currentLedgerLabel?: string;
+  currentLedgerLabel?: string
   /**
    * Override placeholder text when no ledger is selected
    */
-  placeholder?: string;
+  placeholder?: string
   /**
    * Override "Ledgers" text in dropdown
    */
-  ledgersLabel?: string;
+  ledgersLabel?: string
 }
 
 export const LedgerSelector = ({
   currentLedgerLabel,
   placeholder,
-  ledgersLabel,
+  ledgersLabel
 }: LedgerSelectorProps) => {
-  const { formatMessage } = useI18n();
-  const [openCommand, setOpenCommand] = React.useState(false);
-  const { currentOrganization, currentLedger, setLedger } = useOrganization();
+  const intl = useIntl()
+  const [openCommand, setOpenCommand] = React.useState(false)
+  const { currentOrganization, currentLedger, setLedger } = useOrganization()
 
   const { data: ledgers } = useListLedgers({
-    organizationId: currentOrganization?.id || "",
-    limit: 100,
-  });
+    organizationId: currentOrganization?.id || '',
+    limit: 100
+  })
 
   React.useEffect(() => {
     if (ledgers?.items?.length) {
       if (!currentLedger?.id) {
-        setLedger(ledgers.items[0]);
-        return;
+        setLedger(ledgers.items[0])
+        return
       }
 
       const ledgerExists = ledgers.items.some(
         (ledger: LedgerDto) => ledger.id === currentLedger.id
-      );
+      )
 
       if (!ledgerExists) {
-        setLedger(ledgers.items[0]);
+        setLedger(ledgers.items[0])
       }
     }
-  }, [ledgers, currentLedger?.id, setLedger]);
+  }, [ledgers, currentLedger?.id, setLedger])
 
-  const hasLedgers = !!ledgers?.items?.length;
-  const totalLedgers = ledgers?.items?.length ?? 0;
-  const isLargeList = totalLedgers >= 10;
-  const isSingle = totalLedgers === 1;
+  const hasLedgers = !!ledgers?.items?.length
+  const totalLedgers = ledgers?.items?.length ?? 0
+  const isLargeList = totalLedgers >= 10
+  const isSingle = totalLedgers === 1
 
   // Use i18n messages with fallbacks
   const currentLedgerText =
     currentLedgerLabel ||
-    formatMessage("ledger.selector.currentLedger.label") ||
-    "Current Ledger";
+    intl.formatMessage({
+      id: 'ledger.selector.currentLedger.label',
+      defaultMessage: 'Current Ledger'
+    })
   const placeholderText =
     placeholder ||
-    formatMessage("ledger.selector.placeholder") ||
-    "Select a ledger";
+    intl.formatMessage({
+      id: 'ledger.selector.placeholder',
+      defaultMessage: 'Select a ledger'
+    })
   const ledgersText =
-    ledgersLabel || formatMessage("ledgers.title") || "Ledgers";
+    ledgersLabel ||
+    intl.formatMessage({
+      id: 'ledgers.title',
+      defaultMessage: 'Ledgers'
+    })
 
   if (isSingle) {
     return (
@@ -177,23 +194,23 @@ export const LedgerSelector = ({
           {ledgers?.items[0].name}
         </span>
       </Button>
-    );
+    )
   }
 
   const handleSelectChange = (id: string) => {
-    const selectedLedger = ledgers?.items.find((ledger) => ledger.id === id);
+    const selectedLedger = ledgers?.items.find((ledger) => ledger.id === id)
     if (selectedLedger) {
-      setLedger(selectedLedger);
+      setLedger(selectedLedger)
     }
-  };
+  }
 
   const handleCommandChange = (id: string) => {
-    const selectedLedger = ledgers?.items.find((ledger) => ledger.id === id);
+    const selectedLedger = ledgers?.items.find((ledger) => ledger.id === id)
     if (selectedLedger) {
-      setLedger(selectedLedger);
+      setLedger(selectedLedger)
     }
-    setOpenCommand(false);
-  };
+    setOpenCommand(false)
+  }
 
   return (
     <TooltipProvider>
@@ -224,7 +241,7 @@ export const LedgerSelector = ({
                     </SelectLabel>
                     <SelectItem
                       disabled
-                      value={currentLedger?.id || ""}
+                      value={currentLedger?.id || 'a'}
                       className="font-medium text-zinc-800 data-disabled:opacity-100"
                     >
                       {ledgers?.items?.find(
@@ -239,11 +256,12 @@ export const LedgerSelector = ({
                         className="flex w-full justify-start rounded-lg border p-2"
                         onClick={() => setOpenCommand((prev) => !prev)}
                       >
-                        <span className="flex items-center justify-between w-full">
-                          {formatMessage(
-                            "ledger.selector.selectAnother.label"
-                          ) || "Select another..."}
-                          <ChevronsUpDown className="text-zinc-400 h-4 w-4" />
+                        <span className="flex w-full items-center justify-between">
+                          {intl.formatMessage({
+                            id: 'ledger.selector.selectAnother.label',
+                            defaultMessage: 'Select another...'
+                          })}
+                          <ChevronsUpDown className="h-4 w-4 text-zinc-400" />
                         </span>
                       </Button>
 
@@ -280,11 +298,13 @@ export const LedgerSelector = ({
 
         {!hasLedgers && (
           <TooltipContent side="bottom">
-            {formatMessage("ledger.selector.noledgers") ||
-              "No ledgers available. Please create one first."}
+            {intl.formatMessage({
+              id: 'ledger.selector.noledgers',
+              defaultMessage: 'No ledgers available. Please create one first.'
+            })}
           </TooltipContent>
         )}
       </Tooltip>
     </TooltipProvider>
-  );
-};
+  )
+}

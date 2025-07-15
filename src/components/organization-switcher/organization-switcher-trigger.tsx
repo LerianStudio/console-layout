@@ -1,20 +1,19 @@
-"use client";
+'use client'
 
-import React from "react";
-import ClientImage from "./client-image";
-import { cn } from "../../lib/utils";
-import { PopoverTrigger } from "../ui/popover";
-import { ChevronDown } from "lucide-react";
+import { cn } from '../../lib/utils'
+import { PopoverTrigger } from '../ui/popover'
+import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 
 type LogoProps = {
-  image: string;
-  alt: string;
-  name: string;
-  active?: boolean;
-  collapsed?: boolean;
-  button?: boolean;
-  singleOrg?: boolean;
-};
+  image: string
+  alt: string
+  name: string
+  active?: boolean
+  collapsed?: boolean
+  button?: boolean
+  singleOrg?: boolean
+}
 
 const Logo = ({
   image,
@@ -23,33 +22,33 @@ const Logo = ({
   active,
   collapsed,
   button,
-  singleOrg,
+  singleOrg
 }: LogoProps) => {
   return (
     <div
       className={cn(
-        "group flex items-center gap-3",
-        button && "cursor-pointer"
+        'group flex items-center gap-3',
+        button && 'cursor-pointer'
       )}
     >
-      <ClientImage
+      <Image
         src={image}
         alt={alt}
         height={40}
         width={40}
         className={cn(
-          "rounded-lg",
+          'rounded-lg',
           button &&
-            "group-hover:border-shadcn-300 box-border border-[3px] p-px",
-          active && "border-shadcn-400 group-hover:border-shadcn-400"
+            'group-hover:border-shadcn-300 box-border border-[3px] p-px',
+          active && 'border-shadcn-400 group-hover:border-shadcn-400'
         )}
       />
 
       {!collapsed && (
         <h1
           className={cn(
-            "text-shadcn-600 text-sm font-medium capitalize",
-            active && "text-shadcn-400"
+            'text-shadcn-600 text-sm font-medium capitalize',
+            active && 'text-shadcn-400'
           )}
         >
           {name}
@@ -58,19 +57,19 @@ const Logo = ({
 
       {!collapsed && !singleOrg && (
         <ChevronDown
-          className={cn(active && "text-shadcn-400 rotate-180")}
+          className={cn(active && 'text-shadcn-400 rotate-180')}
           size={16}
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export type SwitcherTriggerProps = Omit<LogoProps, "active"> & {
-  open: boolean;
-  disabled?: boolean;
-  singleOrg?: boolean;
-};
+export type SwitcherTriggerProps = Omit<LogoProps, 'active'> & {
+  open: boolean
+  disabled?: boolean
+  singleOrg?: boolean
+}
 
 export const SwitcherTrigger = ({
   open,
@@ -83,12 +82,12 @@ export const SwitcherTrigger = ({
       <PopoverTrigger>
         <Logo singleOrg active={open} {...others} />
       </PopoverTrigger>
-    );
+    )
   }
 
   return (
     <PopoverTrigger>
       <Logo button active={open} {...others} />
     </PopoverTrigger>
-  );
-};
+  )
+}

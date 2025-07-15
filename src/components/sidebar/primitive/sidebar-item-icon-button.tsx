@@ -1,24 +1,24 @@
-"use client";
+'use client'
 
-import React from "react";
-import Link from "next/link";
-import { buttonVariants } from "../../ui/button";
+import React from 'react'
+import Link from 'next/link'
+import { buttonVariants } from '../../ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "../../ui/tooltip";
-import { cn } from "../../../lib/utils";
+  TooltipTrigger
+} from '../../ui/tooltip'
+import { cn } from '../../../lib/utils'
 
 type SidebarItemIconButtonProps = {
-  title: string;
-  icon: React.ReactNode;
-  href: string;
-  active?: boolean;
-  disabled?: boolean;
-  disabledReason?: string;
-};
+  title: string
+  icon: React.ReactNode
+  href: string
+  active?: boolean
+  disabled?: boolean
+  disabledReason?: string
+}
 
 export const SidebarItemIconButton = ({
   title,
@@ -26,14 +26,14 @@ export const SidebarItemIconButton = ({
   href,
   active,
   disabled = false,
-  disabledReason,
+  disabledReason
 }: SidebarItemIconButtonProps) => {
   const clonedIcon = React.cloneElement(icon as React.ReactElement<any>, {
     className: cn(
-      "group-hover/link:text-accent-foreground h-6 w-6 text-shadcn-400",
-      active && "text-black group-hover/link:text-black"
-    ),
-  });
+      'group-hover/link:text-accent-foreground h-6 w-6 text-shadcn-400',
+      active && 'text-black group-hover/link:text-black'
+    )
+  })
 
   return (
     <TooltipProvider>
@@ -43,11 +43,11 @@ export const SidebarItemIconButton = ({
             <div
               className={cn(
                 buttonVariants({
-                  variant: active ? "activeLink" : "hoverLink",
-                  size: "icon",
+                  variant: active ? 'activeLink' : 'hoverLink',
+                  size: 'icon'
                 }),
-                "group/link flex h-9 w-9 items-center justify-center",
-                disabled && "cursor-not-allowed opacity-30"
+                'group/link flex h-9 w-9 items-center justify-center',
+                disabled && 'cursor-not-allowed opacity-30'
               )}
               onClick={(e) => e.preventDefault()}
             >
@@ -58,11 +58,11 @@ export const SidebarItemIconButton = ({
               href={href}
               className={cn(
                 buttonVariants({
-                  variant: active ? "activeLink" : "hoverLink",
-                  size: "icon",
+                  variant: active ? 'activeLink' : 'hoverLink',
+                  size: 'icon'
                 }),
-                "group/link flex h-9 w-9 items-center justify-center",
-                disabled && "cursor-not-allowed opacity-30"
+                'group/link flex h-9 w-9 items-center justify-center',
+                disabled && 'cursor-not-allowed opacity-30'
               )}
             >
               {clonedIcon}
@@ -74,5 +74,5 @@ export const SidebarItemIconButton = ({
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  );
-};
+  )
+}

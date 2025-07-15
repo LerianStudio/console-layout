@@ -1,21 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2021",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "experimentalDecorators": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": ".",
-    "outDir": "./dist",
     "rootDir": "./src",
+    "outDir": "./dist",
     "jsx": "react-jsx",
+    "types": ["jest", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }

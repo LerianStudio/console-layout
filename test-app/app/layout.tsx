@@ -1,25 +1,25 @@
-import "./globals.css";
-import "@lerian/console-layout/styles";
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import Providers from "../providers/session-provider";
+import './globals.css'
+import '@lerian/console-layout/styles'
+import type { Metadata } from 'next'
+import localFont from 'next/font/local'
+import Providers from '../providers/session-provider'
 
 // Console font
 const interVariable = localFont({
-  src: "../public/fonts/inter-variable.woff2",
-  display: "swap",
-  variable: "--font-inter",
-});
+  src: '../public/fonts/inter-variable.woff2',
+  display: 'swap',
+  variable: '--font-inter'
+})
 
 export const metadata: Metadata = {
-  title: "Console Layout Test App",
-  description: "Test application for console-layout library",
-};
+  title: 'Console Layout Test App',
+  description: 'Test application for console-layout library'
+}
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html
@@ -29,10 +29,10 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className={`h-full font-inter bg-background text-foreground`}
+        className={`font-inter bg-background text-foreground h-full`}
       >
         <Providers>{children}</Providers>
       </body>
     </html>
-  );
+  )
 }

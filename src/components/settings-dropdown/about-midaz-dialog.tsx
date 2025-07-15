@@ -1,47 +1,106 @@
-"use client";
+'use client'
 
-import React from "react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
-import { useI18n } from "../../lib/i18n";
-// Importar SVG diretamente como data URL (sempre fixo)
-import lerianLogo from "../../public/svg/lerian-logo.svg";
+  DialogTitle
+} from '../ui/dialog'
+import lerianFlag from '@/public/images/lerian-flag.jpg'
+import { Button } from '../ui/button'
+import { useIntl } from 'react-intl'
+import Image from 'next/image'
+import { CheckCircle2, AlertTriangle, ArrowRight } from 'lucide-react'
+import { Alert, AlertTitle, AlertDescription } from '../ui/alert'
+import { VersionStatus } from '@/types'
+import { useGetMidazInfo } from '@/client/midaz-info'
 
-export interface AboutMidazDialogProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  /** Custom version override */
-  version?: string;
-  /** Terms of use link */
-  termsLink?: string;
-  /** License link */
-  licenseLink?: string;
-  /** Show terms and license links */
-  showLinks?: boolean;
-  // Note: logoSrc foi removido - agora é sempre lerianLogo fixo
+const UpToDateAlert = () => {
+  const intl = useIntl()
+
+  return (
+    <Alert variant="success" className="mb-6 flex max-w-[324px] gap-3">
+      <div>
+        <CheckCircle2
+          className="mt-0.5 h-6 w-6 text-green-600"
+          aria-hidden="true"
+        />
+      </div>
+      <div>
+        <AlertTitle>
+          {intl.formatMessage({
+            id: 'dialog.about.midaz.upToDate.title',
+            defaultMessage: 'Version Notice'
+          })}
+        </AlertTitle>
+        <AlertDescription>
+          {intl.formatMessage({
+            id: 'dialog.about.midaz.upToDate.description',
+            defaultMessage: 'You are using the latest version of Midaz Console.'
+          })}
+        </AlertDescription>
+      </div>
+    </Alert>
+  )
 }
 
-export const AboutMidazDialog = ({
-  open,
-  setOpen,
-  version,
-  // logoSrc removido - usa sempre lerianLogo
-  termsLink = "",
-  licenseLink = "",
-  showLinks = false,
-}: AboutMidazDialogProps) => {
-  const { formatMessage } = useI18n();
+const OutdateAlert = () => {
+  const intl = useIntl()
+  const docLink = 'https://docs.lerian.studio/'
 
-  // Auto-detect version or use provided
-  const displayVersion =
-    version || process.env.NEXT_PUBLIC_MIDAZ_VERSION || "1.0.0";
+  return (
+    <Alert variant="warning" className="mb-6 flex max-w-[324px] flex-row gap-3">
+      <div>
+        <AlertTriangle
+          className="mt-0.5 h-6 w-6 text-yellow-500"
+          aria-hidden="true"
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <AlertTitle>
+          {intl.formatMessage({
+            id: 'dialog.about.midaz.outdate.title',
+            defaultMessage: 'New version available'
+          })}
+        </AlertTitle>
+        <AlertDescription>
+          {intl.formatMessage({
+            id: 'dialog.about.midaz.outdate.description',
+            defaultMessage: 'A new version is available. We recommend updating.'
+          })}
+        </AlertDescription>
+        <Button
+          icon={<ArrowRight className="size-4" />}
+          iconPlacement="end"
+          variant="link"
+          className="w-fit p-0 text-[12px] font-medium text-[#854D0E] no-underline"
+          onClick={() => {
+            window.open(docLink, '_blank', 'noopener,noreferrer')
+          }}
+        >
+          {intl.formatMessage({
+            id: 'dialog.about.midaz.outdate.button',
+            defaultMessage: 'Access Documentation'
+          })}
+        </Button>
+      </div>
+    </Alert>
+  )
+}
+
+export interface AboutMidazDialogProps {
+  open: boolean
+  setOpen: (open: boolean) => void
+}
+
+export const AboutMidazDialog = ({ open, setOpen }: AboutMidazDialogProps) => {
+  const intl = useIntl()
+  const termsLink = ''
+  const licenseLink = ''
+
+  const { data: versionData } = useGetMidazInfo()
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -50,28 +109,40 @@ export const AboutMidazDialog = ({
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <DialogHeader className="flex flex-col items-center">
-          <img src={lerianLogo} alt="Lerian Flag" width={324} height={32} />
+          <Image src={lerianFlag} alt="Lerian Flag" width={324} height={32} />
           <div className="flex flex-col gap-2">
             <DialogTitle className="text-lg font-bold text-zinc-900 sm:text-center">
               Midaz Console
             </DialogTitle>
-            <DialogDescription className="flex flex-col gap-2 text-zinc-500 sm:text-center">
-              <span>
-                {formatMessage("dialog.about.midaz.version")?.replace(
-                  "{version}",
-                  displayVersion
-                ) || `Version ${displayVersion}`}
-              </span>
-            </DialogDescription>
+            <div className="relative flex flex-row items-center justify-center gap-2">
+              <p className="text-xs font-medium text-zinc-500 sm:text-center">
+                {intl.formatMessage(
+                  {
+                    id: 'dialog.about.midaz.version',
+                    defaultMessage: 'Version {version}'
+                  },
+                  { version: versionData?.currentVersion }
+                )}
+              </p>
+            </div>
           </div>
 
-          {showLinks && (termsLink || licenseLink) && (
+          {versionData?.versionStatus === VersionStatus.UpToDate && (
+            <UpToDateAlert />
+          )}
+          {versionData?.versionStatus === VersionStatus.Outdated && (
+            <OutdateAlert />
+          )}
+
+          {(termsLink || licenseLink) && (
             <DialogDescription className="flex justify-center gap-4 text-zinc-800">
               {termsLink && (
                 <Button variant="link" className="h-fit p-0" asChild>
                   <a href={termsLink} target="_blank" rel="noopener noreferrer">
-                    {formatMessage("dialog.about.midaz.terms") ||
-                      "Terms of Use"}
+                    {intl.formatMessage({
+                      id: 'dialog.about.midaz.terms',
+                      defaultMessage: 'Terms of Use'
+                    })}
                   </a>
                 </Button>
               )}
@@ -82,7 +153,10 @@ export const AboutMidazDialog = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {formatMessage("dialog.about.midaz.license") || "License"}
+                    {intl.formatMessage({
+                      id: 'dialog.about.midaz.license',
+                      defaultMessage: 'License'
+                    })}
                   </a>
                 </Button>
               )}
@@ -90,20 +164,26 @@ export const AboutMidazDialog = ({
           )}
 
           <DialogDescription className="flex text-zinc-500 sm:text-center">
-            {formatMessage("dialog.about.midaz.copyright")?.replace(
-              "{year}",
-              new Date().getFullYear().toString()
-            ) ||
-              `Copyright © Lerian ${new Date().getFullYear()} - All rights reserved.`}
+            {intl.formatMessage(
+              {
+                id: 'dialog.about.midaz.copyright',
+                defaultMessage:
+                  'Copyright © Lerian {year} - All rights reserved.'
+              },
+              { year: new Date().getFullYear() }
+            )}
           </DialogDescription>
         </DialogHeader>
 
         <DialogFooter className="flex sm:justify-center">
           <Button onClick={() => setOpen(false)} variant="outline">
-            {formatMessage("common.close") || "Close"}
+            {intl.formatMessage({
+              id: 'common.close',
+              defaultMessage: 'Close'
+            })}
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

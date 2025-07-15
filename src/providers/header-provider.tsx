@@ -1,30 +1,31 @@
-"use client";
+'use client'
 
-import React, { createContext, useContext } from "react";
-import { useHeaderData } from "../hooks/use-header-data";
-import { getHeaderUrls, getHeaderText, getHeaderPermissions } from "../lib/env";
-import { ConsoleHeaderConfig, HeaderContextType } from "../types/header";
+import React, { createContext, useContext, useMemo } from 'react'
+import { useHeaderData } from '../hooks/use-header-data'
+import { getHeaderUrls, getHeaderText, getHeaderPermissions } from '../lib/env'
+import { ConsoleHeaderConfig, HeaderContextType } from '../types/header'
 
-export const HeaderContext = createContext<HeaderContextType | null>(null);
+export const HeaderContext = createContext<HeaderContextType | null>(null)
 
 export const useHeaderContext = () => {
-  const context = useContext(HeaderContext);
+  const context = useContext(HeaderContext)
   if (!context) {
-    throw new Error("useHeaderContext must be used within HeaderProvider");
+    throw new Error('useHeaderContext must be used within HeaderProvider')
   }
-  return context;
-};
+  return context
+}
 
 export interface HeaderProviderProps {
-  children: React.ReactNode;
-  config?: ConsoleHeaderConfig;
+  children: React.ReactNode
+  config?: ConsoleHeaderConfig
 }
 
 export const HeaderProvider = ({ children, config }: HeaderProviderProps) => {
-  const headerData = useHeaderData(config);
+  const headerData = useHeaderData(config)
 
   const contextValue: HeaderContextType = {
     version: headerData.version,
+    versionStatus: headerData.versionStatus!,
     locale: headerData.locale,
     userName: headerData.userName,
     isAuthEnabled: headerData.isAuthEnabled,
@@ -32,17 +33,17 @@ export const HeaderProvider = ({ children, config }: HeaderProviderProps) => {
     urls: getHeaderUrls(),
     text: {
       ...getHeaderText(),
-      ...config?.text,
+      ...config?.text
     },
     permissions: {
       ...getHeaderPermissions(),
-      ...config?.permissions,
-    },
-  };
+      ...config?.permissions
+    }
+  }
 
   return (
     <HeaderContext.Provider value={contextValue}>
       {children}
     </HeaderContext.Provider>
-  );
-};
+  )
+}

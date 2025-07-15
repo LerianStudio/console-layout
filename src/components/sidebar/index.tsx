@@ -1,7 +1,6 @@
-"use client";
+'use client'
 
-import React from "react";
-import { usePathname } from "next/navigation";
+import React from 'react'
 import {
   ArrowLeftRight,
   Briefcase,
@@ -9,49 +8,48 @@ import {
   DollarSign,
   Group,
   Home,
-  LibraryBig,
-} from "lucide-react";
-import * as LucideIcons from "lucide-react";
-import { useGetPluginMenus } from "../../client/plugin-menu";
-import { SidebarRoot } from "./primitive/sidebar-root";
+  LibraryBig
+} from 'lucide-react'
+import * as LucideIcons from 'lucide-react'
+import { useGetPluginMenus } from '../../client/plugin-menu'
+import { SidebarRoot } from './primitive/sidebar-root'
 import {
   SidebarHeader,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupTitle,
-} from "./primitive/sidebar-components";
-import { SidebarItem } from "./primitive/sidebar-item";
-import { SidebarExpandButton } from "./primitive/sidebar-expand-button";
-import { Separator } from "../ui/separator";
-import { useSidebar } from "../../providers/sidebar-provider";
-import { useOrganization } from "../../providers/organization-provider";
-import { useI18n } from "../../lib/i18n";
-import { OrganizationSwitcher } from "../organization-switcher";
-import { useConsoleLayout } from "@/hooks/use-console-layout";
+  SidebarGroupTitle
+} from './primitive/sidebar-components'
+import { SidebarItem } from './primitive/sidebar-item'
+import { SidebarExpandButton } from './primitive/sidebar-expand-button'
+import { Separator } from '../ui/separator'
+import { useSidebar } from '../../providers/sidebar-provider'
+import { useOrganization } from '../../providers/organization-provider'
+import { OrganizationSwitcher } from '../organization-switcher'
+import { useConsoleLayout } from '@/hooks/use-console-layout'
+import { useIntl } from 'react-intl'
 
 const Sidebar = () => {
-  const { isCollapsed } = useSidebar();
-  const { formatMessage } = useI18n();
-  const pathname = usePathname();
-  const { data: plugins = [] } = useGetPluginMenus();
-  const { currentLedger } = useOrganization();
-  const [isMobileWidth, setIsMobileWidth] = React.useState(false);
-  const { baseUrl } = useConsoleLayout();
+  const { isCollapsed } = useSidebar()
+  const intl = useIntl()
+  const { data: plugins = [] } = useGetPluginMenus()
+  const { currentLedger } = useOrganization()
+  const [isMobileWidth, setIsMobileWidth] = React.useState(false)
+  const { baseUrl } = useConsoleLayout()
 
   // Mobile detection like console
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobileWidth(window.innerWidth < 768);
-    };
+      setIsMobileWidth(window.innerWidth < 768)
+    }
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    handleResize()
+    window.addEventListener('resize', handleResize)
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Determine if ledger is disabled - using currentLedger like console
-  const isLedgerDisabled = Object.keys(currentLedger).length === 0;
+  const isLedgerDisabled = Object.keys(currentLedger).length === 0
 
   return (
     <SidebarRoot>
@@ -62,14 +60,20 @@ const Sidebar = () => {
         <SidebarGroup>
           <SidebarItem
             key="/"
-            title={formatMessage("sideBar.home")}
+            title={intl.formatMessage({
+              id: 'sideBar.home',
+              defaultMessage: 'Home'
+            })}
             icon={<Home />}
             href={`${baseUrl}/`}
           />
 
           <SidebarItem
             key="/ledgers"
-            title={formatMessage("sideBar.ledgers")}
+            title={intl.formatMessage({
+              id: 'sideBar.ledgers',
+              defaultMessage: 'Ledgers'
+            })}
             icon={<LibraryBig />}
             href={`${baseUrl}/ledgers`}
           />
@@ -79,12 +83,18 @@ const Sidebar = () => {
 
         <SidebarGroup>
           <SidebarGroupTitle collapsed={isCollapsed}>
-            {formatMessage("sideBar.ledger.title")}
+            {intl.formatMessage({
+              id: 'sideBar.ledger.title',
+              defaultMessage: 'Ledger'
+            })}
           </SidebarGroupTitle>
 
           <SidebarItem
             key="/assets"
-            title={formatMessage("common.assets")}
+            title={intl.formatMessage({
+              id: 'common.assets',
+              defaultMessage: 'Assets'
+            })}
             icon={<DollarSign />}
             href={`${baseUrl}/assets`}
             disabled={isLedgerDisabled}
@@ -92,7 +102,10 @@ const Sidebar = () => {
 
           <SidebarItem
             key="/accounts"
-            title={formatMessage("sideBar.ledger.accounts")}
+            title={intl.formatMessage({
+              id: 'sideBar.ledger.accounts',
+              defaultMessage: 'Accounts'
+            })}
             icon={<Coins />}
             href={`${baseUrl}/accounts`}
             disabled={isLedgerDisabled}
@@ -100,7 +113,10 @@ const Sidebar = () => {
 
           <SidebarItem
             key="/segments"
-            title={formatMessage("common.segments")}
+            title={intl.formatMessage({
+              id: 'common.segments',
+              defaultMessage: 'Segments'
+            })}
             icon={<Group />}
             href={`${baseUrl}/segments`}
             disabled={isLedgerDisabled}
@@ -108,7 +124,10 @@ const Sidebar = () => {
 
           <SidebarItem
             key="/portfolios"
-            title={formatMessage("sideBar.accountHolders.portfolios")}
+            title={intl.formatMessage({
+              id: 'sideBar.accountHolders.portfolios',
+              defaultMessage: 'Portfolios'
+            })}
             icon={<Briefcase />}
             href={`${baseUrl}/portfolios`}
             disabled={isLedgerDisabled}
@@ -116,7 +135,10 @@ const Sidebar = () => {
 
           <SidebarItem
             key="/transactions"
-            title={formatMessage("common.transactions")}
+            title={intl.formatMessage({
+              id: 'common.transactions',
+              defaultMessage: 'Transactions'
+            })}
             icon={<ArrowLeftRight />}
             href={`${baseUrl}/transactions`}
             disabled={isLedgerDisabled}
@@ -127,7 +149,10 @@ const Sidebar = () => {
           <React.Fragment key="plugins-group">
             <SidebarGroup>
               <SidebarGroupTitle collapsed={isCollapsed}>
-                {formatMessage("common.plugins")}
+                {intl.formatMessage({
+                  id: 'common.plugins',
+                  defaultMessage: 'Plugins'
+                })}
               </SidebarGroupTitle>
               {plugins
                 .filter((plugin) => plugin.enabled)
@@ -138,7 +163,7 @@ const Sidebar = () => {
                         string,
                         React.ElementType
                       >
-                    )[plugin.icon] || LucideIcons.Landmark;
+                    )[plugin.icon] || LucideIcons.Landmark
                   return (
                     <SidebarItem
                       key={plugin.id}
@@ -146,7 +171,7 @@ const Sidebar = () => {
                       icon={<Icon />}
                       href={plugin.route}
                     />
-                  );
+                  )
                 })}
             </SidebarGroup>
           </React.Fragment>
@@ -155,8 +180,8 @@ const Sidebar = () => {
 
       {!isMobileWidth && <SidebarExpandButton />}
     </SidebarRoot>
-  );
-};
+  )
+}
 
-export { Sidebar };
-export default Sidebar;
+export { Sidebar }
+export default Sidebar
