@@ -40,6 +40,9 @@ export * from './hooks/use-console-layout'
 export * from './hooks/use-auth'
 export * from './hooks/use-header-data'
 
+// Auth Redirect
+export * from './components/auth-redirect'
+
 // Console Layout
 export * from './components/console-layout'
 

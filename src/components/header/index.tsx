@@ -76,12 +76,12 @@ export const Header = ({ showLedgerSelector = true, version }: HeaderProps) => {
         {showLedgerSelector && <LedgerSelector />}
 
         <div className="flex items-center gap-6">
-          <p className="flex flex-row items-center gap-2 text-xs font-medium text-zinc-400">
-            <span className="text-xs font-normal text-zinc-400">
+          <div className="flex flex-row items-center gap-1">
+            <p className="text-xs font-medium text-zinc-400">
               {headerContext.text.midazConsole} v.{displayVersion}
-            </span>
+            </p>
             <VersionIcon status={headerContext.versionStatus} />
-          </p>
+          </div>
 
           <Separator orientation="vertical" className="h-10" />
 
