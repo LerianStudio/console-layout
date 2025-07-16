@@ -9,6 +9,9 @@
     "components",
     "midaz"
   ],
+  "publishConfig": {
+    "access": "public"
+   },
   "author": "Midaz Team",
   "license": "MIT",
   "main": "dist/index.js",
