@@ -4,6 +4,22 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.0.0-beta.5] - 2025-07-16
+
+This release introduces a more efficient npm publish workflow and updates to project dependencies, enhancing deployment reliability and system stability.
+
+### ✨ Features  
+- **Streamlined Deployment**: A new npm publish flow has been implemented, simplifying the process of releasing new software versions. This enhancement reduces the likelihood of errors during deployment, making it easier for developers to manage and maintain the project.
+
+### 🔄 Changes
+- **Frontend Configuration Update**: Adjustments have been made to the frontend setup to align with the new npm publish process. This change supports future scalability and maintainability, ensuring that updates and new features can be added smoothly.
+
+### 🔧 Maintenance
+- **Dependency Updates**: All project dependencies have been updated to their latest versions. This ensures compatibility with the latest security patches and performance improvements, providing a more stable and secure environment for users.
+- **Configuration Refinements**: Configuration files have been optimized to support the new deployment workflow, contributing to a cleaner and more efficient codebase. This ongoing maintenance effort enhances the overall developer experience and reduces technical debt.
+
+This changelog highlights the key improvements and updates in version 1.0.0 of the console-layout project, focusing on the benefits and impact for users and developers.
+
 ## [0.1.0] - 2024-12-19
 
 ### Added - Complete Layout System Migration
@@ -135,7 +151,6 @@ This is the initial release of `@midaz/console-layout`, migrated from the Midaz 
 
 #### Quick Start (Plugins)
 
-```tsx
 import { SimpleConsoleLayout } from "@midaz/console-layout";
 import "@midaz/console-layout/styles";
 
@@ -146,11 +161,9 @@ import "@midaz/console-layout/styles";
 >
   <MyContent />
 </SimpleConsoleLayout>;
-```
 
 #### Advanced Usage (Full Control)
 
-```tsx
 import { ConsoleLayout, useConsoleLayout } from "@midaz/console-layout";
 
 <ConsoleLayout
@@ -160,13 +173,10 @@ import { ConsoleLayout, useConsoleLayout } from "@midaz/console-layout";
 >
   <MyContent />
 </ConsoleLayout>;
-```
 
 #### Hook Usage
 
-```tsx
 const { navigate, organization, sidebar } = useConsoleLayout();
-```
 
 ### Migration Notes
 
