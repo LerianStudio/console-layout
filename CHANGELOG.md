@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.0.0-beta.6] - 2025-07-16
+
+This release introduces a streamlined npm publish flow, enhancing the deployment process with a new default package name configuration. These changes aim to improve efficiency and consistency for developers managing multiple packages.
+
+### ✨ Features  
+- **Streamlined npm Publishing**: We've introduced a new npm publish flow with a default package name configuration. This enhancement simplifies the deployment process, allowing teams to publish updates more consistently and efficiently. It's particularly beneficial for projects managing multiple packages, ensuring a standardized approach to package naming and distribution.
+
+### 📚 Documentation
+- **Changelog Update**: The CHANGELOG has been updated to reflect recent changes and improvements. This ensures that all stakeholders have access to the latest information about the project's progress and modifications, enhancing transparency and communication within the development team and with users.
+
+### 🔧 Maintenance
+- **Configuration and Dependencies Update**: Updates to the configuration and dependencies improve the npm publishing workflow. These changes do not require any user action but provide a more streamlined and efficient development process.
+
+This changelog focuses on the user benefits and impact of the changes, highlighting the new features and improvements in a clear and accessible manner. It ensures that users understand the enhancements without needing to delve into technical details.
+
 ## [v1.0.0-beta.5] - 2025-07-16
 
 This release introduces a more efficient npm publish workflow and updates to project dependencies, enhancing deployment reliability and system stability.
