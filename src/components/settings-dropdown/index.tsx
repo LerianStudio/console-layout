@@ -21,7 +21,7 @@ import {
 import { AboutMidazDialog } from './about-midaz-dialog'
 import { Enforce } from '../ui/enforce'
 import { useConsoleLayout } from '@/hooks/use-console-layout'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 
 export interface SettingsDropdownProps {
   /** Handler for organizations click */

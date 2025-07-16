@@ -1,23 +1,37 @@
 'use client'
 
-import { IntlProvider } from 'react-intl'
+import React from 'react'
+import { createIntl, IntlConfig, IntlShape } from '@formatjs/intl'
 
-interface ClientLocalizationProviderProps extends React.PropsWithChildren {
+type ClientLocalizationProviderProps = React.PropsWithChildren & {
   locale: string
-  messages: React.ComponentProps<typeof IntlProvider>['messages']
+  messages: IntlConfig['messages']
 }
+
+type IntlContextProps = {
+  intl: IntlShape
+}
+
+export const IntlContext = React.createContext<IntlContextProps>(
+  {} as IntlContextProps
+)
 
 /**
  * Client side of LocalizationProvider, to allow hooks usage on client side components
  */
 export const ClientLocalizationProvider = ({
-  messages,
   locale,
+  messages,
   children
 }: ClientLocalizationProviderProps) => {
+  const intl = React.useMemo(
+    () => createIntl({ locale, messages }),
+    [locale, messages]
+  )
+
+  intl.messages
+
   return (
-    <IntlProvider messages={messages} locale={locale} onError={() => {}}>
-      {children}
-    </IntlProvider>
+    <IntlContext.Provider value={{ intl }}>{children}</IntlContext.Provider>
   )
 }

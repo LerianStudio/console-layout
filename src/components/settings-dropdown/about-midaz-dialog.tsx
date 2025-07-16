@@ -10,7 +10,7 @@ import {
 } from '../ui/dialog'
 import lerianFlag from '@/public/images/lerian-flag.jpg'
 import { Button } from '../ui/button'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 import Image from 'next/image'
 import { CheckCircle2, AlertTriangle, ArrowRight } from 'lucide-react'
 import { Alert, AlertTitle, AlertDescription } from '../ui/alert'

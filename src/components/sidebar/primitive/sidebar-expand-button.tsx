@@ -11,7 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '../../ui/tooltip'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 
 export const SidebarExpandButton = () => {
   const { isCollapsed, toggleSidebar } = useSidebar()

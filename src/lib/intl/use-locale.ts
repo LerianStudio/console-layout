@@ -1,6 +1,8 @@
+'use client'
+
 import { setCookie } from 'cookies-next'
 import { getLocaleCode } from './get-locale-code'
-import { useIntl } from 'react-intl'
+import { useIntl } from './use-intl'
 import { useRouter } from 'next/navigation'
 
 export function useLocale() {

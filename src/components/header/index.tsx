@@ -5,7 +5,7 @@ import { LedgerSelector } from '../ledger-selector'
 import { UserDropdown } from '../user-dropdown'
 import { SettingsDropdown } from '../settings-dropdown'
 import { useHeaderContext } from '../../providers/header-provider'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 import {
   Tooltip,
   TooltipContent,

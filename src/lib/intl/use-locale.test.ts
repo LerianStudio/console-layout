@@ -1,12 +1,14 @@
 import { renderHook, act } from '@testing-library/react'
 import { setCookie } from 'cookies-next'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/navigation'
 import { useLocale } from './use-locale'
 
 jest.mock('cookies-next')
-jest.mock('react-intl')
 jest.mock('next/navigation')
+jest.mock('./use-intl', () => ({
+  useIntl: jest.fn()
+}))
+import { useIntl } from './use-intl'
 
 describe('useLocale', () => {
   const mockSetCookie = setCookie as jest.Mock
@@ -15,6 +17,7 @@ describe('useLocale', () => {
 
   beforeEach(() => {
     mockSetCookie.mockClear()
+    mockUseIntl.mockReset()
     mockUseIntl.mockReturnValue({ locale: 'en' })
     mockUseRouter.mockReturnValue({ refresh: jest.fn() })
   })

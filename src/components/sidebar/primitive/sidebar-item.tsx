@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { SidebarItemButton } from './sidebar-item-button'
 import { SidebarItemIconButton } from './sidebar-item-icon-button'
 import { useSidebar } from '../../../providers/sidebar-provider'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 
 export interface SidebarItemProps {
   title: string
