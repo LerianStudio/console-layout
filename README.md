@@ -55,19 +55,14 @@ npm install react react-dom next next-auth @tanstack/react-query
 ### 1. Simple Usage (Perfect for Plugins)
 
 ```tsx
-import { SimpleConsoleLayout } from "@midaz/console-layout";
+import { ConsoleLayout } from "@midaz/console-layout";
 import "@midaz/console-layout/styles";
 
 function MyPlugin() {
   return (
-    <SimpleConsoleLayout
-      baseUrl="http://localhost:3000"
-      version="1.0.0"
-      userName="John Doe"
-      onLogout={() => signOut()}
-    >
+    <ConsoleLayout>
       <h1>My Plugin Content</h1>
-    </SimpleConsoleLayout>
+    </ConsoleLayout>
   );
 }
 ```

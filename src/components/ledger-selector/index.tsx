@@ -29,7 +29,7 @@ import { useOrganization } from '../../providers/organization-provider'
 import { useListLedgers } from '../../client/ledgers'
 import { Button } from '../ui/button'
 import { LedgerDto } from '../../types'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 
 const LedgerCommand = ({
   ledgers,

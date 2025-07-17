@@ -13,7 +13,7 @@ import {
 import { Book, CircleUser, LogOut } from 'lucide-react'
 import { HeaderContext } from '../../providers/header-provider'
 import { HeaderContextType } from '../../types/header'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 
 export interface UserDropdownProps {
   /**

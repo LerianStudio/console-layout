@@ -26,7 +26,7 @@ import { useSidebar } from '../../providers/sidebar-provider'
 import { useOrganization } from '../../providers/organization-provider'
 import { OrganizationSwitcher } from '../organization-switcher'
 import { useConsoleLayout } from '@/hooks/use-console-layout'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@/lib/intl/use-intl'
 
 const Sidebar = () => {
   const { isCollapsed } = useSidebar()
