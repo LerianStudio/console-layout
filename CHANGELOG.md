@@ -4,6 +4,25 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.1.0] - 2025-07-17
+
+This release enhances deployment workflows and expands internationalization capabilities, making it easier for developers to publish packages and support a global audience.
+
+### ✨ Features  
+- **Streamlined Deployment Process**: Introducing a new npm publish flow that automatically configures default package names. This improvement reduces manual errors and ensures consistent naming conventions, simplifying the deployment process for developers.
+  
+- **Enhanced Internationalization Support**: A custom internationalization provider has been implemented, allowing applications to offer more flexible and comprehensive localization options. This feature enables developers to cater to a wider audience by easily adapting to different languages and regional settings.
+
+### 📚 Documentation
+- Updated the documentation to include new guidelines on the internationalization capabilities and npm publish flow. This ensures developers have the latest information for integrating and utilizing these new features effectively.
+
+### 🔧 Maintenance
+- **Dependency Updates**: All project dependencies have been updated to their latest versions, enhancing security and compatibility. This proactive maintenance helps prevent vulnerabilities and ensures the project benefits from the latest improvements in third-party libraries.
+
+- **Changelog Enhancements**: Regular updates to the changelog file have been made to maintain transparency and provide users with a clear record of the project's evolution.
+
+This release focuses on improving developer workflows and broadening application reach, providing significant value through streamlined processes and enhanced global support.
+
 ## [v1.0.0-beta.6] - 2025-07-16
 
 This release introduces a streamlined npm publish flow, enhancing the deployment process with a new default package name configuration. These changes aim to improve efficiency and consistency for developers managing multiple packages.
