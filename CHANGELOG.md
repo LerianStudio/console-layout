@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.2.0] - 2025-07-18
+
+This release focuses on enhancing the development experience by improving the build process, ensuring faster and more efficient workflows.
+
+### ⚡ Performance
+- **Frontend & Dependencies**: Optimized the compilation process to significantly reduce build times, enhancing the efficiency of development workflows. This improvement ensures a smoother experience for developers working on frontend components, allowing for quicker iterations and reduced waiting times.
+
+### 📚 Documentation
+- **Changelog Update**: The project CHANGELOG has been updated to accurately reflect recent changes and improvements, ensuring all stakeholders have access to the latest information. This transparency aids in better project management and keeps everyone informed of the current state of the project.
+
+### 🔧 Maintenance
+- **General Maintenance**: Routine updates and maintenance tasks have been performed to keep the project in optimal condition. These behind-the-scenes improvements contribute to the overall stability and reliability of the software.
+
+This changelog highlights the key performance enhancement in the build process and the updated documentation, providing users with a clear understanding of the benefits and improvements in this release.
+
 ## [v1.1.0] - 2025-07-17
 
 This release enhances deployment workflows and expands internationalization capabilities, making it easier for developers to publish packages and support a global audience.
