@@ -4,6 +4,18 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.2.1] - 2025-07-18
+
+This release focuses on enhancing the stability of the build process, ensuring a smoother and more reliable experience for users during application startup and dependency management.
+
+### 🐛 Bug Fixes
+- **Build Reliability**: Resolved a critical issue in the build process that could lead to failures or incorrect dependency resolution. This fix enhances the stability of application startup and ensures consistent dependency management, reducing disruptions for users.
+
+### 🔧 Maintenance
+- **Changelog Update**: The CHANGELOG has been updated to provide users and developers with accurate and up-to-date information about recent updates and development history. This ensures transparency and better project tracking.
+
+This changelog highlights the key bug fix in this release, focusing on the benefits to users in terms of improved reliability and stability. The maintenance update ensures users have access to the latest project information.
+
 ## [v1.2.1-beta.1] - 2025-07-18
 
 This release focuses on improving the stability and reliability of the build process, ensuring a smoother and more consistent user experience across the application.
