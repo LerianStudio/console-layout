@@ -20,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && npm run build:paths && npm run copy:assets",
+    "build": "tsc && npm run copy:assets && npm run build:paths",
     "dev": "ts-node --esm src/index.ts",
     "build:paths": "tsc-alias -p tsconfig.json",
     "copy:assets": "copyfiles locales/**/* dist/ && copyfiles -f src/public/**/*.svg dist/public/svg && copyfiles -f src/public/**/*.jpg dist/public/images && copyfiles -f src/styles/**/* dist/styles",
