@@ -11,7 +11,7 @@
   ],
   "publishConfig": {
     "access": "public"
-   },
+  },
   "author": "Midaz Team",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
   "scripts": {
     "build": "tsc && npm run build:paths && npm run copy:assets",
     "dev": "ts-node --esm src/index.ts",
-    "build:paths": "tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "build:paths": "tsc-alias -p tsconfig.json",
     "copy:assets": "copyfiles locales/**/* dist/ && copyfiles -f src/public/**/*.svg dist/public/svg && copyfiles -f src/public/**/*.jpg dist/public/images && copyfiles -f src/styles/**/* dist/styles",
     "check-types": "tsc --noEmit",
     "lint": "eslint . --fix",
@@ -49,9 +49,7 @@
     "motion": "^12.23.0",
     "react-color": "^2.19.3",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "tsconfig-paths": "^4.2.0",
-    "tscpaths": "^0.0.9"
+    "tailwindcss-animate": "^1.0.7"
   },
   "peerDependencies": {
     "next": ">=15.0.0",
@@ -89,6 +87,7 @@
     "shx": "^0.4.0",
     "tailwindcss": "^4.1.11",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
