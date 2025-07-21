@@ -17,7 +17,6 @@ This release focuses on enhancing the reliability of sidebar navigation and ensu
 ### 🔧 Maintenance
 - **Documentation Maintenance**: Regular updates to our documentation ensure that it accurately reflects the current state of the project, providing clarity and support for users and developers alike.
 
-
 ## [v1.2.1-beta.1] - 2025-07-18
 
 This release focuses on improving the stability and reliability of the build process, ensuring a smoother and more consistent user experience across the application.
