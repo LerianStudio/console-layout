@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.3.0-beta.1] - 2025-07-22
+
+This release focuses on enhancing performance and maintaining up-to-date documentation, providing a smoother user experience and streamlined project development.
+
+### ✨ Features
+- **Improved Frontend Performance**: The `OrganizationProvider` has been refactored to enhance data handling efficiency within the frontend. Users will experience a smoother interaction with organizational data, resulting in a more responsive application.
+
+### 📚 Documentation
+- **Updated Documentation**: Outdated files related to testing and migration have been removed. This cleanup ensures that developers and users have access to accurate and relevant information, facilitating better understanding and usability of the project.
+
+### 🔧 Maintenance
+- **Changelog Update**: The CHANGELOG has been updated to reflect recent changes and improvements, making it easier for users and contributors to track the project's evolution and understand the context of updates.
+
+These updates collectively enhance the quality of the codebase and documentation, ensuring a more efficient development process and improved user experience.
+
 ## [v1.2.1-beta.2] - 2025-07-21
 
 This release focuses on enhancing the reliability of sidebar navigation and ensuring our documentation is up-to-date, improving user experience and maintaining transparency.
