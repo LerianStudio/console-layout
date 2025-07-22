@@ -7,13 +7,13 @@ import {
   useEffect,
   useState
 } from 'react'
-import { OrganizationDto, LedgerDto } from '@/types'
+import { OrganizationDto } from '@/types/organization-dto'
+import { LedgerDto } from '@/types/ledger-dto'
 import { usePathname, useRouter } from 'next/navigation'
 import { useListLedgers } from '@/client/ledgers'
 import { useDefaultOrg } from './use-default-org'
 import { useDefaultLedger } from './use-default-ledger'
 import { useListOrganizations } from '@/client/organizations'
-import { useQueryClient } from '@tanstack/react-query'
 
 type OrganizationContextProps = {
   currentOrganization: OrganizationDto
@@ -29,7 +29,6 @@ const OrganizationContext = createContext<OrganizationContextProps>(
 export const useOrganization = () => useContext(OrganizationContext)
 
 export const OrganizationProvider = ({ children }: PropsWithChildren) => {
-  console.log('QueryClient in OrganizationProvider:', useQueryClient());
   const router = useRouter()
   const pathname = usePathname()
   const [current, setCurrent] = useState<OrganizationDto>({} as OrganizationDto)

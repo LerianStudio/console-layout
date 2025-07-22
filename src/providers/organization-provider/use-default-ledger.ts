@@ -1,7 +1,7 @@
 'use client'
 
-import { LedgerDto } from '@/types'
-import { OrganizationDto } from '@/types'
+import { OrganizationDto } from '@/types/organization-dto'
+import { LedgerDto } from '@/types/ledger-dto'
 import { getStorageObject } from '@/lib/storage'
 import { useReducer, useEffect } from 'react'
 

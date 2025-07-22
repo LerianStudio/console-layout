@@ -11,7 +11,7 @@ import {
   PopoverPanelLink,
   PopoverPanelTitle
 } from './popover-panel'
-import { OrganizationDto } from '../../types'
+import { OrganizationDto } from '@/types/organization-dto'
 import lerianLogo from '@/public/svg/lerian-logo.svg'
 import Image from 'next/image'
 

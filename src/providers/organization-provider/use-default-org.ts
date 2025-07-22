@@ -1,6 +1,6 @@
 'use client'
 
-import { OrganizationDto } from '@/types'
+import { OrganizationDto } from '@/types/organization-dto'
 import { getStorage } from '@/lib/storage'
 import { isNil } from 'lodash'
 import { useEffect, useState } from 'react'

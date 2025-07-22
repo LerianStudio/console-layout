@@ -6,7 +6,8 @@ import {
   useQuery,
   useQueryClient
 } from '@tanstack/react-query'
-import { LedgerDto, PaginationDto } from '@/types'
+import { PaginationDto } from '@/types'
+import { LedgerDto } from '@/types/ledger-dto'
 import {
   deleteFetcher,
   getFetcher,
