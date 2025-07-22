@@ -4,6 +4,25 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.3.0-beta.2] - 2025-07-22
+
+This release introduces significant enhancements to the frontend security model with a new permissions provider, alongside improvements in type safety and testing coverage to ensure a seamless and reliable user experience.
+
+### ✨ Features
+- **Enhanced Security with New Permissions Provider**: A new permissions provider has been introduced, allowing for more granular control over user access levels. This feature is particularly beneficial for applications that require differentiated user roles and permissions, enhancing security and user management capabilities.
+
+### 🔄 Changes
+- **Improved Type Safety**: Adjustments to types in the frontend have been made to improve type safety and reduce potential runtime errors. This change ensures more robust code, leading to fewer bugs and a smoother user experience.
+
+### 📚 Documentation
+- **Updated Changelog**: The changelog has been updated to reflect recent changes, providing users with the latest information about new features and improvements.
+
+### 🔧 Maintenance
+- **Enhanced Testing Coverage**: Testing coverage has been expanded to support the new permissions provider, ensuring all new functionalities are thoroughly validated and reliable. This improvement helps maintain high software quality and reduces the risk of future issues.
+
+This release focuses on strengthening the frontend component with new security features and improved type handling, while also ensuring that all changes are well-documented and tested for reliability.
+
+
 ## [v1.3.0-beta.1] - 2025-07-22
 
 This release focuses on enhancing performance and maintaining up-to-date documentation, providing a smoother user experience and streamlined project development.
