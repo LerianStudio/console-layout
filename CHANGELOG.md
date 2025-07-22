@@ -4,17 +4,33 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [v1.2.1] - 2025-07-18
+## [v1.3.0-beta.1] - 2025-07-22
 
-This release focuses on enhancing the stability of the build process, ensuring a smoother and more reliable experience for users during application startup and dependency management.
+This release focuses on enhancing performance and maintaining up-to-date documentation, providing a smoother user experience and streamlined project development.
 
-### 🐛 Bug Fixes
-- **Build Reliability**: Resolved a critical issue in the build process that could lead to failures or incorrect dependency resolution. This fix enhances the stability of application startup and ensures consistent dependency management, reducing disruptions for users.
+### ✨ Features
+- **Improved Frontend Performance**: The `OrganizationProvider` has been refactored to enhance data handling efficiency within the frontend. Users will experience a smoother interaction with organizational data, resulting in a more responsive application.
+
+### 📚 Documentation
+- **Updated Documentation**: Outdated files related to testing and migration have been removed. This cleanup ensures that developers and users have access to accurate and relevant information, facilitating better understanding and usability of the project.
 
 ### 🔧 Maintenance
-- **Changelog Update**: The CHANGELOG has been updated to provide users and developers with accurate and up-to-date information about recent updates and development history. This ensures transparency and better project tracking.
+- **Changelog Update**: The CHANGELOG has been updated to reflect recent changes and improvements, making it easier for users and contributors to track the project's evolution and understand the context of updates.
 
-This changelog highlights the key bug fix in this release, focusing on the benefits to users in terms of improved reliability and stability. The maintenance update ensures users have access to the latest project information.
+These updates collectively enhance the quality of the codebase and documentation, ensuring a more efficient development process and improved user experience.
+
+## [v1.2.1-beta.2] - 2025-07-21
+
+This release focuses on enhancing the reliability of sidebar navigation and ensuring our documentation is up-to-date, improving user experience and maintaining transparency.
+
+### 🐛 Bug Fixes
+- **Improved Sidebar Navigation**: We've enhanced the construction of sidebar links to include both the host and entry point, ensuring consistent and reliable navigation. This fix addresses issues where links might have previously directed users to incorrect or incomplete destinations, enhancing overall usability.
+
+### 📚 Documentation
+- **Updated Changelog**: Our changelog has been updated to reflect the latest changes and improvements. This ensures users and developers have access to current information about updates, aiding in version tracking and maintaining transparency.
+
+### 🔧 Maintenance
+- **Documentation Maintenance**: Regular updates to our documentation ensure that it accurately reflects the current state of the project, providing clarity and support for users and developers alike.
 
 ## [v1.2.1-beta.1] - 2025-07-18
 

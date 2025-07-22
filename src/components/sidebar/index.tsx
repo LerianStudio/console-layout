@@ -169,7 +169,7 @@ const Sidebar = () => {
                       key={plugin.id}
                       title={plugin.name}
                       icon={<Icon />}
-                      href={plugin.route}
+                      href={`${plugin.host}${plugin.route}${plugin.entry}`}
                     />
                   )
                 })}

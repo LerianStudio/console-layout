@@ -1,18 +1,3 @@
-export interface OrganizationDto {
-  id: string
-  legalName: string
-  avatar?: string
-  metadata?: {
-    onboarding?: boolean
-  }
-}
-
-export interface LedgerDto {
-  id: string
-  name: string
-  organizationId: string
-}
-
 export enum VersionStatus {
   UpToDate = 'up-to-date',
   Outdated = 'outdated'
@@ -24,7 +9,7 @@ export type MidazInfoDto = {
   versionStatus: VersionStatus
 }
 
-export interface PluginManifestDto {
+export type PluginManifestDto = {
   id: string
   name: string
   title: string
@@ -38,6 +23,11 @@ export interface PluginManifestDto {
   host: string
   author: string
 }
+
+type AuthResourceDto = string
+type AuthActionDto = string
+
+export type AuthPermissionDto = Record<AuthResourceDto, AuthActionDto[]>
 
 export interface PaginationDto<T> {
   items: T[]

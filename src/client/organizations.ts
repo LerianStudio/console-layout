@@ -6,7 +6,8 @@ import {
   useQuery,
   useQueryClient
 } from '@tanstack/react-query'
-import { OrganizationDto, PaginationDto } from '@/types'
+import { PaginationDto } from '@/types'
+import { OrganizationDto } from '@/types/organization-dto'
 import { deleteFetcher, getFetcher, patchFetcher, postFetcher } from './fetcher'
 
 export const useListOrganizations = ({ ...options }) => {

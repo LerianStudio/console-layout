@@ -6,15 +6,27 @@ export * from './types'
 export * from './types/header'
 
 // Providers
-export * from './providers/organization-provider'
-export * from './providers/sidebar-provider'
-export * from './providers/header-provider'
+export {
+  OrganizationProvider,
+  useOrganization
+} from './providers/organization-provider'
+export { SidebarProvider, useSidebar } from './providers/sidebar-provider'
+export { HeaderProvider, useHeaderContext } from './providers/header-provider'
+export { QueryProvider as LayoutQueryProvider } from './providers/query-provider'
+export { LocalizationProvider as LayoutLocalizationProvider } from './lib/intl/localization-provider'
+export { ConsoleLayoutProviders } from './providers/console-layout-providers'
+export {
+  PermissionProvider,
+  usePermissions
+} from './providers/permission-provider'
 
 // Components
-export * from './components/header'
+export { Header } from './components/header'
 export * from './components/ledger-selector'
 export * from './components/user-dropdown'
 export * from './components/settings-dropdown'
+export { Enforce } from './providers/permission-provider/enforce'
+export { RouteEnforcer } from './providers/permission-provider/route-enforcer'
 
 // Client API Hooks
 export * from './client/organizations'
@@ -26,7 +38,7 @@ export * from './lib/utils'
 export * from './lib/env'
 
 // Sidebar Components
-export * from './components/sidebar'
+export { Sidebar } from './components/sidebar'
 
 // Organization Switcher Components (main component and sub-components)
 export * from './components/organization-switcher'
@@ -48,11 +60,6 @@ export * from './components/console-layout'
 
 // Main components
 export { ConsoleLayout } from './components/console-layout/console-layout'
-
-// Providers
-export { HeaderProvider } from './providers/header-provider'
-export { useOrganization } from './providers/organization-provider'
-export { SidebarProvider } from './providers/sidebar-provider'
 
 // Hooks
 export { useAuth } from './hooks/use-auth'
