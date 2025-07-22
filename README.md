@@ -1,4 +1,9 @@
-# @midaz/console-layout
+# @lerianstudio/console-layout
+
+[![NPM Version](https://img.shields.io/npm/v/@lerianstudio/console-layout)](https://npmjs.com/package/@lerianstudio/console-layout)
+[![Production Ready](https://img.shields.io/badge/status-production%20ready-green)]()
+
+> **Status**: ✅ Production Ready - Complete layout solution for Midaz plugins
 
 Reusable layout components for Midaz console and plugins, providing a complete Header and Sidebar system with API integration.
 
@@ -41,7 +46,7 @@ Reusable layout components for Midaz console and plugins, providing a complete H
 ## Installation
 
 ```bash
-npm install @midaz/console-layout
+npm install @lerianstudio/console-layout
 ```
 
 ### Peer Dependencies
@@ -50,76 +55,84 @@ npm install @midaz/console-layout
 npm install react react-dom next next-auth @tanstack/react-query
 ```
 
+**Required versions:**
+
+- `react >= 19.0.0`
+- `react-dom >= 19.0.0`
+- `next >= 15.0.0`
+- `next-auth >= 4.0.0`
+- `@tanstack/react-query >= 5.0.0`
+
 ## Quick Start
 
 ### 1. Simple Usage (Perfect for Plugins)
 
 ```tsx
-import { ConsoleLayout } from "@midaz/console-layout";
-import "@midaz/console-layout/styles";
+import { ConsoleLayout } from '@lerianstudio/console-layout'
+import '@lerianstudio/console-layout/styles'
 
 function MyPlugin() {
   return (
     <ConsoleLayout>
       <h1>My Plugin Content</h1>
     </ConsoleLayout>
-  );
+  )
 }
 ```
 
 ### 2. Advanced Usage (Full Control)
 
 ```tsx
-import { ConsoleLayout, useConsoleLayout } from "@midaz/console-layout";
-import { Home, Settings } from "lucide-react";
+import { ConsoleLayout, useConsoleLayout } from '@lerianstudio/console-layout'
+import { Home, Settings } from 'lucide-react'
 
 function MyApp() {
   return (
     <ConsoleLayout
       config={{
-        baseUrl: "http://localhost:3000",
-        defaultSidebarCollapsed: false,
+        baseUrl: 'http://localhost:3000',
+        defaultSidebarCollapsed: false
       }}
       headerProps={{
-        version: "1.0.0",
+        version: '1.0.0',
         userDropdownProps: {
-          userName: "John Doe",
-          onLogout: () => signOut(),
-        },
+          userName: 'John Doe',
+          onLogout: () => signOut()
+        }
       }}
       sidebarProps={{
         mainItems: [
-          { id: "home", title: "Home", icon: <Home />, href: "/" },
+          { id: 'home', title: 'Home', icon: <Home />, href: '/' },
           {
-            id: "settings",
-            title: "Settings",
+            id: 'settings',
+            title: 'Settings',
             icon: <Settings />,
-            href: "/settings",
-          },
-        ],
+            href: '/settings'
+          }
+        ]
       }}
     >
       <MyContent />
     </ConsoleLayout>
-  );
+  )
 }
 ```
 
 ### 3. Using the Layout Hook
 
 ```tsx
-import { useConsoleLayout } from "@midaz/console-layout";
+import { useConsoleLayout } from '@lerianstudio/console-layout'
 
 function MyComponent() {
-  const { navigate, isActive, organization, sidebar } = useConsoleLayout();
+  const { navigate, isActive, organization, sidebar } = useConsoleLayout()
 
   return (
     <div>
-      <button onClick={() => navigate("/assets")}>Go to Assets</button>
+      <button onClick={() => navigate('/assets')}>Go to Assets</button>
       <button onClick={sidebar.toggle}>Toggle Sidebar</button>
       <p>Current org: {organization.current?.legalName}</p>
     </div>
-  );
+  )
 }
 ```
 
@@ -131,9 +144,9 @@ import {
   Sidebar,
   OrganizationProvider,
   SidebarProvider,
-  OrganizationSwitcher,
-} from "@midaz/console-layout";
-import { Home, DollarSign, Coins } from "lucide-react";
+  OrganizationSwitcher
+} from '@lerianstudio/console-layout'
+import { Home, DollarSign, Coins } from 'lucide-react'
 
 function App() {
   return (
@@ -143,29 +156,29 @@ function App() {
           <Sidebar
             headerContent={<OrganizationSwitcher />}
             mainItems={[
-              { id: "home", title: "Home", icon: <Home />, href: "/" },
+              { id: 'home', title: 'Home', icon: <Home />, href: '/' }
             ]}
             ledgerItems={[
               {
-                id: "assets",
-                title: "Assets",
+                id: 'assets',
+                title: 'Assets',
                 icon: <DollarSign />,
-                href: "/assets",
+                href: '/assets'
               },
               {
-                id: "accounts",
-                title: "Accounts",
+                id: 'accounts',
+                title: 'Accounts',
                 icon: <Coins />,
-                href: "/accounts",
-              },
+                href: '/accounts'
+              }
             ]}
           />
-          <div className="flex-1 flex flex-col">
+          <div className="flex flex-1 flex-col">
             <Header
               version="1.0.0"
               userDropdownProps={{
-                userName: "John Doe",
-                onLogout: () => signOut(),
+                userName: 'John Doe',
+                onLogout: () => signOut()
               }}
             />
             <main className="flex-1 p-6">{/* Your content */}</main>
@@ -173,7 +186,7 @@ function App() {
         </div>
       </SidebarProvider>
     </OrganizationProvider>
-  );
+  )
 }
 ```
 
@@ -185,21 +198,21 @@ Main layout component with full configuration options.
 
 ```tsx
 interface ConsoleLayoutProps {
-  config: ConsoleLayoutConfig;
-  headerProps?: Omit<HeaderProps, "children">;
-  sidebarProps?: Omit<SidebarProps, "headerContent">;
-  organizationSwitcher?: React.ReactNode;
-  children: React.ReactNode;
-  className?: string;
-  showSidebar?: boolean;
-  showHeader?: boolean;
+  config: ConsoleLayoutConfig
+  headerProps?: Omit<HeaderProps, 'children'>
+  sidebarProps?: Omit<SidebarProps, 'headerContent'>
+  organizationSwitcher?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+  showSidebar?: boolean
+  showHeader?: boolean
 }
 
 interface ConsoleLayoutConfig {
-  baseUrl: string;
-  defaultSidebarCollapsed?: boolean;
-  useExistingQueryClient?: boolean;
-  queryClient?: QueryClient;
+  baseUrl: string
+  defaultSidebarCollapsed?: boolean
+  useExistingQueryClient?: boolean
+  queryClient?: QueryClient
 }
 ```
 
@@ -209,21 +222,21 @@ Simplified layout with sensible defaults.
 
 ```tsx
 interface SimpleConsoleLayoutProps {
-  baseUrl: string;
-  version?: string;
-  userName?: string;
-  additionalMainItems?: SidebarMenuItemConfig[];
-  additionalLedgerItems?: SidebarMenuItemConfig[];
-  onLogout?: () => void;
+  baseUrl: string
+  version?: string
+  userName?: string
+  additionalMainItems?: SidebarMenuItemConfig[]
+  additionalLedgerItems?: SidebarMenuItemConfig[]
+  onLogout?: () => void
   onSettings?: {
-    onOrganizationsClick?: () => void;
-    onUsersClick?: () => void;
+    onOrganizationsClick?: () => void
+    onUsersClick?: () => void
     // ... more callbacks
-  };
-  children: React.ReactNode;
+  }
+  children: React.ReactNode
   text?: {
     /* internationalization overrides */
-  };
+  }
 }
 ```
 
@@ -233,21 +246,21 @@ Hook for routing and state management.
 
 ```tsx
 interface UseConsoleLayoutReturn {
-  pathname: string;
-  navigate: (href: string) => void;
-  isActive: (href: string) => boolean;
+  pathname: string
+  navigate: (href: string) => void
+  isActive: (href: string) => boolean
   organization: {
-    current: OrganizationDto;
-    setOrganization: (org: OrganizationDto) => void;
-    currentLedger: LedgerDto;
-    setLedger: (ledger: LedgerDto) => void;
-  };
+    current: OrganizationDto
+    setOrganization: (org: OrganizationDto) => void
+    currentLedger: LedgerDto
+    setLedger: (ledger: LedgerDto) => void
+  }
   sidebar: {
-    isCollapsed: boolean;
-    toggle: () => void;
-    setCollapsed: (collapsed: boolean) => void;
-  };
-  createNavItem: (config: SidebarMenuItemConfig) => SidebarMenuItemConfig;
+    isCollapsed: boolean
+    toggle: () => void
+    setCollapsed: (collapsed: boolean) => void
+  }
+  createNavItem: (config: SidebarMenuItemConfig) => SidebarMenuItemConfig
 }
 ```
 
@@ -258,34 +271,34 @@ Complete sidebar with navigation, organization switcher, and plugin support.
 ```tsx
 interface SidebarProps {
   /** Header content - usually OrganizationSwitcher */
-  headerContent?: React.ReactNode;
+  headerContent?: React.ReactNode
   /** Main navigation items */
-  mainItems?: SidebarMenuItemConfig[];
+  mainItems?: SidebarMenuItemConfig[]
   /** Ledger-specific items that require a selected ledger */
-  ledgerItems?: SidebarMenuItemConfig[];
+  ledgerItems?: SidebarMenuItemConfig[]
   /** Whether to show plugins section */
-  showPlugins?: boolean;
+  showPlugins?: boolean
   /** Custom plugin renderer */
-  renderPlugin?: (plugin: PluginManifestDto) => React.ReactNode | null;
+  renderPlugin?: (plugin: PluginManifestDto) => React.ReactNode | null
   /** Text for sections */
   text?: {
-    ledgerSectionTitle?: string;
-    pluginsSectionTitle?: string;
-    noLedgerDisabledReason?: string;
-  };
+    ledgerSectionTitle?: string
+    pluginsSectionTitle?: string
+    noLedgerDisabledReason?: string
+  }
   /** Whether to show mobile expand button */
-  showExpandButton?: boolean;
+  showExpandButton?: boolean
   /** Check if item is active based on pathname */
-  isActiveItem?: (href: string, pathname: string) => boolean;
+  isActiveItem?: (href: string, pathname: string) => boolean
 }
 
 interface SidebarMenuItemConfig {
-  id: string;
-  title: string;
-  icon: React.ReactNode;
-  href: string;
-  disabled?: boolean;
-  disabledReason?: string;
+  id: string
+  title: string
+  icon: React.ReactNode
+  href: string
+  disabled?: boolean
+  disabledReason?: string
 }
 ```
 
@@ -295,11 +308,11 @@ Complete header with ledger selector, user dropdown, and settings.
 
 ```tsx
 interface HeaderProps {
-  version?: string;
-  locale?: string;
-  showLedgerSelector?: boolean;
-  userDropdownProps?: UserDropdownProps;
-  settingsDropdownProps?: SettingsDropdownProps;
+  version?: string
+  locale?: string
+  showLedgerSelector?: boolean
+  userDropdownProps?: UserDropdownProps
+  settingsDropdownProps?: SettingsDropdownProps
 }
 ```
 
@@ -309,13 +322,13 @@ Organization switcher for sidebar header.
 
 ```tsx
 interface OrganizationSwitcherProps {
-  logoAlt?: string;
-  defaultLogo?: React.ReactNode;
+  logoAlt?: string
+  defaultLogo?: React.ReactNode
   renderOrganizationItem?: (
     organization: OrganizationDto,
     isSelected: boolean,
     onSelect: () => void
-  ) => React.ReactNode;
+  ) => React.ReactNode
 }
 ```
 
@@ -323,16 +336,16 @@ interface OrganizationSwitcherProps {
 
 ```tsx
 interface UserDropdownProps {
-  userName?: string;
-  isAuthEnabled?: boolean;
-  docsUrl?: string;
-  onLogout?: () => void;
-  onDocsClick?: () => void;
+  userName?: string
+  isAuthEnabled?: boolean
+  docsUrl?: string
+  onLogout?: () => void
+  onDocsClick?: () => void
   text?: {
-    user?: string;
-    documentation?: string;
-    logout?: string;
-  };
+    user?: string
+    documentation?: string
+    logout?: string
+  }
 }
 ```
 
@@ -340,24 +353,24 @@ interface UserDropdownProps {
 
 ```tsx
 interface SettingsDropdownProps {
-  items?: SettingsDropdownItem[];
-  onOrganizationsClick?: () => void;
-  onUsersClick?: () => void;
-  onApplicationsClick?: () => void;
-  onSystemClick?: () => void;
-  onAboutClick?: () => void;
+  items?: SettingsDropdownItem[]
+  onOrganizationsClick?: () => void
+  onUsersClick?: () => void
+  onApplicationsClick?: () => void
+  onSystemClick?: () => void
+  onAboutClick?: () => void
   text?: {
-    settings?: string;
-    organizations?: string;
-    users?: string;
-    applications?: string;
-    system?: string;
-    about?: string;
-  };
+    settings?: string
+    organizations?: string
+    users?: string
+    applications?: string
+    system?: string
+    about?: string
+  }
   permissions?: {
-    canViewUsers?: boolean;
-    canViewApplications?: boolean;
-  };
+    canViewUsers?: boolean
+    canViewApplications?: boolean
+  }
 }
 ```
 
@@ -378,6 +391,72 @@ const customLedgerItems: SidebarMenuItemConfig[] = [
 ]
 
 <Sidebar ledgerItems={customLedgerItems} />
+```
+
+### Advanced Configuration Example
+
+```tsx
+import { ConsoleLayout } from '@lerianstudio/console-layout'
+
+;<ConsoleLayout
+  config={{
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
+    defaultSidebarCollapsed: false,
+    useExistingQueryClient: true
+  }}
+  headerProps={{
+    version: '2.0.0',
+    userDropdownProps: {
+      userName: user?.name || 'Guest',
+      docsUrl: 'https://docs.example.com',
+      onLogout: () => authService.logout(),
+      onDocsClick: () => window.open('https://docs.example.com')
+    },
+    settingsDropdownProps: {
+      onOrganizationsClick: () => router.push('/settings/organizations'),
+      onUsersClick: () => router.push('/settings/users'),
+      permissions: {
+        canViewUsers: user?.role === 'admin',
+        canViewApplications: user?.permissions?.includes('apps:read')
+      }
+    }
+  }}
+  sidebarProps={{
+    mainItems: [
+      {
+        id: 'dashboard',
+        title: 'Dashboard',
+        icon: <BarChart3 />,
+        href: '/dashboard'
+      },
+      {
+        id: 'analytics',
+        title: 'Analytics',
+        icon: <TrendingUp />,
+        href: '/analytics'
+      }
+    ],
+    ledgerItems: [
+      {
+        id: 'transactions',
+        title: 'Transactions',
+        icon: <ArrowLeftRight />,
+        href: '/transactions'
+      },
+      { id: 'balances', title: 'Balances', icon: <Wallet />, href: '/balances' }
+    ],
+    showPlugins: true,
+    renderPlugin: (plugin) => (
+      <CustomPluginItem
+        key={plugin.id}
+        plugin={plugin}
+        onNavigate={(url) => (window.location.href = url)}
+      />
+    )
+  }}
+>
+  <MyApplication />
+</ConsoleLayout>
 ```
 
 ### Custom Plugin Rendering
@@ -401,7 +480,7 @@ const customLedgerItems: SidebarMenuItemConfig[] = [
 <Sidebar
   isActiveItem={(href, pathname) => {
     // Custom logic for determining active state
-    return pathname.startsWith(href);
+    return pathname.startsWith(href)
   }}
 />
 ```
@@ -428,15 +507,131 @@ const customLedgerItems: SidebarMenuItemConfig[] = [
 />
 ```
 
+## Internationalization (i18n)
+
+The library includes a complete internationalization system with:
+
+✅ **Auto-detection**: Automatically detects browser language  
+✅ **Fallback chain**: English as universal default  
+✅ **Type-safe**: All keys typed in TypeScript  
+✅ **Console-exact**: Same keys and messages as console  
+✅ **Custom messages**: Allows message overrides  
+✅ **Zero breaking**: Works without configuration  
+✅ **Small bundle**: Only +3KB in total bundle
+
+### Usage
+
+```tsx
+import { useIntl, useLocale } from '@lerianstudio/console-layout'
+
+function MyComponent() {
+  const intl = useIntl()
+  const { locale, setLocale } = useLocale()
+
+  return (
+    <div>
+      <p>{intl.formatMessage({ id: 'common.loading' })}</p>
+      <button onClick={() => setLocale('pt')}>Português</button>
+      <button onClick={() => setLocale('en')}>English</button>
+    </div>
+  )
+}
+```
+
+### Available Hooks
+
+- **`useIntl()`**: Access to intl object for message formatting
+- **`useLocale()`**: Current locale management and switching
+
+### Supported Languages
+
+- **English (en)**: Default fallback language
+- **Portuguese (pt)**: Full translation support
+- **Auto-detection**: Based on browser `Accept-Language` header
+
+### Message Overrides
+
+```tsx
+<Sidebar
+  text={{
+    ledgerSectionTitle: intl.formatMessage({ id: 'sidebar.ledger' }),
+    pluginsSectionTitle: intl.formatMessage({ id: 'sidebar.plugins' }),
+    noLedgerDisabledReason: intl.formatMessage({ id: 'sidebar.no.ledger' })
+  }}
+/>
+
+<Header
+  userDropdownProps={{
+    text: {
+      user: intl.formatMessage({ id: 'user' }),
+      documentation: intl.formatMessage({ id: 'documentation' }),
+      logout: intl.formatMessage({ id: 'logout' })
+    }
+  }}
+/>
+```
+
+## State Persistence
+
+The library automatically persists:
+
+- **Selected organization**: Stored in localStorage with validation
+- **Selected ledger**: Stored in localStorage, cleared when organization changes
+- **Sidebar collapse state**: In-memory during session
+- **User locale preference**: Stored in cookies
+
+## Plugin Integration
+
+The library automatically discovers and renders plugins from `/api/plugin/menu`:
+
+```tsx
+// Each plugin includes: id, name, icon, host, route, entry, enabled
+// Icons are dynamically loaded from Lucide React
+
+// Custom plugin rendering
+<Sidebar
+  renderPlugin={(plugin) => (
+    <CustomPluginItem
+      key={plugin.id}
+      title={plugin.name}
+      icon={<LucideIcon name={plugin.icon} />}
+      href={`${plugin.host}${plugin.route}${plugin.entry}`}
+      enabled={plugin.enabled}
+    />
+  )}
+/>
+```
+
+### Plugin Data Structure
+
+```tsx
+interface PluginManifestDto {
+  id: string
+  name: string
+  title: string
+  description: string
+  version: string
+  route: string
+  icon: string // Lucide React icon name
+  enabled: boolean
+  entry: string
+  healthcheck: string
+  host: string
+  author: string
+}
+```
+
 ## Styling
 
 The library includes pre-built Tailwind CSS styles. Import the CSS:
 
 ```tsx
-import "@midaz/console-layout/styles";
+import '@lerianstudio/console-layout/styles'
 ```
 
-Or use your own CSS variables:
+### CSS Customization
+
+The library uses CSS custom properties for theming:
 
 ```css
 :root {
@@ -446,7 +641,23 @@ Or use your own CSS variables:
   --card-foreground: 222.2 84% 4.9%;
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
+  --shadcn-100: #f4f4f5;
+  --shadcn-200: #e4e4e7;
+  --shadcn-300: #d4d4d8;
+  --shadcn-400: #a1a1aa;
   /* ... more variables */
+}
+```
+
+### Dark Mode Support
+
+```css
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  /* ... dark mode variables */
 }
 ```
 
@@ -459,16 +670,16 @@ import {
   OrganizationDto,
   LedgerDto,
   PluginManifestDto,
-  SidebarMenuItemConfig,
-} from "@midaz/console-layout";
+  SidebarMenuItemConfig
+} from '@lerianstudio/console-layout'
 ```
 
 ## Build Output
 
-- **ESM**: 28.21 KB (optimized for modern bundlers)
-- **CJS**: 36.77 KB (Node.js compatibility)
-- **CSS**: 16.19 KB (Tailwind styles)
-- **Types**: 19.57 KB (Full TypeScript definitions)
+- **ESM**: 31.22 KB (optimized for modern bundlers)
+- **CJS**: 40.14 KB (Node.js compatibility)
+- **CSS**: 15.70 KB (Tailwind styles)
+- **Types**: 23.31 KB (Full TypeScript definitions)
 
 ## Development
 
@@ -482,6 +693,13 @@ npm run build
 # Test with the demo app
 cd test-app && npm run dev
 ```
+
+## Additional Resources
+
+- [📋 Changelog](./CHANGELOG.md) - Version history and updates
+- [🚀 Publishing Guide](./PUBLISHING.md) - How to publish new versions
+- [📊 Migration Status](./MIGRATION-STATUS.md) - Complete project status
+- [🧪 Test Application](./test-app) - Working demo with examples
 
 ## License
 
