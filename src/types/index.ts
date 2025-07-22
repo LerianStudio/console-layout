@@ -1,4 +1,4 @@
-export interface OrganizationDto {
+export type OrganizationDto = {
   id: string
   legalName: string
   avatar?: string
@@ -7,7 +7,7 @@ export interface OrganizationDto {
   }
 }
 
-export interface LedgerDto {
+export type LedgerDto = {
   id: string
   name: string
   organizationId: string
@@ -24,7 +24,7 @@ export type MidazInfoDto = {
   versionStatus: VersionStatus
 }
 
-export interface PluginManifestDto {
+export type PluginManifestDto = {
   id: string
   name: string
   title: string
