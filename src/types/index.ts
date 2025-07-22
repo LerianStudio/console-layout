@@ -1,18 +1,3 @@
-export type OrganizationDto = {
-  id: string
-  legalName: string
-  avatar?: string
-  metadata?: {
-    onboarding?: boolean
-  }
-}
-
-export type LedgerDto = {
-  id: string
-  name: string
-  organizationId: string
-}
-
 export enum VersionStatus {
   UpToDate = 'up-to-date',
   Outdated = 'outdated'
@@ -38,6 +23,11 @@ export type PluginManifestDto = {
   host: string
   author: string
 }
+
+type AuthResourceDto = string
+type AuthActionDto = string
+
+export type AuthPermissionDto = Record<AuthResourceDto, AuthActionDto[]>
 
 export interface PaginationDto<T> {
   items: T[]
