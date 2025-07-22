@@ -4,6 +4,19 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.2.1-beta.2] - 2025-07-21
+
+This release focuses on enhancing the reliability of sidebar navigation and ensuring our documentation is up-to-date, improving user experience and maintaining transparency.
+
+### 🐛 Bug Fixes
+- **Improved Sidebar Navigation**: We've enhanced the construction of sidebar links to include both the host and entry point, ensuring consistent and reliable navigation. This fix addresses issues where links might have previously directed users to incorrect or incomplete destinations, enhancing overall usability.
+
+### 📚 Documentation
+- **Updated Changelog**: Our changelog has been updated to reflect the latest changes and improvements. This ensures users and developers have access to current information about updates, aiding in version tracking and maintaining transparency.
+
+### 🔧 Maintenance
+- **Documentation Maintenance**: Regular updates to our documentation ensure that it accurately reflects the current state of the project, providing clarity and support for users and developers alike.
+
 ## [v1.2.1-beta.1] - 2025-07-18
 
 This release focuses on improving the stability and reliability of the build process, ensuring a smoother and more consistent user experience across the application.
