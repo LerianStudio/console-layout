@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.4.0-beta.2] - 2025-07-23
+
+This release focuses on improving the clarity and accuracy of versioning and documentation, ensuring a smoother experience for users tracking project updates.
+
+### 🐛 Bug Fixes
+- **Versioning Clarity**: Resolved an issue where an extra 'V' was mistakenly included in the version number. This fix ensures that version numbers are now displayed accurately, preventing confusion and enhancing the reliability of version tracking.
+
+### 📚 Documentation
+- **Changelog Updates**: The CHANGELOG has been updated to include recent changes and improvements. This provides users with the latest information, aiding in better understanding and tracking of the project's evolution.
+
+### 🔧 Maintenance
+- **Documentation Maintenance**: Ensured that all documentation reflects the most current state of the project, supporting users in navigating and utilizing the software effectively.
+
+These updates are designed to enhance user experience by ensuring accurate version information and up-to-date documentation, making it easier for users to stay informed about project developments.
+
 ## [v1.4.0-beta.1] - 2025-07-23
 
 This release focuses on enhancing the user experience by improving the logout system and updating project documentation for better transparency.
