@@ -4,6 +4,25 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.3.0] - 2025-07-22
+
+This release enhances user role management and improves application reliability, ensuring a more secure and seamless experience.
+
+### ✨ Features  
+- **Enhanced User Role Management**: A new permissions provider has been introduced, allowing for more detailed control over user roles and access. This enhancement boosts security and customizability, enabling users to tailor access permissions to their specific needs.
+
+- **Improved Integration**: The OrganizationProvider has been refactored for better dependency management, enhancing the application's scalability and ease of maintenance. This change supports smoother future updates and feature expansions.
+
+### 🐛 Bug Fixes
+- **Navigation Improvement**: Fixed an issue with sidebar link construction to ensure that all links correctly include the host and entry point. This fix eliminates broken navigation paths, improving the overall user navigation experience.
+
+### 🔧 Maintenance
+- **Documentation Cleanup**: Outdated documentation files related to testing and migration have been removed, streamlining the documentation and reducing potential confusion. This update helps developers easily access accurate and current information.
+
+- **Changelog Update**: The CHANGELOG has been updated to accurately reflect recent changes and improvements, ensuring users and developers stay informed about the latest updates and enhancements.
+
+*Note: There are no breaking changes in this release, ensuring a smooth transition for users without the need for immediate action or adaptation.*
+
 ## [v1.3.0-beta.2] - 2025-07-22
 
 This release introduces significant enhancements to the frontend security model with a new permissions provider, alongside improvements in type safety and testing coverage to ensure a seamless and reliable user experience.
