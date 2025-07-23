@@ -4,6 +4,33 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.4.0-beta.2] - 2025-07-23
+
+This release focuses on improving the clarity and accuracy of versioning and documentation, ensuring a smoother experience for users tracking project updates.
+
+### 🐛 Bug Fixes
+- **Versioning Clarity**: Resolved an issue where an extra 'V' was mistakenly included in the version number. This fix ensures that version numbers are now displayed accurately, preventing confusion and enhancing the reliability of version tracking.
+
+### 📚 Documentation
+- **Changelog Updates**: The CHANGELOG has been updated to include recent changes and improvements. This provides users with the latest information, aiding in better understanding and tracking of the project's evolution.
+
+### 🔧 Maintenance
+- **Documentation Maintenance**: Ensured that all documentation reflects the most current state of the project, supporting users in navigating and utilizing the software effectively.
+
+These updates are designed to enhance user experience by ensuring accurate version information and up-to-date documentation, making it easier for users to stay informed about project developments.
+
+## [v1.4.0-beta.1] - 2025-07-23
+
+This release focuses on enhancing the user experience by improving the logout system and updating project documentation for better transparency.
+
+### 🔄 Changes
+- **Enhanced Logout System**: The logout process has been improved to ensure a more reliable and seamless experience. This update addresses previous inconsistencies, enhancing both security and usability for users during sign-out. Users can now expect a smoother interaction when logging out.
+
+### 📚 Documentation
+- **Changelog Update**: The CHANGELOG has been updated to accurately reflect recent changes and improvements. This ensures users are well-informed about the latest updates and enhancements, maintaining transparency and aiding in user understanding of the system's capabilities.
+
+These updates are designed to improve user interaction and maintain high-quality project documentation, ensuring a clear understanding of the system's current improvements.
+
 ## [v1.3.0] - 2025-07-22
 
 This release enhances user role management and improves application reliability, ensuring a more secure and seamless experience.
@@ -22,6 +49,25 @@ This release enhances user role management and improves application reliability,
 - **Changelog Update**: The CHANGELOG has been updated to accurately reflect recent changes and improvements, ensuring users and developers stay informed about the latest updates and enhancements.
 
 *Note: There are no breaking changes in this release, ensuring a smooth transition for users without the need for immediate action or adaptation.*
+
+## [v1.3.0-beta.2] - 2025-07-22
+
+This release introduces significant enhancements to the frontend security model with a new permissions provider, alongside improvements in type safety and testing coverage to ensure a seamless and reliable user experience.
+
+### ✨ Features
+- **Enhanced Security with New Permissions Provider**: A new permissions provider has been introduced, allowing for more granular control over user access levels. This feature is particularly beneficial for applications that require differentiated user roles and permissions, enhancing security and user management capabilities.
+
+### 🔄 Changes
+- **Improved Type Safety**: Adjustments to types in the frontend have been made to improve type safety and reduce potential runtime errors. This change ensures more robust code, leading to fewer bugs and a smoother user experience.
+
+### 📚 Documentation
+- **Updated Changelog**: The changelog has been updated to reflect recent changes, providing users with the latest information about new features and improvements.
+
+### 🔧 Maintenance
+- **Enhanced Testing Coverage**: Testing coverage has been expanded to support the new permissions provider, ensuring all new functionalities are thoroughly validated and reliable. This improvement helps maintain high software quality and reduces the risk of future issues.
+
+This release focuses on strengthening the frontend component with new security features and improved type handling, while also ensuring that all changes are well-documented and tested for reliability.
+
 
 ## [v1.3.0-beta.1] - 2025-07-22
 
