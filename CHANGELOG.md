@@ -4,6 +4,18 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.4.0-beta.1] - 2025-07-23
+
+This release focuses on enhancing the user experience by improving the logout system and updating project documentation for better transparency.
+
+### 🔄 Changes
+- **Enhanced Logout System**: The logout process has been improved to ensure a more reliable and seamless experience. This update addresses previous inconsistencies, enhancing both security and usability for users during sign-out. Users can now expect a smoother interaction when logging out.
+
+### 📚 Documentation
+- **Changelog Update**: The CHANGELOG has been updated to accurately reflect recent changes and improvements. This ensures users are well-informed about the latest updates and enhancements, maintaining transparency and aiding in user understanding of the system's capabilities.
+
+These updates are designed to improve user interaction and maintain high-quality project documentation, ensuring a clear understanding of the system's current improvements.
+
 ## [v1.3.0] - 2025-07-22
 
 This release enhances user role management and improves application reliability, ensuring a more secure and seamless experience.
