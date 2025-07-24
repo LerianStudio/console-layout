@@ -14,7 +14,7 @@ import { useIntl } from '@/lib/intl/use-intl'
 import Image from 'next/image'
 import { CheckCircle2, AlertTriangle, ArrowRight } from 'lucide-react'
 import { Alert, AlertTitle, AlertDescription } from '../ui/alert'
-import { VersionStatus } from '@/types'
+import { VersionStatus } from '@/types/midaz-info-dto'
 import { useGetMidazInfo } from '@/client/midaz-info'
 
 const UpToDateAlert = () => {

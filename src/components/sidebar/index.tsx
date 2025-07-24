@@ -36,6 +36,8 @@ const Sidebar = () => {
   const [isMobileWidth, setIsMobileWidth] = React.useState(false)
   const { baseUrl } = useConsoleLayout()
 
+  const enabledPlugins = plugins.filter((plugin) => plugin.enabled)
+
   // Mobile detection like console
   React.useEffect(() => {
     const handleResize = () => {
@@ -145,7 +147,7 @@ const Sidebar = () => {
           />
         </SidebarGroup>
 
-        {plugins.length > 0 && (
+        {enabledPlugins.length > 0 && (
           <React.Fragment key="plugins-group">
             <SidebarGroup>
               <SidebarGroupTitle collapsed={isCollapsed}>
@@ -154,25 +156,21 @@ const Sidebar = () => {
                   defaultMessage: 'Plugins'
                 })}
               </SidebarGroupTitle>
-              {plugins
-                .filter((plugin) => plugin.enabled)
-                .map((plugin) => {
-                  const Icon =
-                    (
-                      LucideIcons as unknown as Record<
-                        string,
-                        React.ElementType
-                      >
-                    )[plugin.icon] || LucideIcons.Landmark
-                  return (
-                    <SidebarItem
-                      key={plugin.id}
-                      title={plugin.name}
-                      icon={<Icon />}
-                      href={`${plugin.host}${plugin.route}${plugin.entry}`}
-                    />
-                  )
-                })}
+              {enabledPlugins.map((plugin) => {
+                const Icon =
+                  (LucideIcons as unknown as Record<string, React.ElementType>)[
+                    plugin.icon
+                  ] || LucideIcons.Landmark
+
+                return (
+                  <SidebarItem
+                    key={plugin.id}
+                    title={plugin.name}
+                    icon={<Icon />}
+                    href={`${plugin.host}${plugin.route}${plugin.entry}`}
+                  />
+                )
+              })}
             </SidebarGroup>
           </React.Fragment>
         )}
