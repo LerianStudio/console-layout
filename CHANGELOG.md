@@ -4,6 +4,23 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.4.0-beta.3] - 2025-07-24
+
+This release introduces a comprehensive testing framework and significant improvements to authentication and configuration, enhancing the application's reliability and user experience.
+
+### ✨ Features
+- **Testing Framework**: A new testing framework has been integrated to boost application reliability. This ensures quicker identification and resolution of bugs, leading to a smoother and more dependable user experience.
+
+### 🔄 Improvements
+- **Authentication & Configuration Enhancements**: We've streamlined the authentication and configuration processes, resulting in improved system performance and reduced errors. This makes the application more stable and easier to maintain.
+- **Frontend & Configuration Updates**: Updated type definitions across the frontend and configuration components enhance code clarity and reduce type-related errors, improving developer productivity and ensuring a more consistent user experience.
+
+### 🔧 Maintenance
+- **Codebase Cleanup**: Unused code in the authentication component has been removed, reducing clutter and improving code readability. This helps maintain a clean and efficient codebase, facilitating easier future updates.
+- **Changelog Update**: The CHANGELOG has been updated to reflect these recent changes, ensuring that all stakeholders have access to the latest information about the project's progress and updates.
+
+These updates collectively enhance the application's performance, reliability, and maintainability, providing a better overall experience for both users and developers.
+
 ## [v1.4.0-beta.2] - 2025-07-23
 
 This release focuses on improving the clarity and accuracy of versioning and documentation, ensuring a smoother experience for users tracking project updates.
