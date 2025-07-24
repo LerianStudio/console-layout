@@ -3,7 +3,6 @@ export { configureFetcher } from './client/fetcher'
 
 // Types
 export * from './types'
-export * from './types/header'
 
 // Providers
 export {
@@ -11,7 +10,6 @@ export {
   useOrganization
 } from './providers/organization-provider'
 export { SidebarProvider, useSidebar } from './providers/sidebar-provider'
-export { HeaderProvider, useHeaderContext } from './providers/header-provider'
 export { QueryProvider as LayoutQueryProvider } from './providers/query-provider'
 export { LocalizationProvider as LayoutLocalizationProvider } from './lib/intl/localization-provider'
 export { ConsoleLayoutProviders } from './providers/console-layout-providers'
@@ -47,11 +45,6 @@ export * from './components/organization-switcher/popover-panel'
 export * from './components/organization-switcher/organization-switcher-trigger'
 export * from './components/organization-switcher/organization-switcher-content'
 
-// Hooks
-export * from './hooks/use-console-layout'
-export * from './hooks/use-auth'
-export * from './hooks/use-header-data'
-
 // Auth Redirect
 export * from './components/auth-redirect'
 
@@ -60,7 +53,3 @@ export * from './components/console-layout'
 
 // Main components
 export { ConsoleLayout } from './components/console-layout/console-layout'
-
-// Hooks
-export { useAuth } from './hooks/use-auth'
-export { useHeaderData } from './hooks/use-header-data'

@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { PluginManifestDto } from '@/types'
+import { PluginManifestDto } from '@/types/plugin-manifest-dto'
 import { getFetcher } from './fetcher'
 
 export const useGetPluginMenus = () => {

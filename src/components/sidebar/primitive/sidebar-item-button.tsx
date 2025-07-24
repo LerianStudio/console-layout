@@ -52,6 +52,7 @@ export const SidebarItemButton = ({
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <div
+              data-slot="sidebar-item-button"
               className={cn(
                 buttonVariants({
                   variant: active ? 'activeLink' : 'hoverLink',
@@ -73,6 +74,7 @@ export const SidebarItemButton = ({
 
   return (
     <Link
+      data-slot="sidebar-item-button"
       href={href}
       className={cn(
         buttonVariants({

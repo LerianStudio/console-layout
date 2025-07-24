@@ -4,7 +4,6 @@ import { Separator } from '../ui/separator'
 import { LedgerSelector } from '../ledger-selector'
 import { UserDropdown } from '../user-dropdown'
 import { SettingsDropdown } from '../settings-dropdown'
-import { useHeaderContext } from '../../providers/header-provider'
 import { useIntl } from '@/lib/intl/use-intl'
 import {
   Tooltip,
@@ -13,7 +12,8 @@ import {
   TooltipTrigger
 } from '../ui/tooltip'
 import { AlertTriangle, CheckCircle2 } from 'lucide-react'
-import { VersionStatus } from '@/types'
+import { VersionStatus } from '@/types/midaz-info-dto'
+import { useGetMidazInfo } from '@/client/midaz-info'
 
 const VersionIcon = ({ status }: { status: VersionStatus }) => {
   const intl = useIntl()
@@ -48,7 +48,7 @@ const VersionIcon = ({ status }: { status: VersionStatus }) => {
   )
 }
 
-export interface HeaderProps {
+export type HeaderProps = {
   /**
    * Custom className for header container
    */
@@ -64,11 +64,8 @@ export interface HeaderProps {
 }
 
 export const Header = ({ showLedgerSelector = true, version }: HeaderProps) => {
-  const headerContext = useHeaderContext()
   const intl = useIntl()
-
-  // Use version from props or context
-  const displayVersion = version || headerContext.version
+  const { data: versionData } = useGetMidazInfo()
 
   return (
     <div className="flex h-[60px] w-full items-center border-b bg-white py-5 pr-16">
@@ -78,9 +75,9 @@ export const Header = ({ showLedgerSelector = true, version }: HeaderProps) => {
         <div className="flex items-center gap-6">
           <div className="flex flex-row items-center gap-1">
             <p className="text-xs font-medium text-zinc-400">
-              {headerContext.text.midazConsole} {displayVersion}
+              Midaz Console {version || versionData?.currentVersion}
             </p>
-            <VersionIcon status={headerContext.versionStatus} />
+            <VersionIcon status={versionData?.versionStatus!} />
           </div>
 
           <Separator orientation="vertical" className="h-10" />

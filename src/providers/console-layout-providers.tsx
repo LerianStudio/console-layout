@@ -2,7 +2,6 @@ import { LocalizationProvider } from '@/lib/intl/localization-provider'
 import { QueryProvider } from './query-provider'
 import { OrganizationProvider } from './organization-provider'
 import { SidebarProvider } from './sidebar-provider'
-import { HeaderProvider } from './header-provider'
 import { PermissionProvider } from './permission-provider'
 
 export function ConsoleLayoutProviders({
@@ -15,9 +14,7 @@ export function ConsoleLayoutProviders({
       <QueryProvider>
         <OrganizationProvider>
           <PermissionProvider>
-            <SidebarProvider>
-              <HeaderProvider>{children}</HeaderProvider>
-            </SidebarProvider>
+            <SidebarProvider>{children}</SidebarProvider>
           </PermissionProvider>
         </OrganizationProvider>
       </QueryProvider>

@@ -14,7 +14,10 @@ export async function AuthRedirect({
     const session = await getServerSession(nextAuthOptions)
 
     if (!session) {
-      redirect('/signin', RedirectType.replace)
+      redirect(
+        `${process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL}/signin`,
+        RedirectType.replace
+      )
     }
   }
 
