@@ -53,7 +53,7 @@ export function useDefaultLedger({
 
       // Check if there is a default ledger saved onto local storage
       const ledger = ledgers?.find(
-        ({ id }) => defaultLedgers[current.id!] === id
+        ({ id }) => defaultLedgers?.[current?.id!] === id
       )
 
       if (ledger) {
