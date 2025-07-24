@@ -41,6 +41,7 @@ export const SidebarItemIconButton = ({
         <TooltipTrigger asChild>
           {disabled ? (
             <div
+              data-slot="sidebar-item-icon-button"
               className={cn(
                 buttonVariants({
                   variant: active ? 'activeLink' : 'hoverLink',
@@ -55,6 +56,7 @@ export const SidebarItemIconButton = ({
             </div>
           ) : (
             <Link
+              data-slot="sidebar-item-icon-button"
               href={href}
               className={cn(
                 buttonVariants({

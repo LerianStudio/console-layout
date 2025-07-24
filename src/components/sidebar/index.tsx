@@ -25,7 +25,6 @@ import { Separator } from '../ui/separator'
 import { useSidebar } from '../../providers/sidebar-provider'
 import { useOrganization } from '../../providers/organization-provider'
 import { OrganizationSwitcher } from '../organization-switcher'
-import { useConsoleLayout } from '@/hooks/use-console-layout'
 import { useIntl } from '@/lib/intl/use-intl'
 
 const Sidebar = () => {
@@ -34,7 +33,8 @@ const Sidebar = () => {
   const { data: plugins = [] } = useGetPluginMenus()
   const { currentLedger } = useOrganization()
   const [isMobileWidth, setIsMobileWidth] = React.useState(false)
-  const { baseUrl } = useConsoleLayout()
+  const baseUrl =
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL || 'http://localhost:8081'
 
   const enabledPlugins = plugins.filter((plugin) => plugin.enabled)
 

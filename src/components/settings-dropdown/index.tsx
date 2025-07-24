@@ -20,20 +20,10 @@ import {
 } from '../ui/dropdown-menu'
 import { AboutMidazDialog } from './about-midaz-dialog'
 import { Enforce } from '../ui/enforce'
-import { useConsoleLayout } from '@/hooks/use-console-layout'
 import { useIntl } from '@/lib/intl/use-intl'
+import { useRouter } from 'next/navigation'
 
 export interface SettingsDropdownProps {
-  /** Handler for organizations click */
-  onOrganizationsClick?: () => void
-  /** Handler for users click */
-  onUsersClick?: () => void
-  /** Handler for applications click */
-  onApplicationsClick?: () => void
-  /** Handler for system click */
-  onSystemClick?: () => void
-  /** Handler for about click (if not provided, uses built-in dialog) */
-  onAboutClick?: () => void
   /** Permissions for showing menu items */
   permissions?: {
     canViewUsers?: boolean
@@ -42,34 +32,23 @@ export interface SettingsDropdownProps {
 }
 
 export const SettingsDropdown = ({
-  onOrganizationsClick,
-  onUsersClick,
-  onApplicationsClick,
-  onSystemClick,
-  onAboutClick,
   permissions = {
     canViewUsers: true,
     canViewApplications: true
   }
 }: SettingsDropdownProps) => {
   const intl = useIntl()
-  const { baseUrl } = useConsoleLayout()
-  const [aboutOpen, setAboutOpen] = useState(false)
+  const router = useRouter()
+  const baseUrl =
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL || 'http://localhost:8081'
+  const [open, setOpen] = useState(false)
 
-  const handleRedirect = (path: string) => {
+  const handleClick = (path: string) => {
     if (!baseUrl) {
       console.error('MIDAZ_CONSOLE_BASE_URL is not configured.')
       return
     }
-    window.location.href = `${baseUrl}${path}`
-  }
-
-  const handleAboutClick = () => {
-    if (onAboutClick) {
-      onAboutClick()
-    } else {
-      setAboutOpen(true)
-    }
+    router.push(`${baseUrl}${path}`)
   }
 
   return (
@@ -88,10 +67,7 @@ export const SettingsDropdown = ({
           <DropdownMenuSeparator />
 
           <DropdownMenuItem
-            onClick={
-              onOrganizationsClick ||
-              (() => handleRedirect('/settings/?tab=organizations'))
-            }
+            onClick={() => handleClick('/settings/?tab=organizations')}
           >
             <DropdownMenuItemIcon>
               <Building />
@@ -108,9 +84,7 @@ export const SettingsDropdown = ({
             action="get"
           >
             <DropdownMenuItem
-              onClick={
-                onUsersClick || (() => handleRedirect('/settings/?tab=users'))
-              }
+              onClick={() => handleClick('/settings/?tab=users')}
             >
               <DropdownMenuItemIcon>
                 <Users />
@@ -128,10 +102,7 @@ export const SettingsDropdown = ({
             action="get"
           >
             <DropdownMenuItem
-              onClick={
-                onApplicationsClick ||
-                (() => handleRedirect('/settings/?tab=applications'))
-              }
+              onClick={() => handleClick('/settings/?tab=applications')}
             >
               <DropdownMenuItemIcon>
                 <Layers />
@@ -144,9 +115,7 @@ export const SettingsDropdown = ({
           </Enforce>
 
           <DropdownMenuItem
-            onClick={
-              onSystemClick || (() => handleRedirect('/settings/?tab=system'))
-            }
+            onClick={() => handleClick('/settings/?tab=system')}
           >
             <DropdownMenuItemIcon>
               <Globe />
@@ -158,7 +127,7 @@ export const SettingsDropdown = ({
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleAboutClick}>
+          <DropdownMenuItem onClick={() => setOpen(true)}>
             <DropdownMenuItemIcon>
               <HelpCircle />
             </DropdownMenuItemIcon>
@@ -170,7 +139,7 @@ export const SettingsDropdown = ({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AboutMidazDialog open={aboutOpen} setOpen={setAboutOpen} />
+      <AboutMidazDialog open={open} setOpen={setOpen} />
     </React.Fragment>
   )
 }

@@ -45,10 +45,6 @@ export * from './components/organization-switcher/popover-panel'
 export * from './components/organization-switcher/organization-switcher-trigger'
 export * from './components/organization-switcher/organization-switcher-content'
 
-// Hooks
-export * from './hooks/use-console-layout'
-export * from './hooks/use-auth'
-
 // Auth Redirect
 export * from './components/auth-redirect'
 
@@ -57,6 +53,3 @@ export * from './components/console-layout'
 
 // Main components
 export { ConsoleLayout } from './components/console-layout/console-layout'
-
-// Hooks
-export { useAuth } from './hooks/use-auth'
