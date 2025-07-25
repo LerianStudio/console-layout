@@ -3,6 +3,7 @@
 import React from 'react'
 import { validatePermissions } from './validate-permissions'
 import { useGetPermissions } from '@/client/permissions'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 export type Permissions = Record<string, string[]>
 
@@ -37,7 +38,9 @@ export const PermissionProvider = ({
 }: PermissionProviderProps) => {
   const { data: permissions = {} } = useGetPermissions({
     placeholderData: permissionsProps,
-    enabled: process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
+    enabled:
+      getRuntimeEnv('CLIENT_MIDAZ_AUTH_ENABLED') === 'true' ||
+      process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
   })
 
   const validate = (resource: string, action: string) => {

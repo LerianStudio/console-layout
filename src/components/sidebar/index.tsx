@@ -25,8 +25,8 @@ import { Separator } from '../ui/separator'
 import { useSidebar } from '../../providers/sidebar-provider'
 import { useOrganization } from '../../providers/organization-provider'
 import { OrganizationSwitcher } from '../organization-switcher'
-import { useConsoleLayout } from '@/hooks/use-console-layout'
 import { useIntl } from '@/lib/intl/use-intl'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 const Sidebar = () => {
   const { isCollapsed } = useSidebar()
@@ -34,7 +34,11 @@ const Sidebar = () => {
   const { data: plugins = [] } = useGetPluginMenus()
   const { currentLedger } = useOrganization()
   const [isMobileWidth, setIsMobileWidth] = React.useState(false)
-  const { baseUrl } = useConsoleLayout()
+  const baseUrl =
+    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+
+  const enabledPlugins = plugins.filter((plugin) => plugin.enabled)
 
   // Mobile detection like console
   React.useEffect(() => {
@@ -145,7 +149,7 @@ const Sidebar = () => {
           />
         </SidebarGroup>
 
-        {plugins.length > 0 && (
+        {enabledPlugins.length > 0 && (
           <React.Fragment key="plugins-group">
             <SidebarGroup>
               <SidebarGroupTitle collapsed={isCollapsed}>
@@ -154,25 +158,21 @@ const Sidebar = () => {
                   defaultMessage: 'Plugins'
                 })}
               </SidebarGroupTitle>
-              {plugins
-                .filter((plugin) => plugin.enabled)
-                .map((plugin) => {
-                  const Icon =
-                    (
-                      LucideIcons as unknown as Record<
-                        string,
-                        React.ElementType
-                      >
-                    )[plugin.icon] || LucideIcons.Landmark
-                  return (
-                    <SidebarItem
-                      key={plugin.id}
-                      title={plugin.name}
-                      icon={<Icon />}
-                      href={`${plugin.host}${plugin.route}${plugin.entry}`}
-                    />
-                  )
-                })}
+              {enabledPlugins.map((plugin) => {
+                const Icon =
+                  (LucideIcons as unknown as Record<string, React.ElementType>)[
+                    plugin.icon
+                  ] || LucideIcons.Landmark
+
+                return (
+                  <SidebarItem
+                    key={plugin.id}
+                    title={plugin.name}
+                    icon={<Icon />}
+                    href={`${plugin.host}${plugin.route}${plugin.entry}`}
+                  />
+                )
+              })}
             </SidebarGroup>
           </React.Fragment>
         )}

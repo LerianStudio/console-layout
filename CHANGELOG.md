@@ -4,6 +4,77 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.5.0-beta.2] - 2025-07-25
+
+This release focuses on enhancing the user experience with a key interface update and ensures up-to-date documentation for better transparency and version tracking.
+
+### 🐛 Bug Fixes
+- **Sidebar Default State**: The sidebar now starts in a collapsed state by default, providing a cleaner and more focused workspace upon application launch. This change addresses user feedback and improves the initial user experience.
+
+### 📚 Documentation
+- **Changelog Update**: The changelog has been updated to include recent changes and improvements, ensuring users and developers have the latest information about updates and fixes. This supports better version tracking and transparency.
+
+### 🔧 Maintenance
+- **General Maintenance**: Routine updates and behind-the-scenes improvements to maintain software reliability and performance.
+
+This changelog provides a concise summary of the changes in version 1.5.0, focusing on the user impact of the sidebar bug fix and the importance of updated documentation. The structure is clear and user-friendly, ensuring that users can quickly understand the benefits of this release.
+
+## [v1.5.0-beta.1] - 2025-07-25
+
+In this release, we've focused on enhancing the reliability of environment variable management and keeping our documentation up-to-date to ensure a seamless and informed user experience.
+
+### 🐛 Bug Fixes
+- **Improved Environment Variable Handling**: We've updated the way environment variables are sourced, ensuring they are now correctly retrieved from the server-side environment. This change enhances the reliability and consistency of application behavior across different deployment environments, reducing potential configuration issues.
+
+### 📚 Documentation
+- **Updated Changelog**: The changelog has been refreshed to include the latest updates and fixes. This ensures that users and developers have easy access to accurate and current information, aiding in version tracking and transparency.
+
+### 🔧 Maintenance
+- **Documentation Maintenance**: Regular updates to documentation ensure clarity and usability, helping users stay informed about the latest changes and improvements in the software.
+
+This release is designed to provide a more stable and user-friendly application experience by addressing key areas of reliability and information accessibility.
+
+## [v1.4.0-beta.5] - 2025-07-25
+
+This release introduces enhanced configuration capabilities, empowering developers to manage runtime environments more efficiently and flexibly.
+
+### ✨ Features  
+- **Enhanced Runtime Environment Management**: We've introduced new utility exports within the configuration component. This enhancement simplifies the setup process and increases the flexibility of managing runtime environments, allowing developers to tailor configurations to specific needs effortlessly.
+
+### 📚 Documentation
+- **Updated Changelog**: The CHANGELOG has been updated to ensure all users have access to the latest information about software updates and modifications. This transparency helps users stay informed about enhancements and changes.
+
+This update focuses on expanding the configuration capabilities of the application, providing developers with new tools to manage runtime environments efficiently. Enjoy the improved flexibility and streamlined setup process!
+
+## [v1.4.0-beta.4] - 2025-07-25
+
+This release introduces a powerful runtime environment utility that enhances deployment flexibility, making it easier to configure and adapt the application across different environments.
+
+### ✨ Features
+- **Dynamic URL Configuration**: The new runtime environment utility automatically configures the base URL for various components, including Auth, Config, Frontend, and Test. This feature simplifies deployment by eliminating manual URL adjustments, reducing setup time and minimizing configuration errors. Users can now enjoy a more streamlined and error-free deployment process.
+
+### 🔧 Maintenance
+- **Changelog Update**: The CHANGELOG has been updated to provide a comprehensive overview of recent changes and enhancements. This ensures that all stakeholders have access to the latest information, improving communication and project tracking.
+
+In this release, the focus was on enhancing the adaptability of the application through improved configuration management. This change significantly benefits users by simplifying the deployment process and reducing potential configuration-related issues.
+
+## [v1.4.0-beta.3] - 2025-07-24
+
+This release introduces a comprehensive testing framework and significant improvements to authentication and configuration, enhancing the application's reliability and user experience.
+
+### ✨ Features
+- **Testing Framework**: A new testing framework has been integrated to boost application reliability. This ensures quicker identification and resolution of bugs, leading to a smoother and more dependable user experience.
+
+### 🔄 Improvements
+- **Authentication & Configuration Enhancements**: We've streamlined the authentication and configuration processes, resulting in improved system performance and reduced errors. This makes the application more stable and easier to maintain.
+- **Frontend & Configuration Updates**: Updated type definitions across the frontend and configuration components enhance code clarity and reduce type-related errors, improving developer productivity and ensuring a more consistent user experience.
+
+### 🔧 Maintenance
+- **Codebase Cleanup**: Unused code in the authentication component has been removed, reducing clutter and improving code readability. This helps maintain a clean and efficient codebase, facilitating easier future updates.
+- **Changelog Update**: The CHANGELOG has been updated to reflect these recent changes, ensuring that all stakeholders have access to the latest information about the project's progress and updates.
+
+These updates collectively enhance the application's performance, reliability, and maintainability, providing a better overall experience for both users and developers.
+
 ## [v1.4.0] - 2025-07-23
 
 This release focuses on enhancing user experience with a smoother logout process and clearer version displays, alongside important bug fixes and documentation updates.
@@ -23,7 +94,6 @@ This release focuses on enhancing user experience with a smoother logout process
 ### 🔧 Maintenance
 - **General Documentation Updates**: Multiple updates to the documentation have been made to keep it current with the latest changes, providing users with accurate and helpful information.
 
----
 
 This changelog provides a concise overview of the key updates in this release, emphasizing improvements that directly enhance user experience and application reliability.
 

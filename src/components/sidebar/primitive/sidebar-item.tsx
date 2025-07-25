@@ -37,6 +37,7 @@ export const SidebarItem = ({
   if (isCollapsed) {
     return (
       <SidebarItemIconButton
+        data-slot="sidebar-item"
         href={href}
         active={isActive(href)}
         disabled={disabled}
@@ -48,6 +49,7 @@ export const SidebarItem = ({
 
   return (
     <SidebarItemButton
+      data-slot="sidebar-item"
       href={href}
       active={isActive(href)}
       disabled={disabled}

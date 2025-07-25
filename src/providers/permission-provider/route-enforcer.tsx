@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { usePermissions } from './index'
 import { Button } from '@/components/ui/button'
 import { useIntl } from '@/lib/intl/use-intl'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 type RouteEnforcerProps = React.PropsWithChildren & {
   resource: string
@@ -13,7 +14,9 @@ export const RouteEnforcer = ({
   action,
   children
 }: RouteEnforcerProps) => {
-  const isAuthEnabled = process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
+  const isAuthEnabled =
+    getRuntimeEnv('CLIENT_MIDAZ_AUTH_ENABLED') === 'true' ||
+    process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
 
   if (!isAuthEnabled) {
     return children

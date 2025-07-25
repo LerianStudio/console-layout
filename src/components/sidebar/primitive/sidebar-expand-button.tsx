@@ -20,7 +20,10 @@ export const SidebarExpandButton = () => {
   return (
     <React.Fragment>
       {!isCollapsed && (
-        <div className="border-shadcn-200 flex w-full bg-white">
+        <div
+          data-slot="sidebar-expand-button"
+          className="border-shadcn-200 flex w-full bg-white"
+        >
           <div className="absolute right-[-20px] bottom-4">
             <Button
               variant="white"

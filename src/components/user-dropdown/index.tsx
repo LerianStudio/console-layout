@@ -1,6 +1,5 @@
 'use client'
 
-import { useContext } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,26 +10,28 @@ import {
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
 import { Book, CircleUser, LogOut } from 'lucide-react'
-import { HeaderContext } from '../../providers/header-provider'
-import { HeaderContextType } from '../../types/header'
 import { useIntl } from '@/lib/intl/use-intl'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 export const UserDropdown = () => {
   const intl = useIntl()
   const router = useRouter()
   const { data: session } = useSession()
-  const headerContext = useContext(HeaderContext) as HeaderContextType | null
 
-  const isAuthEnabled = headerContext?.isAuthEnabled !== false
+  const isAuthEnabled = process.env.PLUGIN_AUTH_ENABLED === 'true'
 
   const handleDocsClick = () => {
     window.open('https://docs.lerian.studio/', '_blank', 'noopener noreferrer')
   }
 
+  const baseUrl =
+    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+
   const handleLogout = () => {
-    router.push(`${process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL}/signout`)
+    router.push(`${baseUrl}/signout`)
   }
 
   return (
