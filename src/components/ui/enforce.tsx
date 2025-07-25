@@ -1,5 +1,6 @@
 'use client'
 
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 import React from 'react'
 
 export interface EnforceProps {
@@ -27,7 +28,9 @@ export const Enforce = ({
   resource,
   action
 }: EnforceProps) => {
-  const isAuthEnabled = process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
+  const isAuthEnabled =
+    getRuntimeEnv('CLIENT_MIDAZ_AUTH_ENABLED') === 'true' ||
+    process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
 
   // Se auth não está habilitado, sempre oculta
   if (!isAuthEnabled) {

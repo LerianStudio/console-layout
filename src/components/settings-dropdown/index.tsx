@@ -22,6 +22,7 @@ import { AboutMidazDialog } from './about-midaz-dialog'
 import { Enforce } from '../ui/enforce'
 import { useIntl } from '@/lib/intl/use-intl'
 import { useRouter } from 'next/navigation'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 export interface SettingsDropdownProps {
   /** Permissions for showing menu items */
@@ -40,7 +41,8 @@ export const SettingsDropdown = ({
   const intl = useIntl()
   const router = useRouter()
   const baseUrl =
-    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL || 'http://localhost:8081'
+    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
   const [open, setOpen] = useState(false)
 
   const handleClick = (path: string) => {
