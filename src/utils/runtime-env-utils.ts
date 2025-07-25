@@ -3,5 +3,5 @@ export function getRuntimeEnv(key: string) {
     return window.RUNTIME_ENV[key]
   }
 
-  return undefined
+  return process.env[key]
 }
