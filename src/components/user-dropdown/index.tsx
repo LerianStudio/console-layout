@@ -26,9 +26,7 @@ export const UserDropdown = () => {
     window.open('https://docs.lerian.studio/', '_blank', 'noopener noreferrer')
   }
 
-  const baseUrl =
-    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
-    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+  const baseUrl = getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL')
 
   const handleLogout = () => {
     router.push(`${baseUrl}/signout`)

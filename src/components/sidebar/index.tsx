@@ -34,9 +34,7 @@ const Sidebar = () => {
   const { data: plugins = [] } = useGetPluginMenus()
   const { currentLedger } = useOrganization()
   const [isMobileWidth, setIsMobileWidth] = React.useState(false)
-  const baseUrl =
-    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
-    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+  const baseUrl = getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL')
 
   const enabledPlugins = plugins.filter((plugin) => plugin.enabled)
 
