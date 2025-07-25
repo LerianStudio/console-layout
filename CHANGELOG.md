@@ -4,6 +4,20 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.4.0-beta.4] - 2025-07-25
+
+This release introduces a powerful runtime environment utility that enhances deployment flexibility, making it easier to configure and adapt the application across different environments.
+
+### ✨ Features
+- **Dynamic URL Configuration**: The new runtime environment utility automatically configures the base URL for various components, including Auth, Config, Frontend, and Test. This feature simplifies deployment by eliminating manual URL adjustments, reducing setup time and minimizing configuration errors. Users can now enjoy a more streamlined and error-free deployment process.
+
+### 🔧 Maintenance
+- **Changelog Update**: The CHANGELOG has been updated to provide a comprehensive overview of recent changes and enhancements. This ensures that all stakeholders have access to the latest information, improving communication and project tracking.
+
+---
+
+In this release, the focus was on enhancing the adaptability of the application through improved configuration management. This change significantly benefits users by simplifying the deployment process and reducing potential configuration-related issues.
+
 ## [v1.4.0-beta.3] - 2025-07-24
 
 This release introduces a comprehensive testing framework and significant improvements to authentication and configuration, enhancing the application's reliability and user experience.
