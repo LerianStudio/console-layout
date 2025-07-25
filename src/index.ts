@@ -34,6 +34,7 @@ export * from './client/plugin-menu'
 // Utilities
 export * from './lib/utils'
 export * from './lib/env'
+export * from './utils'
 
 // Sidebar Components
 export { Sidebar } from './components/sidebar'
