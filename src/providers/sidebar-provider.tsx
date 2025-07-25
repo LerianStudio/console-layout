@@ -21,7 +21,7 @@ export function useSidebar() {
 }
 
 export function SidebarProvider({ children }: React.PropsWithChildren) {
-  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const [isCollapsed, setIsCollapsed] = React.useState(true)
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev)
