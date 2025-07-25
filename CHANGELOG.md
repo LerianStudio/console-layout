@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.5.0-beta.2] - 2025-07-25
+
+This release focuses on enhancing the user experience with a key interface update and ensures up-to-date documentation for better transparency and version tracking.
+
+### 🐛 Bug Fixes
+- **Sidebar Default State**: The sidebar now starts in a collapsed state by default, providing a cleaner and more focused workspace upon application launch. This change addresses user feedback and improves the initial user experience.
+
+### 📚 Documentation
+- **Changelog Update**: The changelog has been updated to include recent changes and improvements, ensuring users and developers have the latest information about updates and fixes. This supports better version tracking and transparency.
+
+### 🔧 Maintenance
+- **General Maintenance**: Routine updates and behind-the-scenes improvements to maintain software reliability and performance.
+
+This changelog provides a concise summary of the changes in version 1.5.0, focusing on the user impact of the sidebar bug fix and the importance of updated documentation. The structure is clear and user-friendly, ensuring that users can quickly understand the benefits of this release.
+
 ## [v1.5.0-beta.1] - 2025-07-25
 
 In this release, we've focused on enhancing the reliability of environment variable management and keeping our documentation up-to-date to ensure a seamless and informed user experience.
