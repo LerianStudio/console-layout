@@ -1,3 +1,4 @@
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 import { getServerSession, NextAuthOptions } from 'next-auth'
 import { redirect, RedirectType } from 'next/navigation'
 import React from 'react'
@@ -13,11 +14,12 @@ export async function AuthRedirect({
   if (process.env.PLUGIN_AUTH_ENABLED === 'true') {
     const session = await getServerSession(nextAuthOptions)
 
+    const baseUrl =
+      getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
+      process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+
     if (!session) {
-      redirect(
-        `${process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL}/signin`,
-        RedirectType.replace
-      )
+      redirect(`${baseUrl}/signin`, RedirectType.replace)
     }
   }
 

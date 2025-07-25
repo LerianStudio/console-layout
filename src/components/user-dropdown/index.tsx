@@ -13,6 +13,7 @@ import { Book, CircleUser, LogOut } from 'lucide-react'
 import { useIntl } from '@/lib/intl/use-intl'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 export const UserDropdown = () => {
   const intl = useIntl()
@@ -25,8 +26,12 @@ export const UserDropdown = () => {
     window.open('https://docs.lerian.studio/', '_blank', 'noopener noreferrer')
   }
 
+  const baseUrl =
+    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+
   const handleLogout = () => {
-    router.push(`${process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL}/signout`)
+    router.push(`${baseUrl}/signout`)
   }
 
   return (

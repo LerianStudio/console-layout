@@ -1,5 +1,6 @@
 'use client'
 
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 import { usePermissions } from './index'
 
 type EnforceProps = React.PropsWithChildren & {
@@ -8,7 +9,9 @@ type EnforceProps = React.PropsWithChildren & {
 }
 
 export const Enforce = ({ resource, action, children }: EnforceProps) => {
-  const isAuthEnabled = process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
+  const isAuthEnabled =
+    getRuntimeEnv('CLIENT_MIDAZ_AUTH_ENABLED') === 'true' ||
+    process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
 
   if (!isAuthEnabled) {
     return children

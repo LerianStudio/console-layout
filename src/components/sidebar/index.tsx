@@ -26,6 +26,7 @@ import { useSidebar } from '../../providers/sidebar-provider'
 import { useOrganization } from '../../providers/organization-provider'
 import { OrganizationSwitcher } from '../organization-switcher'
 import { useIntl } from '@/lib/intl/use-intl'
+import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 
 const Sidebar = () => {
   const { isCollapsed } = useSidebar()
@@ -34,7 +35,8 @@ const Sidebar = () => {
   const { currentLedger } = useOrganization()
   const [isMobileWidth, setIsMobileWidth] = React.useState(false)
   const baseUrl =
-    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL || 'http://localhost:8081'
+    getRuntimeEnv('CLIENT_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
 
   const enabledPlugins = plugins.filter((plugin) => plugin.enabled)
 
