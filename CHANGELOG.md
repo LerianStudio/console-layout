@@ -4,6 +4,26 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.5.0] - 2025-07-25
+
+This release enhances the flexibility and reliability of the console-layout application with new configuration management features, improved code quality, and critical bug fixes.
+
+### ✨ Features  
+- **Configuration Management**: Introduced utility exports for runtime environment management, allowing for seamless adaptation to various deployment environments. This makes it easier to configure the application dynamically, enhancing its flexibility and usability across different stages like development, testing, and production.
+- **Dynamic URL Configuration**: Added support for dynamic base URL adjustments based on the runtime environment. This ensures that components like auth, config, frontend, and test can automatically align their URLs, facilitating smoother transitions and reducing manual configuration efforts.
+
+### 🐛 Bug Fixes
+- **Sidebar State**: Fixed an issue where the sidebar did not start in a collapsed state, ensuring a consistent and expected user interface experience.
+- **Environment Configuration**: Corrected the `getRuntimeEnv` function to properly retrieve values from `process.env`, improving the accuracy and reliability of environment-specific configurations.
+
+### 🔧 Maintenance
+- **Codebase Optimization**: Refactored code across several modules, resulting in a cleaner and more maintainable codebase. This reduces technical debt and enhances the ease of future updates and debugging.
+- **Testing Enhancements**: Expanded testing coverage within the config and test components, boosting the application’s robustness and ensuring that all features and functionalities are thoroughly validated.
+
+This update focuses on improving the system's flexibility, reliability, and maintainability, offering a better overall user experience.
+
+This changelog is crafted to highlight the most impactful changes and improvements in version 1.5.0, ensuring users understand the benefits and enhancements introduced in this release.
+
 ## [v1.5.0-beta.2] - 2025-07-25
 
 This release focuses on enhancing the user experience with a key interface update and ensures up-to-date documentation for better transparency and version tracking.
