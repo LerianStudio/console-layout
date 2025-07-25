@@ -4,6 +4,18 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.4.0-beta.5] - 2025-07-25
+
+This release introduces enhanced configuration capabilities, empowering developers to manage runtime environments more efficiently and flexibly.
+
+### ✨ Features  
+- **Enhanced Runtime Environment Management**: We've introduced new utility exports within the configuration component. This enhancement simplifies the setup process and increases the flexibility of managing runtime environments, allowing developers to tailor configurations to specific needs effortlessly.
+
+### 📚 Documentation
+- **Updated Changelog**: The CHANGELOG has been updated to ensure all users have access to the latest information about software updates and modifications. This transparency helps users stay informed about enhancements and changes.
+
+This update focuses on expanding the configuration capabilities of the application, providing developers with new tools to manage runtime environments efficiently. Enjoy the improved flexibility and streamlined setup process!
+
 ## [v1.4.0-beta.4] - 2025-07-25
 
 This release introduces a powerful runtime environment utility that enhances deployment flexibility, making it easier to configure and adapt the application across different environments.
