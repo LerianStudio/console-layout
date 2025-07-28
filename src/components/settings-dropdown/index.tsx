@@ -40,7 +40,10 @@ export const SettingsDropdown = ({
 }: SettingsDropdownProps) => {
   const intl = useIntl()
   const router = useRouter()
-  const baseUrl = getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL')
+  const baseUrl =
+    getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
+
   const [open, setOpen] = useState(false)
 
   const handleClick = (path: string) => {
