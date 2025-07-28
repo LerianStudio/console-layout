@@ -37,6 +37,9 @@ export function useDefaultOrg({
     // Check if there is a default organization saved onto local storage
     if (defaultOrg) {
       // Search for the organization with the id
+      if (!organizations) {
+        return
+      }
       const org = organizations.find(({ id }) => defaultOrg === id)
 
       // If the organization is found, set it as the current organization
@@ -47,7 +50,7 @@ export function useDefaultOrg({
     }
 
     // If there is no default organization saved or the organization is not found
-    if (organizations.length > 0) {
+    if (organizations && organizations.length > 0) {
       // Set the first organization as the current one
       setCurrent(organizations[0])
     }
