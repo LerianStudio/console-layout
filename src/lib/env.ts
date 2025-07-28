@@ -9,7 +9,9 @@ import { getRuntimeEnv } from '@/utils/runtime-env-utils'
  * This ensures plugins redirect to the main console for settings pages
  */
 export const getConsoleBaseUrl = (): string => {
-  const envBaseUrl = getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL')
+  const envBaseUrl =
+    getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL') ||
+    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
 
   if (envBaseUrl) {
     return envBaseUrl.endsWith('/') ? envBaseUrl.slice(0, -1) : envBaseUrl

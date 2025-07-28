@@ -15,7 +15,8 @@ export const RouteEnforcer = ({
   children
 }: RouteEnforcerProps) => {
   const isAuthEnabled =
-    getRuntimeEnv('NEXT_PUBLIC_MIDAZ_AUTH_ENABLED') === 'true'
+    getRuntimeEnv('NEXT_PUBLIC_MIDAZ_AUTH_ENABLED') === 'true' ||
+    process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
 
   if (!isAuthEnabled) {
     return children

@@ -14,7 +14,9 @@ export async function AuthRedirect({
   if (process.env.PLUGIN_AUTH_ENABLED === 'true') {
     const session = await getServerSession(nextAuthOptions)
 
-    const baseUrl = getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL')
+    const baseUrl =
+      getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL') ||
+      process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
 
     if (!session) {
       redirect(`${baseUrl}/signin`, RedirectType.replace)
