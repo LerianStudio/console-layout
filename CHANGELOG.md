@@ -16,6 +16,21 @@ This release focuses on enhancing the stability and reliability of the console-l
 
 This changelog is designed to be user-focused, highlighting the key improvements and their impact on user experience, while maintaining a clear and professional format.
 
+## [v1.5.1] - 2025-07-25
+
+This release focuses on enhancing the reliability of environment configurations and maintaining up-to-date documentation for better user experience and project transparency.
+
+### 🐛 Bug Fixes
+- **Environment Configuration**: Corrected environment variable names in the `auth`, `config`, and `frontend` components. This fix ensures consistent application behavior, reducing the risk of authentication failures and misconfigurations. Users will experience more reliable application settings without needing to adjust their current configurations.
+
+### 📚 Documentation
+- **Changelog Updates**: The project CHANGELOG has been updated to reflect recent changes and improvements. This ensures that users and developers have access to the latest information about project updates and fixes, supporting better decision-making and project understanding.
+
+### 🔧 Maintenance
+- **Documentation Maintenance**: Regular updates to documentation ensure clarity and accuracy, helping users stay informed about the latest changes and how they might be affected.
+
+This update is designed to improve the overall stability and transparency of the console-layout project, ensuring users have a seamless experience with accurate configuration settings and up-to-date information.
+
 ## [v1.5.0-beta.3] - 2025-07-25
 
 This release focuses on enhancing the reliability and maintainability of the console-layout application by addressing configuration issues and updating documentation.
