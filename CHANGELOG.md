@@ -4,6 +4,17 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.5.2] - 2025-07-28
+
+This release focuses on enhancing the reliability of authentication processes across different environments, providing a more consistent and secure user experience.
+
+### 🐛 Bug Fixes
+- **Improved Authentication & Configuration**: We've enhanced the handling of environment variables related to base URLs and authentication processes. This improvement ensures users experience fewer disruptions when accessing services, leading to a more reliable and secure interaction with our platform.
+
+### 🔧 Maintenance
+- **Changelog Documentation**: We've updated our changelog to accurately reflect recent changes, ensuring that both users and developers are informed about the latest modifications. This helps maintain transparency and clarity regarding our project's evolution.
+
+
 ## [v1.5.1-beta.1] - 2025-07-28
 
 This release focuses on enhancing the stability and reliability of the console-layout application, particularly in handling environment variables for authentication and configuration. Users can expect improved deployment consistency across various environments.
