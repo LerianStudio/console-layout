@@ -167,7 +167,7 @@ const Sidebar = () => {
                 return (
                   <SidebarItem
                     key={plugin.id}
-                    title={plugin.name}
+                    title={plugin.title}
                     icon={<Icon />}
                     href={`${plugin.host}${plugin.route}${plugin.entry}`}
                   />

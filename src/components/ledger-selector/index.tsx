@@ -108,26 +108,7 @@ const LedgerCommand = ({
   )
 }
 
-export interface LedgerSelectorProps {
-  /**
-   * Override current ledger label text
-   */
-  currentLedgerLabel?: string
-  /**
-   * Override placeholder text when no ledger is selected
-   */
-  placeholder?: string
-  /**
-   * Override "Ledgers" text in dropdown
-   */
-  ledgersLabel?: string
-}
-
-export const LedgerSelector = ({
-  currentLedgerLabel,
-  placeholder,
-  ledgersLabel
-}: LedgerSelectorProps) => {
+export const LedgerSelector = () => {
   const intl = useIntl()
   const [openCommand, setOpenCommand] = React.useState(false)
   const { currentOrganization, currentLedger, setLedger } = useOrganization()
@@ -137,65 +118,19 @@ export const LedgerSelector = ({
     limit: 100
   })
 
-  React.useEffect(() => {
-    if (ledgers?.items?.length) {
-      if (!currentLedger?.id) {
-        setLedger(ledgers.items[0])
-        return
-      }
-
-      const ledgerExists = ledgers.items.some(
-        (ledger: LedgerDto) => ledger.id === currentLedger.id
-      )
-
-      if (!ledgerExists) {
-        setLedger(ledgers.items[0])
-      }
-    }
-  }, [ledgers, currentLedger?.id, setLedger])
-
   const hasLedgers = !!ledgers?.items?.length
   const totalLedgers = ledgers?.items?.length ?? 0
   const isLargeList = totalLedgers >= 10
   const isSingle = totalLedgers === 1
 
-  // Use i18n messages with fallbacks
-  const currentLedgerText =
-    currentLedgerLabel ||
-    intl.formatMessage({
-      id: 'ledger.selector.currentLedger.label',
-      defaultMessage: 'Current Ledger'
-    })
-  const placeholderText =
-    placeholder ||
-    intl.formatMessage({
-      id: 'ledger.selector.placeholder',
-      defaultMessage: 'Select a ledger'
-    })
-  const ledgersText =
-    ledgersLabel ||
-    intl.formatMessage({
-      id: 'ledgers.title',
-      defaultMessage: 'Ledgers'
-    })
-
-  if (isSingle) {
-    return (
-      <Button
-        disabled
-        className="flex cursor-default items-center gap-4 disabled:opacity-100"
-        variant="outline"
-      >
-        <Database size={20} className="text-zinc-400" />
-        <span className="pt-[2px] text-xs font-normal text-zinc-400 uppercase">
-          {currentLedgerText}
-        </span>
-        <span className="text-sm font-semibold text-zinc-800">
-          {ledgers?.items[0].name}
-        </span>
-      </Button>
-    )
-  }
+  const placeholderText = intl.formatMessage({
+    id: 'ledger.selector.placeholder',
+    defaultMessage: 'Select a ledger'
+  })
+  const ledgersText = intl.formatMessage({
+    id: 'ledgers.title',
+    defaultMessage: 'Ledgers'
+  })
 
   const handleSelectChange = (id: string) => {
     const selectedLedger = ledgers?.items.find((ledger) => ledger.id === id)
@@ -212,13 +147,34 @@ export const LedgerSelector = ({
     setOpenCommand(false)
   }
 
+  if (isSingle) {
+    return (
+      <Button
+        disabled
+        className="flex cursor-default items-center gap-4 disabled:opacity-100"
+        variant="outline"
+      >
+        <Database size={20} className="text-zinc-400" />
+        <span className="pt-[2px] text-xs font-normal text-zinc-400 uppercase">
+          {intl.formatMessage({
+            id: 'ledger.selector.currentLedger.label',
+            defaultMessage: 'Current Ledger'
+          })}
+        </span>
+        <span className="text-sm font-semibold text-zinc-800">
+          {ledgers?.items[0].name}
+        </span>
+      </Button>
+    )
+  }
+
   return (
     <TooltipProvider>
-      <Tooltip>
+      <Tooltip disabled={!hasLedgers}>
         <TooltipTrigger asChild>
           <div>
             <Select
-              value={currentLedger?.id ?? undefined}
+              value={currentLedger?.id ?? ''}
               onValueChange={handleSelectChange}
               onOpenChange={(open) => !open && setOpenCommand(false)}
               disabled={!hasLedgers}
@@ -227,7 +183,10 @@ export const LedgerSelector = ({
                 <div className="flex items-center gap-4">
                   <Database size={20} className="text-zinc-400" />
                   <span className="pt-[2px] text-xs font-normal text-zinc-400 uppercase">
-                    {currentLedgerText}
+                    {intl.formatMessage({
+                      id: 'ledger.selector.currentLedger.label',
+                      defaultMessage: 'Current Ledger'
+                    })}
                   </span>
                   <SelectValue placeholder={placeholderText} />
                 </div>
@@ -295,15 +254,12 @@ export const LedgerSelector = ({
             </Select>
           </div>
         </TooltipTrigger>
-
-        {!hasLedgers && (
-          <TooltipContent side="bottom">
-            {intl.formatMessage({
-              id: 'ledger.selector.noledgers',
-              defaultMessage: 'No ledgers available. Please create one first.'
-            })}
-          </TooltipContent>
-        )}
+        <TooltipContent side="bottom">
+          {intl.formatMessage({
+            id: 'ledger.selector.noledgers',
+            defaultMessage: 'No ledgers available. Please create one first.'
+          })}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )

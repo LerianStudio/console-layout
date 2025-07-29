@@ -4,6 +4,18 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.5.2-beta.1] - 2025-07-29
+
+This release enhances the reliability of ledger operations with a critical bug fix and ensures up-to-date project documentation for improved user and developer experience.
+
+### 🐛 Bug Fixes
+- **Ledger Management**: Resolved an issue where the ledger might not initialize correctly, leading to potential discrepancies in financial data handling. Users will now experience more consistent and reliable ledger operations, reducing unexpected behavior and enhancing data accuracy.
+
+### 📚 Documentation
+- **Changelog Updates**: The changelog has been updated to reflect recent changes and improvements, ensuring that users and developers have access to the most current information about the project's updates. This transparency facilitates easier tracking of project progress and changes over time.
+
+This changelog focuses on conveying the most critical updates in a user-friendly manner, highlighting the benefits and impacts of the changes in this release.
+
 ## [v1.5.2] - 2025-07-28
 
 This release focuses on enhancing the reliability of authentication processes across different environments, providing a more consistent and secure user experience.
