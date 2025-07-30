@@ -4,6 +4,20 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.5.3-beta.1] - 2025-07-30
+
+This release focuses on enhancing the reliability of environment variable management, ensuring consistent application behavior and improving system stability.
+
+### 🐛 Bug Fixes
+- **Environment Configuration**: Streamlined the retrieval of environment variables to enhance reliability across the application. This improvement reduces configuration errors, leading to a more stable and predictable user experience.
+
+### 📚 Documentation
+- **Changelog Updates**: The CHANGELOG has been updated to provide users with the latest information on system modifications, ensuring transparency and keeping everyone informed about recent developments.
+
+### 🔧 Maintenance
+- **Codebase Refinement**: Minor adjustments were made to the codebase, enhancing maintainability and preparing the groundwork for future improvements without affecting current functionality.
+
+
 ## [v1.5.2-beta.1] - 2025-07-29
 
 This release enhances the reliability of ledger operations with a critical bug fix and ensures up-to-date project documentation for improved user and developer experience.
