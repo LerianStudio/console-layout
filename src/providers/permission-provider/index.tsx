@@ -39,8 +39,10 @@ export const PermissionProvider = ({
   const { data: permissions = {} } = useGetPermissions({
     placeholderData: permissionsProps,
     enabled:
-      getRuntimeEnv('NEXT_PUBLIC_MIDAZ_AUTH_ENABLED') === 'true' ||
-      process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
+      getRuntimeEnv(
+        'NEXT_PUBLIC_MIDAZ_AUTH_ENABLED',
+        process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED
+      ) === 'true'
   })
 
   const validate = (resource: string, action: string) => {
