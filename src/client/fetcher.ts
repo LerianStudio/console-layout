@@ -93,10 +93,7 @@ export const getFetcher = (url: string) => {
   return async () => {
     const response = await fetch(`${config.baseUrl}${url}`, {
       method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      credentials: 'include'
     })
     return responseHandler(response)
   }
@@ -111,10 +108,7 @@ export const getPaginatedFetcher = (
       `${config.baseUrl}${url}${createQueryString(params)}`,
       {
         method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        credentials: 'include'
       }
     )
     return responseHandler(response)
@@ -153,10 +147,7 @@ export const deleteFetcher = (url: string) => {
   return async ({ id }: { id: string }) => {
     const response = await fetch(`${config.baseUrl}${url}/${id}`, {
       method: 'DELETE',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      credentials: 'include'
     })
     return responseHandler(response)
   }
