@@ -29,8 +29,10 @@ export const Enforce = ({
   action
 }: EnforceProps) => {
   const isAuthEnabled =
-    getRuntimeEnv('NEXT_PUBLIC_MIDAZ_AUTH_ENABLED') === 'true' ||
-    process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED === 'true'
+    getRuntimeEnv(
+      'NEXT_PUBLIC_MIDAZ_AUTH_ENABLED',
+      process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED
+    ) === 'true'
 
   // Se auth não está habilitado, sempre oculta
   if (!isAuthEnabled) {

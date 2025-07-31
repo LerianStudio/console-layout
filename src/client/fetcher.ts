@@ -19,15 +19,10 @@ const getBaseUrl = (manualBaseUrl?: string): string => {
 
   // Access Next.js environment variable
   // NEXT_PUBLIC_ variables are available in both server and client
-
-  console.log(
-    '[getBaseUrl] - NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL',
+  const envBaseUrl = getRuntimeEnv(
+    'NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL',
     process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
   )
-
-  const envBaseUrl =
-    getRuntimeEnv('NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL') ||
-    process.env.NEXT_PUBLIC_MIDAZ_CONSOLE_BASE_URL
 
   if (envBaseUrl) {
     return envBaseUrl
