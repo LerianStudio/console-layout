@@ -4,6 +4,22 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.2] - 2025-07-31
+
+This release enhances the frontend capabilities by introducing a new feature that optimizes data management, improving both performance and user experience.
+
+### ✨ Features
+- **Enhanced Data Management**: We have introduced the ability to export `useQueryClient` in the frontend. This empowers developers to manage client-side data fetching more effectively, leading to smoother and faster applications. This feature is particularly useful for applications with complex data interactions, as it allows for more precise control over data queries and caching strategies.
+
+### 📚 Documentation
+- **Changelog Update**: The changelog has been updated to reflect the latest changes and improvements. This ensures that all users have access to the most current information, supporting better project management and enhancing transparency.
+
+### 🔧 Maintenance
+- **Release Management**: Continued efforts to keep documentation up-to-date, ensuring users and developers are informed about the latest features and improvements. This aids in version tracking and project clarity.
+
+
+This changelog provides a user-focused overview of the latest release, highlighting the new feature's benefits and ensuring users are well-informed about the changes and improvements.
+
 ## [v1.6.0-beta.1] - 2025-07-31
 
 This release focuses on improving data handling efficiency and enhancing the reliability of environment configurations, ensuring a smoother and more consistent user experience.
