@@ -4,6 +4,22 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.3] - 2025-07-31
+
+In this release, we have enhanced the reliability of the Ledger update mechanism, ensuring more accurate and timely data updates for users. Additionally, we've improved our documentation to keep you informed about the latest changes.
+
+### 🔄 Changes
+- **Ledger Update Mechanism**: We've improved the process for updating the Ledger to ensure that updates are consistently applied. This enhancement addresses previous inconsistencies, providing users with more reliable and timely data updates, which is crucial for decision-making and operational efficiency.
+
+### 📚 Documentation
+- **Changelog Updates**: The project CHANGELOG has been updated to reflect recent improvements and changes. This ensures that users and developers have access to the latest information about the project's updates, enhancing transparency and communication.
+
+### 🔧 Maintenance
+- **General Maintenance**: Routine updates and maintenance tasks have been carried out to ensure the continued smooth operation of the software.
+
+
+This changelog is designed to be user-friendly, focusing on the benefits and impacts of the changes made in version 1.6.0. It highlights the key improvements and provides context on how these changes enhance the user experience.
+
 ## [v1.6.0-beta.2] - 2025-07-31
 
 This release enhances the frontend capabilities by introducing a new feature that optimizes data management, improving both performance and user experience.
