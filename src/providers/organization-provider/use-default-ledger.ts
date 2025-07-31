@@ -67,6 +67,19 @@ export function useDefaultLedger({
     }
   }, [current?.id, ledgers?.length])
 
+  // Refresh current ledger when ledgers data changes (to pick up updates)
+  useEffect(() => {
+    if (currentLedger?.id && ledgers) {
+      // Find the current ledger in the list of ledgers
+      const ledger = ledgers.find((ledger) => ledger.id === currentLedger.id)
+
+      // If the ledger is found and is different from the current ledger, set it as the current ledger
+      if (ledger && ledger !== currentLedger) {
+        setCurrentLedger(ledger)
+      }
+    }
+  }, [ledgers])
+
   useEffect(() => {
     // Update storage according to the current ledger
     if (currentLedger?.id) {
