@@ -10,7 +10,10 @@ export {
   useOrganization
 } from './providers/organization-provider'
 export { SidebarProvider, useSidebar } from './providers/sidebar-provider'
-export { QueryProvider as LayoutQueryProvider } from './providers/query-provider'
+export {
+  QueryProvider as LayoutQueryProvider,
+  useLayoutQueryClient
+} from './providers/query-provider'
 export { LocalizationProvider as LayoutLocalizationProvider } from './lib/intl/localization-provider'
 export { ConsoleLayoutProviders } from './providers/console-layout-providers'
 export {
