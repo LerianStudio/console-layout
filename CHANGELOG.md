@@ -4,6 +4,20 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.4] - 2025-07-31
+
+This release focuses on enhancing user navigation and maintaining the stability of the console-layout application. Users will experience a more streamlined interface and benefit from updated dependencies for improved security and performance.
+
+### ✨ Features  
+- **Improved Sidebar Navigation**: The Sidebar component has been updated to provide a cleaner and more efficient user experience. By removing motion effects, the sidebar is now less distracting, allowing users to focus on their tasks with ease.
+
+### 🔧 Maintenance
+- **Dependency Updates**: We have updated several project dependencies to ensure compatibility and enhance security. These updates help maintain the application's reliability and prepare it for future enhancements.
+- **Changelog Update**: The changelog file has been refreshed to provide users and developers with accurate and up-to-date information about the project's latest changes and improvements.
+
+
+This changelog is designed to clearly communicate the key changes and benefits of the v1.6.0 release, ensuring users understand the improvements and maintenance efforts undertaken.
+
 ## [v1.6.0-beta.3] - 2025-07-31
 
 In this release, we have enhanced the reliability of the Ledger update mechanism, ensuring more accurate and timely data updates for users. Additionally, we've improved our documentation to keep you informed about the latest changes.
