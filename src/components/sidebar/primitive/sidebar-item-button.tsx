@@ -9,9 +9,9 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '../../ui/tooltip'
-import { cn } from '../../../lib/utils'
+import { cn } from '@/lib/utils'
 
-export interface SidebarItemButtonProps {
+export type SidebarItemButtonProps = {
   title: string
   icon: React.ReactNode
   href: string

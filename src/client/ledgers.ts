@@ -20,7 +20,7 @@ export const useListLedgers = ({
   return useQuery<PaginationDto<LedgerDto>>({
     queryKey: ['ledgers', organizationId, { page, limit }],
     queryFn: getPaginatedFetcher(
-      `/api/organizations/${organizationId}/ledgers`,
+      `/api/organizations/${organizationId}/ledgers/ledgers-assets`,
       { page, limit }
     ),
     staleTime: 60 * 60 * 1000,

@@ -3,7 +3,7 @@
 import React from 'react'
 import { PanelLeftClose, PanelRightClose } from 'lucide-react'
 import { Button } from '../../ui/button'
-import { useSidebar } from '../../../providers/sidebar-provider'
+import { useSidebar } from '@/providers/sidebar-provider'
 import { SidebarFooter } from './sidebar-components'
 import {
   Tooltip,

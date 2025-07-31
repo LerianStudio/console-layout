@@ -1,35 +1,37 @@
 'use client'
 
 import React from 'react'
-import { AnimatePresence, motion } from 'motion/react'
-import { useSidebar } from '../../../providers/sidebar-provider'
+import { cva } from 'class-variance-authority'
+import { useSidebar } from '@/providers/sidebar-provider'
+import { cn } from '@/lib/utils'
 
-const sidebarVariants = {
-  opened: {
-    width: 'auto',
-    transition: {
-      duration: 0.1
+const sidebarVariants = cva(
+  'group/sidebar shadow-sidebar dark:bg-cod-gray-950 relative flex flex-col transition-all duration-100',
+  {
+    variants: {
+      collapsed: {
+        true: 'w-fit',
+        false: 'w-[244px]'
+      }
+    },
+    defaultVariants: {
+      collapsed: false
     }
-  },
-  closed: {
-    width: '72px'
   }
-}
+)
 
-export const SidebarRoot = ({ children }: React.PropsWithChildren) => {
+export const SidebarRoot = ({
+  className,
+  ...props
+}: React.ComponentProps<'nav'>) => {
   const { isCollapsed } = useSidebar()
 
   return (
-    <AnimatePresence>
-      <motion.div
-        data-collapsed={isCollapsed}
-        className="group/sidebar shadow-sidebar dark:bg-cod-gray-950 relative flex flex-col"
-        variants={sidebarVariants}
-        initial="closed"
-        animate={isCollapsed ? 'closed' : 'opened'}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <nav
+      data-slot="sidebar-root"
+      className={cn(sidebarVariants({ collapsed: isCollapsed }), className)}
+      data-collapsed={isCollapsed}
+      {...props}
+    />
   )
 }
