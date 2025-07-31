@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.1] - 2025-07-31
+
+This release focuses on improving data handling efficiency and enhancing the reliability of environment configurations, ensuring a smoother and more consistent user experience.
+
+### 🐛 Bug Fixes
+- **Environment Configuration Reliability**: Simplified the process for retrieving environment variables, ensuring consistent application behavior across the platform. This fix reduces configuration errors and enhances the reliability of settings related to the console and authentication.
+
+### ⚡ Performance
+- **Frontend Efficiency**: Removed unnecessary headers from requests, leading to more efficient data processing. This change reduces the amount of data transmitted, improving performance and minimizing potential errors in the user interface.
+
+### 🔧 Maintenance
+- **Changelog Updates**: The changelog has been updated to reflect recent changes and improvements, providing users and developers with the latest information on project progress and updates.
+
+This changelog effectively communicates the key improvements and bug fixes introduced in version 1.6.0, highlighting the benefits to users in terms of performance and reliability.
+
 ## [v1.5.3-beta.1] - 2025-07-30
 
 This release focuses on enhancing the reliability of environment variable management, ensuring consistent application behavior and improving system stability.
