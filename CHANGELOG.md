@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.5] - 2025-08-01
+
+This release introduces a new permissions provider component, enhancing user management and security, along with key bug fixes for improved application reliability.
+
+### ✨ Features  
+- **New Permissions Provider Component**: Experience enhanced control over user permissions with our new frontend feature. This addition allows you to define and manage user access more effectively, aligning with your organizational policies and enhancing security.
+
+### 🐛 Bug Fixes
+- **Consistent Application Behavior**: We've resolved an issue affecting both the configuration and frontend components, ensuring your application behaves consistently across different environments. This fix enhances reliability and reduces potential confusion or errors in usage.
+
+### 🔧 Maintenance
+- **Changelog Update**: We've updated the CHANGELOG to provide you with the latest information on software updates, helping you track changes and understand the software's evolution over time.
+
+This changelog is designed to clearly communicate the most significant changes and their benefits, ensuring users understand the enhancements and fixes included in this release.
+
 ## [v1.6.0-beta.4] - 2025-07-31
 
 This release focuses on enhancing user navigation and maintaining the stability of the console-layout application. Users will experience a more streamlined interface and benefit from updated dependencies for improved security and performance.
