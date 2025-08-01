@@ -4,11 +4,17 @@ import { getRuntimeEnv } from '@/utils/runtime-env-utils'
 import { usePermissions } from './index'
 
 type EnforceProps = React.PropsWithChildren & {
+  disabledBehaviour?: 'hide' | 'show'
   resource: string
   action: string
 }
 
-export const Enforce = ({ resource, action, children }: EnforceProps) => {
+export const Enforce = ({
+  resource,
+  action,
+  children,
+  disabledBehaviour = 'show'
+}: EnforceProps) => {
   const isAuthEnabled =
     getRuntimeEnv(
       'NEXT_PUBLIC_MIDAZ_AUTH_ENABLED',
@@ -16,7 +22,7 @@ export const Enforce = ({ resource, action, children }: EnforceProps) => {
     ) === 'true'
 
   if (!isAuthEnabled) {
-    return children
+    return disabledBehaviour === 'hide' ? null : children
   }
 
   const { validate } = usePermissions()

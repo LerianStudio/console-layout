@@ -20,7 +20,11 @@ export const UserDropdown = () => {
   const router = useRouter()
   const { data: session } = useSession()
 
-  const isAuthEnabled = process.env.PLUGIN_AUTH_ENABLED === 'true'
+  const isAuthEnabled =
+    getRuntimeEnv(
+      'NEXT_PUBLIC_MIDAZ_AUTH_ENABLED',
+      process.env.NEXT_PUBLIC_MIDAZ_AUTH_ENABLED
+    ) === 'true'
 
   const handleDocsClick = () => {
     window.open('https://docs.lerian.studio/', '_blank', 'noopener noreferrer')

@@ -19,25 +19,12 @@ import {
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
 import { AboutMidazDialog } from './about-midaz-dialog'
-import { Enforce } from '../ui/enforce'
 import { useIntl } from '@/lib/intl/use-intl'
 import { useRouter } from 'next/navigation'
 import { getRuntimeEnv } from '@/utils/runtime-env-utils'
+import { Enforce } from '@/providers/permission-provider/enforce'
 
-export interface SettingsDropdownProps {
-  /** Permissions for showing menu items */
-  permissions?: {
-    canViewUsers?: boolean
-    canViewApplications?: boolean
-  }
-}
-
-export const SettingsDropdown = ({
-  permissions = {
-    canViewUsers: true,
-    canViewApplications: true
-  }
-}: SettingsDropdownProps) => {
+export const SettingsDropdown = () => {
   const intl = useIntl()
   const router = useRouter()
   const baseUrl = getRuntimeEnv(
@@ -82,11 +69,7 @@ export const SettingsDropdown = ({
             })}
           </DropdownMenuItem>
 
-          <Enforce
-            hasPermission={permissions.canViewUsers}
-            resource="users"
-            action="get"
-          >
+          <Enforce resource="users" action="get" disabledBehaviour="hide">
             <DropdownMenuItem
               onClick={() => handleClick('/settings/?tab=users')}
             >
@@ -101,9 +84,9 @@ export const SettingsDropdown = ({
           </Enforce>
 
           <Enforce
-            hasPermission={permissions.canViewApplications}
             resource="applications"
             action="get"
+            disabledBehaviour="hide"
           >
             <DropdownMenuItem
               onClick={() => handleClick('/settings/?tab=applications')}
