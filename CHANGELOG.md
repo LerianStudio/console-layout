@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.7] - 2025-08-04
+
+In this release, we've enhanced the user experience by refining the tooltip logic in the Ledger Selector and updated our changelog documentation for better project transparency.
+
+### 🐛 Bug Fixes
+- **Improved Tooltip Logic in Ledger Selector**: We've fixed the tooltip display to ensure that users receive accurate and helpful information when interacting with the Ledger Selector. This change reduces confusion and enhances the overall user experience by providing clear guidance during ledger selection.
+
+### 📚 Documentation
+- **Changelog Update**: Our changelog has been updated to include the latest changes and improvements. This ensures that all users and stakeholders have access to the most current information about software updates, enhancing communication and project tracking.
+
+### 🔧 Maintenance
+- **Changelog Documentation Refresh**: We've refreshed our changelog documentation to maintain transparency and ease of tracking the project's evolution. This behind-the-scenes update supports better communication and project management.
+
+This changelog is designed to be user-friendly, focusing on the impact and benefits of the changes made in this release. It provides clear and concise information to help users understand the improvements without delving into technical details.
+
 ## [v1.6.0-beta.6] - 2025-08-04
 
 This release enhances user support accessibility and updates documentation to ensure users have the latest information at their fingertips.
