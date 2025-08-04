@@ -170,7 +170,7 @@ export const LedgerSelector = () => {
 
   return (
     <TooltipProvider>
-      <Tooltip disabled={!hasLedgers}>
+      <Tooltip disabled={hasLedgers}>
         <TooltipTrigger asChild>
           <div>
             <Select
