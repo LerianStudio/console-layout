@@ -27,7 +27,11 @@ export const UserDropdown = () => {
     ) === 'true'
 
   const handleDocsClick = () => {
-    window.open('https://docs.lerian.studio/', '_blank', 'noopener noreferrer')
+    window.open(
+      'https://docs.lerian.studio/docs/getting-help/',
+      '_blank',
+      'noopener noreferrer'
+    )
   }
 
   const baseUrl = getRuntimeEnv(
