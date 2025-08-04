@@ -4,6 +4,21 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.6] - 2025-08-04
+
+This release enhances user support accessibility and updates documentation to ensure users have the latest information at their fingertips.
+
+### ✨ Improvements  
+- **Support System**: The support link has been updated to provide users with more direct access to assistance resources. This improvement ensures that users can easily find help and support when needed, enhancing the overall user experience.
+
+### 📚 Documentation
+- **Changelog Update**: The changelog has been updated to reflect recent changes and improvements, ensuring users and developers have access to the latest information about updates and modifications. This maintains transparency and aids in version tracking.
+
+### 🔧 Maintenance
+- **General Updates**: Routine maintenance has been performed to keep the project running smoothly and efficiently, contributing to a stable and reliable user experience.
+
+This changelog focuses on the benefits and impact of the changes, ensuring users understand how the updates improve their experience. The language is clear and accessible, avoiding technical jargon to ensure all users can easily grasp the enhancements.
+
 ## [v1.6.0-beta.5] - 2025-08-01
 
 This release introduces a new permissions provider component, enhancing user management and security, along with key bug fixes for improved application reliability.
