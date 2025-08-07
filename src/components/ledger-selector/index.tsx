@@ -115,7 +115,10 @@ export const LedgerSelector = () => {
 
   const { data: ledgers } = useListLedgers({
     organizationId: currentOrganization?.id || '',
-    limit: 100
+    filters: {
+      limit: 100,
+      page: 1
+    }
   })
 
   const hasLedgers = !!ledgers?.items?.length

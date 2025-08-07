@@ -33,25 +33,35 @@ export const OrganizationProvider = ({ children }: PropsWithChildren) => {
   const pathname = usePathname()
   const [current, setCurrent] = useState<OrganizationDto>({} as OrganizationDto)
 
-  const { data: organizations, isPending: loadingOrganizations } =
-    useListOrganizations({
-      query: {
-        limit: 100,
-        page: 1
-      }
-    })
+  const {
+    data: organizations,
+    isPending: loadingOrganizations,
+    isError
+  } = useListOrganizations({
+    filters: {
+      limit: 100,
+      page: 1
+    }
+  })
 
   const [currentLedger, setCurrentLedger] = useState<LedgerDto>({} as LedgerDto)
   const { data: ledgers, isPending: loadingLedgers } = useListLedgers({
     organizationId: current?.id!,
-    query: {
-      limit: 100
+    filters: {
+      limit: 100,
+      page: 1
     }
   })
 
   useEffect(() => {
     // Wait the request to finish
     if (loadingOrganizations || !organizations?.items) {
+      return
+    }
+
+    // The request will only fail if the user is not authenticated or for unexpected errors
+    // In this case, do nothing
+    if (isError) {
       return
     }
 

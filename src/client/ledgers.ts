@@ -4,24 +4,23 @@ import { useQuery } from '@tanstack/react-query'
 import { PaginationDto } from '@/types/pagination-dto'
 import { LedgerDto } from '@/types/ledger-dto'
 import { getFetcher, getPaginatedFetcher } from './fetcher'
+import { PaginationRequestDto } from '@/types/request-dto'
 
 interface UseListLedgersProps {
   organizationId: string
-  page?: number
-  limit?: number
+  filters?: PaginationRequestDto
 }
 
 export const useListLedgers = ({
   organizationId,
-  page = 1,
-  limit = 10,
+  filters,
   ...options
-}: UseListLedgersProps & Record<string, any>) => {
+}: UseListLedgersProps) => {
   return useQuery<PaginationDto<LedgerDto>>({
-    queryKey: ['ledgers', organizationId, { page, limit }],
+    queryKey: ['ledgers', organizationId],
     queryFn: getPaginatedFetcher(
       `/api/organizations/${organizationId}/ledgers/ledgers-assets`,
-      { page, limit }
+      filters
     ),
     staleTime: 60 * 60 * 1000,
     refetchInterval: 2 * 60 * 1000,

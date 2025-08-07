@@ -3,12 +3,20 @@
 import { useQuery } from '@tanstack/react-query'
 import { PaginationDto } from '@/types/pagination-dto'
 import { OrganizationDto } from '@/types/organization-dto'
-import { getFetcher } from './fetcher'
+import { getFetcher, getPaginatedFetcher } from './fetcher'
+import { PaginationRequestDto } from '@/types/request-dto'
 
-export const useListOrganizations = ({ ...options }) => {
+export type UseListOrganizationsProps = {
+  filters?: PaginationRequestDto
+}
+
+export const useListOrganizations = ({
+  filters,
+  ...options
+}: UseListOrganizationsProps) => {
   return useQuery<PaginationDto<OrganizationDto>>({
     queryKey: ['organizations'],
-    queryFn: getFetcher(`/api/organizations`),
+    queryFn: getPaginatedFetcher(`/api/organizations`, filters),
     staleTime: 60 * 60 * 1000,
     refetchInterval: 2 * 60 * 1000,
     refetchIntervalInBackground: false,

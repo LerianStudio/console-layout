@@ -32,7 +32,12 @@ export const OrganizationSwitcher = ({
   organizationText = 'Organization'
 }: OrganizationSwitcherProps) => {
   const { isCollapsed } = useSidebar()
-  const { data, isPending } = useListOrganizations({})
+  const { data, isPending } = useListOrganizations({
+    filters: {
+      limit: 100,
+      page: 1
+    }
+  })
   const { currentOrganization, setOrganization } = useOrganization()
   const [open, setOpen] = useState(false)
   const [avatar, setAvatar] = useState<string>(lerianLogo)
