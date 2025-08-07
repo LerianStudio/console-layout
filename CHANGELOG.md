@@ -4,6 +4,18 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.8] - 2025-08-07
+
+This release enhances the reliability of the frontend component by resolving pagination issues, ensuring users can seamlessly navigate large datasets.
+
+### 🐛 Bug Fixes
+- **Improved Navigation**: Resolved pagination issues affecting the display of organizations and ledgers. Users can now navigate through extensive lists more reliably, enhancing the overall experience when managing large datasets.
+
+### 🔧 Maintenance
+- **Changelog Update**: The CHANGELOG has been updated to reflect recent changes and fixes, ensuring users have access to a clear history of updates and improvements.
+
+This changelog highlights the key bug fix that improves user experience by addressing pagination issues, ensuring smoother navigation for users dealing with large datasets. The maintenance update ensures documentation is current, providing users with clear historical context.
+
 ## [v1.6.0-beta.7] - 2025-08-04
 
 In this release, we've enhanced the user experience by refining the tooltip logic in the Ledger Selector and updated our changelog documentation for better project transparency.
