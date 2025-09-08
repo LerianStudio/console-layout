@@ -4,6 +4,19 @@ All notable changes to the `@midaz/console-layout` library will be documented in
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v1.6.0-beta.9] - 2025-09-08
+
+[Compare changes](https://github.com/LerianStudio/console-layout/compare/v1.6.0-beta.8...v1.6.0-beta.9)
+Contributors: Augusto Alvarenga, lerian-studio
+
+### ✨ Features
+- **Midaz Menu Integration in Sidebar**: The sidebar now includes the Midaz menu, offering a more intuitive and streamlined navigation experience. Users can access key features more quickly, enhancing overall usability and efficiency.
+
+### 🔧 Maintenance
+- **Dependency Updates**: We've updated project dependencies to ensure continued compatibility and security. This helps maintain system stability and reduces vulnerability risks.
+- **Enhanced Test Coverage**: Improved testing for the new Midaz menu and sidebar updates ensures higher reliability and robustness, minimizing potential issues in production.
+
+
 ## [v1.6.0-beta.8] - 2025-08-07
 
 This release enhances the reliability of the frontend component by resolving pagination issues, ensuring users can seamlessly navigate large datasets.
